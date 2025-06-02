@@ -46,6 +46,20 @@ export default defineConfig({
                         purpose: 'any'
                     },
                 ],
+                screenshots: [
+                    {
+                        src: "/screenshots/desktop.png",
+                        type: "image/png",
+                        sizes: "1918x862",
+                        form_factor: "wide"
+                    },
+                    {
+                        src: "/screenshots/mobile.png",
+                        type: "image/png",
+                        sizes: "398x756",
+                        form_factor: "narrow"
+                    },
+                ]
             },
             workbox: {
                 cleanupOutdatedCaches: true,

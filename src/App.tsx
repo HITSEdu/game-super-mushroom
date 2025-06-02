@@ -55,8 +55,8 @@ const App = () => {
     if (!orientation) {
         return (
             <div className="w-full h-full flex-center p-10">
-                <p className="text-4xl font-bold text-center">
-                    <RotateCwSquareIcon size='large'/> {t("changeOrientation")}
+                <p className="text-4xl font-bold text-center flex-center flex-col">
+                    <RotateCwSquareIcon className='w-52 h-52'/> {t("changeOrientation")}
                 </p>
             </div>
         );
@@ -65,7 +65,7 @@ const App = () => {
     if (!isInitialized) return (
         <div className="w-full h-full flex-center p-10 mt-[20vh]">
             <p className="text-6xl font-bold text-center flex-center flex-row gap-4">
-                <LoaderIcon size='medium'/> {t("loading")}
+                <LoaderIcon className='w-52 h-52'/> {t("loading")}
             </p>
         </div>
     );
