@@ -1,0 +1,22 @@
+{
+  "gameTitle": "Latest Mushroom Hero",
+  "play": "Play",
+  "newGame": "New Game",
+  "continue": "Continue",
+  "settings": "Settings",
+  "language": "Language",
+  "back": "Back",
+  "volume": "Volume",
+  "confirmNewGame": "Are u sure? The previous progress will be lost.",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "exitToLevels": "Back to levels",
+  "exitToMenu": "Back to menu",
+  "defaultPlayerName": "The nameless hero",
+  "winTitle": "Level complete!",
+  "nextLevel": "Next level",
+  "loading": "Loading...",
+  "changeOrientation": "Please turn the device to a horizontal position",
+  "selectLevel": "Select a level",
+  "level": "Level"
+}

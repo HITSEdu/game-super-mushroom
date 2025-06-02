@@ -1,0 +1,105 @@
+{
+  "gravity": 1.5,
+  "playerStart": {
+    "x": 100,
+    "y": 100
+  },
+  "obstacles": [
+    {
+      "x": 50,
+      "y": 300,
+      "width": 200,
+      "height": 20,
+      "color": "brown",
+      "type": "platform"
+    },
+    {
+      "x": 600,
+      "y": 650,
+      "width": 600,
+      "height": 50,
+      "color": "black",
+      "type": "platform"
+    },
+    {
+      "x": 300,
+      "y": 570,
+      "width": 400,
+      "height": 50,
+      "color": "black",
+      "type": "platform"
+    },
+    {
+      "x": -1000,
+      "y": 700,
+      "width": 5000,
+      "height": 5000,
+      "color": "green",
+      "type": "ground"
+    },
+    {
+      "x": 1000,
+      "y": 600,
+      "width": 20,
+      "height": 20,
+      "color": "black",
+      "type": "finish"
+    },
+    {
+      "x": 150,
+      "y": 100,
+      "width": 40,
+      "height": 40,
+      "color": "yellow",
+      "type": "star"
+    },
+    {
+      "x": 900,
+      "y": 570,
+      "width": 77,
+      "height": 66,
+      "color": "yellow",
+      "type": "star"
+    },
+    {
+      "x": 500,
+      "y": 500,
+      "width": 20,
+      "height": 20,
+      "color": "yellow",
+      "type": "star"
+    },
+    {
+      "x": 0,
+      "y": -1,
+      "width": 1,
+      "height": 2000,
+      "color": "none",
+      "type": "none"
+    }
+  ],
+  "enemies": [
+    {
+      "x": 500,
+      "y": 600,
+      "speed": 2,
+      "range": 300,
+      "type": "patroller",
+      "size": {
+        "width": 100,
+        "height": 50
+      }
+    },
+    {
+      "x": 800,
+      "y": 600,
+      "speed": 5,
+      "type": "patroller",
+      "range": 400,
+      "size": {
+        "width": 50,
+        "height": 50
+      }
+    }
+  ]
+}
