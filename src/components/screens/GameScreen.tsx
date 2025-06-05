@@ -3,12 +3,13 @@ import {useGlobalStore} from "../../store/GlobalStore.ts";
 import GameScene from "../../game/GameScene.tsx";
 import {useTranslation} from "react-i18next";
 import {useMenuStore} from "../../store/MenuStore.ts";
-import Button from "../UI/Button.tsx";
+import Button from "../ui/Button.tsx";
 import ModalWindow from "../ModalWindow.tsx";
 import {useLevelsStore} from "../../store/LevelsStore.ts";
 import MobileControls from "../MobileControls.tsx";
 import {SettingsIcon} from "lucide-react";
-import LevelInfo from "../UI/LevelInfo.tsx";
+import LevelInfo from "../ui/LevelInfo.tsx";
+import VolumeChanger from "../ui/VolumeChanger.tsx";
 
 const GameScreen = () => {
     const {
@@ -41,20 +42,17 @@ const GameScreen = () => {
                         <Button title={t('exitToLevels')} onClick={() => {
                             changeGlobalState('levelSelect');
                             reset();
-                            // TODO дописать логику выхода с уровня
                         }}/>
                         <Button title={t('exitToMenu')} onClick={() => {
                             changeGlobalState('menu');
                             reset();
-                            // TODO дописать логику выхода с уровня
                         }}/>
                     </>
                 );
             case 'settings':
                 return (
                     <>
-                        <Button title={t('volume')} onClick={() => {
-                        }}/>
+                        <Button title={t('volume')} onClick={() => changeMenu('volume')}/>
                         <Button title={t('language')} onClick={() => changeMenu('language')}/>
                         <Button title={t('back')} onClick={() => changeMenu('main')}/>
                     </>
@@ -64,6 +62,13 @@ const GameScreen = () => {
                     <>
                         <Button title='Русский' onClick={() => i18n.changeLanguage('ru')}/>
                         <Button title='English' onClick={() => i18n.changeLanguage('en')}/>
+                        <Button title={t('back')} onClick={() => changeMenu('settings')}/>
+                    </>
+                )
+            case 'volume':
+                return (
+                    <>
+                        <VolumeChanger/>
                         <Button title={t('back')} onClick={() => changeMenu('settings')}/>
                     </>
                 )

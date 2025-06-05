@@ -2,7 +2,7 @@ export type GameStatus = 'playing' | 'paused' | 'won' | 'lost'
 
 export type GlobalType = 'menu' | 'levelSelect' | 'playing'
 
-export type MenuType = 'main' | 'settings' | 'language' | 'confirm'
+export type MenuType = 'main' | 'settings' | 'language' | 'confirm' | 'volume'
 
 export type PlayerStateType = 'alive' | 'dead' | 'won' | 'lost' | 'menu'
 

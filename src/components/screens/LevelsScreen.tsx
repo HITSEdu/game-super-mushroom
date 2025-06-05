@@ -1,9 +1,9 @@
 import {useLevelsStore} from '../../store/LevelsStore.ts'
 import {useGlobalStore} from "../../store/GlobalStore.ts";
-import Button from "../UI/Button.tsx";
+import Button from "../ui/Button.tsx";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {ArrowLeft} from "lucide-react";
-import LevelInfo from "../UI/LevelInfo.tsx";
+import LevelInfo from "../ui/LevelInfo.tsx";
 import {useTranslation} from "react-i18next";
 
 const LevelsScreen = () => {

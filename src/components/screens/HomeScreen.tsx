@@ -1,9 +1,10 @@
 import ButtonsMenu from "../ButtonsMenu.tsx";
 import {useTranslation} from "react-i18next";
-import Button from "../UI/Button.tsx";
+import Button from "../ui/Button.tsx";
 import {useMenuStore} from "../../store/MenuStore.ts";
 import {useGlobalStore} from "../../store/GlobalStore.ts";
 import {useLevelsStore} from "../../store/LevelsStore.ts";
+import VolumeChanger from "../ui/VolumeChanger.tsx";
 
 const HomeScreen = () => {
     const {t, i18n} = useTranslation('translations')
@@ -28,7 +29,7 @@ const HomeScreen = () => {
             case 'settings':
                 return (
                     <>
-                        <Button title={t('volume')} onClick={() => 0}/>
+                        <Button title={t('volume')} onClick={() => changeMenu('volume')}/>
                         <Button title={t('language')} onClick={() => changeMenu('language')}/>
                         <Button title={t('back')} onClick={() => changeMenu('main')}/>
                     </>
@@ -51,6 +52,13 @@ const HomeScreen = () => {
                             changeGlobalState('levelSelect');
                         }}/>
                         <Button title={t('cancel')} onClick={() => changeMenu('main')}/>
+                    </>
+                )
+            case 'volume':
+                return (
+                    <>
+                        <VolumeChanger/>
+                        <Button title={t('back')} onClick={() => changeMenu('settings')}/>
                     </>
                 )
         }
