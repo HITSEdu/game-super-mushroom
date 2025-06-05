@@ -25,24 +25,24 @@ const GameScene = () => {
         position: playerPosition,
     } = usePlayerStore();
 
-    const {currentLevelID, reset: resetSession, status: gameStatus} = useGameSessionStore();
+    const {currentLevelID, status: gameStatus} = useGameSessionStore();
 
     useEffect(() => {
         const numberID = Number(currentLevelID);
-        load(numberID);
+        if (numberID)
+            load(numberID).then(() => {
+                Promise.all([
+                    Assets.load('player'),
+                ]).then(([playerTex]) => {
+                    setTexture(playerTex as Texture);
+                });
 
-        Promise.all([
-            Assets.load('player'),
-        ]).then(([playerTex]) => {
-            setTexture(playerTex as Texture);
-        });
-
-        initControlSystem();
+                initControlSystem();
+            });
 
         return () => {
             cleanupControlSystem();
             resetLevel();
-            resetSession();
         };
     }, [currentLevelID]);
 
