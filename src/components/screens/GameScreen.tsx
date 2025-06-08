@@ -9,7 +9,7 @@ import {useLevelsStore} from "../../store/LevelsStore.ts";
 import MobileControls from "../MobileControls.tsx";
 import {SettingsIcon} from "lucide-react";
 import LevelInfo from "../ui/LevelInfo.tsx";
-import VolumeChanger from "../ui/VolumeChanger.tsx";
+import VolumeChanger from "../VolumeChanger.tsx";
 
 const GameScreen = () => {
     const {

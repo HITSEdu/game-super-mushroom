@@ -4,16 +4,17 @@ interface Props {
     title: ReactNode
     onClick: () => void
     disabled?: boolean
+    className?: string;
 }
 
-const Button = ({title, onClick, disabled}: Props) => {
+const Button = ({title, onClick, disabled, className = ''}: Props) => {
     return (
         <button
-            className={`flex-center flex-col p-4 w-full rounded-2xl font-bold text-lg transition duration-200 shadow-md border-2 ${
+            className={`flex-center flex-col p-4 rounded-2xl font-bold text-lg transition duration-200 shadow-md border-2 ${
                 disabled
                     ? 'bg-gray-600 border-gray-500 text-gray-300 cursor-not-allowed'
                     : 'bg-primary-600 border-primary-400 text-pr-400 hover:bg-primary-700 active:scale-95'
-            }`}
+            } ${className}`}
             onClick={onClick}
             disabled={disabled}
         >

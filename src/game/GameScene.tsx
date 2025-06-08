@@ -20,6 +20,7 @@ const GameScene = () => {
 
     const {
         texture: playerTexture,
+        textureString: playerTextureString,
         size: playerSize,
         setTexture,
         position: playerPosition,
@@ -29,16 +30,15 @@ const GameScene = () => {
 
     useEffect(() => {
         const numberID = Number(currentLevelID);
-        if (numberID)
-            load(numberID).then(() => {
-                Promise.all([
-                    Assets.load('player'),
-                ]).then(([playerTex]) => {
-                    setTexture(playerTex as Texture);
-                });
+        load(numberID).then(() => {
+            if (playerTextureString)
+                Assets.load(playerTextureString)
+                    .then(playerTex => {
+                        setTexture(playerTex as Texture);
+                    });
 
-                initControlSystem();
-            });
+            initControlSystem();
+        });
 
         return () => {
             cleanupControlSystem();

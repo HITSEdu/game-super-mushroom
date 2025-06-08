@@ -54,9 +54,9 @@ const App = () => {
 
     if (!orientation) {
         return (
-            <div className="w-full h-full flex-center p-10">
-                <p className="text-4xl font-bold text-center flex-center flex-col">
-                    <RotateCwSquareIcon className='w-52 h-52'/> {t("changeOrientation")}
+            <div className="w-full h-full flex-center p-10 mt-[20vh]">
+                <p className="text-2xl font-bold text-center flex-center flex-col">
+                    <RotateCwSquareIcon className='w-30 h-30'/> {t("changeOrientation")}
                 </p>
             </div>
         );
@@ -71,10 +71,11 @@ const App = () => {
     );
 
     return (
-        <div className="w-full h-full flex-center relative">
+        <div className="h-screen w-full overflow-y-auto flex flex-col">
             {screens[state]}
         </div>
     );
+
 }
 
 export default App

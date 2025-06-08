@@ -4,7 +4,8 @@ import Button from "../ui/Button.tsx";
 import {useMenuStore} from "../../store/MenuStore.ts";
 import {useGlobalStore} from "../../store/GlobalStore.ts";
 import {useLevelsStore} from "../../store/LevelsStore.ts";
-import VolumeChanger from "../ui/VolumeChanger.tsx";
+import VolumeChanger from "../VolumeChanger.tsx";
+import {usePlayerStore} from "../../store/PlayerStore.ts";
 
 const HomeScreen = () => {
     const {t, i18n} = useTranslation('translations')
@@ -12,6 +13,7 @@ const HomeScreen = () => {
 
     const changeGlobalState = useGlobalStore((state) => state.change)
     const resetLevelsState = useLevelsStore((state) => state.resetProgress)
+    const {change: playerChange} = usePlayerStore();
 
     const renderMenu = () => {
         switch (menu) {
@@ -49,6 +51,7 @@ const HomeScreen = () => {
                         <Button title={t('confirm')} onClick={() => {
                             resetLevelsState();
                             resetMenu();
+                            playerChange();
                             changeGlobalState('levelSelect');
                         }}/>
                         <Button title={t('cancel')} onClick={() => changeMenu('main')}/>
@@ -65,11 +68,15 @@ const HomeScreen = () => {
     }
 
     return (
-        <div className="flex-center flex-col">
-            <h1 className="font-bold text-4xl text-fg mt-6 text-center">
-                {t("gameTitle")}
-            </h1>
-            <ButtonsMenu children={renderMenu()}/>
+        <div className="flex flex-col pb-[4vh]">
+            <div className="gap-y-4 overscroll-auto">
+                <div className="flex-center flex-col">
+                    <h1 className="font-bold text-4xl text-fg mt-6 text-center">
+                        {t("gameTitle")}
+                    </h1>
+                    <ButtonsMenu children={renderMenu()}/>
+                </div>
+            </div>
         </div>
     )
 }

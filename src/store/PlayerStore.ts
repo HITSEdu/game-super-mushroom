@@ -5,11 +5,11 @@ import {DEFAULT_PLAYER_SIZE, DEFAULT_START_POSITION} from "../constants/values.t
 import type {ObjectSize} from "../constants/interfaces.ts";
 import {handlePlayerEnemyCollision, handleObstacleCollision} from "../game/systems/collision.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
-import {sounds} from "../game/utils/sound.ts";
 
 interface PlayerStore {
     name: string;
     texture: Texture | null;
+    textureString: string | null;
     position: Point;
     velocityY: number;
     velocityX: number;
@@ -28,6 +28,9 @@ interface PlayerStore {
     jump: () => void;
     come: (direction: 'left' | 'right') => void;
     tick: () => void;
+
+    init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize) => void;
+    change: () => void;
 }
 
 export const usePlayerStore = create<PlayerStore>()(
@@ -35,6 +38,7 @@ export const usePlayerStore = create<PlayerStore>()(
         (set, get) => ({
             name: '',
             texture: null,
+            textureString: null,
             size: {width: DEFAULT_PLAYER_SIZE.width, height: DEFAULT_PLAYER_SIZE.height},
             position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
             velocityY: 0,
@@ -43,6 +47,18 @@ export const usePlayerStore = create<PlayerStore>()(
             jumpPower: 20,
             onGround: true,
             stacked: false,
+
+            init: (name, texture, textureString, speed, jumpPower, size) => {
+                set({
+                    name,
+                    texture,
+                    textureString,
+                    size,
+                    speed,
+                    jumpPower,
+                })
+            },
+            change: () => set({textureString: null}),
 
             setName: (name) => set({name}),
             setPosition: (position) => set({position: new Point(position.x, position.y)}),
@@ -62,14 +78,18 @@ export const usePlayerStore = create<PlayerStore>()(
             jump: () => {
                 const {onGround, jumpPower} = get();
                 if (onGround) {
-                    sounds.jump.play();
                     set({velocityY: -jumpPower, onGround: false});
                 }
             },
             come: (direction) => {
-                const {speed} = get();
-                const velocityX = direction === 'left' ? -speed : speed;
-                set({velocityX});
+                const {speed, velocityX} = get();
+                let changedSpeed;
+                if (velocityX < 0 && direction === 'right' || velocityX > 0 && direction === 'left') {
+                    changedSpeed = speed * 0.6;
+                }
+                else changedSpeed = Math.min(speed, Math.max(speed * 0.6, Math.abs(velocityX) * 1.2));
+                const newVelocityX = direction === 'left' ? -changedSpeed : changedSpeed;
+                set({velocityX: newVelocityX});
             },
             tick: () => {
                 handlePlayerEnemyCollision();
@@ -102,6 +122,7 @@ export const usePlayerStore = create<PlayerStore>()(
             partialize: (state) => ({
                 name: state.name,
                 size: state.size,
+                textureString: state.textureString,
                 velocityY: state.velocityY,
                 velocityX: state.velocityX,
                 speed: state.speed,

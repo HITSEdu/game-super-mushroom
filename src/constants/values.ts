@@ -14,3 +14,5 @@ export const GAME_WIDTH = TILE_SIZE * COLS - TILE_SIZE
 export const GAME_HEIGHT = TILE_SIZE * ROWS - TILE_SIZE
 
 export const DEFAULT_GROUND_HEIGHT = window.innerHeight * 0.8;
+
+export const PLAYER_COUNT = 3;

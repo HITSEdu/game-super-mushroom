@@ -6,7 +6,7 @@ interface IProps {
 
 const ButtonsMenu = ({children}: IProps) => {
     return (
-        <div className='grid gap-4 grid-cols-1 mt-[12vh] h-[36vh] max-w-lg w-[90vw] text-fg mx-5'>
+        <div className='grid gap-4 grid-cols-1 mt-[12vh] max-w-lg w-[90vw] text-fg mx-5'>
             {Children.map(children, (child) => (child))}
         </div>
     )

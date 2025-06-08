@@ -22,6 +22,30 @@
     "completed": false,
     "unlocked": false,
     "attempts": 0
+  },
+  "5": {
+    "id": "5",
+    "completed": false,
+    "unlocked": false,
+    "attempts": 0
+  },
+  "6": {
+    "id": "6",
+    "completed": false,
+    "unlocked": false,
+    "attempts": 0
+  },
+  "7": {
+    "id": "7",
+    "completed": false,
+    "unlocked": false,
+    "attempts": 0
+  },
+  "8": {
+    "id": "8",
+    "completed": false,
+    "unlocked": false,
+    "attempts": 0
   }
 }
 

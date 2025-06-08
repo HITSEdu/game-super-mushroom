@@ -18,5 +18,12 @@
   "loading": "Loading...",
   "changeOrientation": "Please turn the device to a horizontal position",
   "selectLevel": "Select a level",
-  "level": "Level"
+  "level": "Level",
+  "changePlayer": "Change the character",
+  "selectPlayer": "Select a player",
+  "select": "Select",
+  "speed": "Speed",
+  "jump": "Jump",
+  "size": "Size",
+  "name": "Name"
 }
