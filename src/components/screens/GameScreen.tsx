@@ -1,15 +1,15 @@
-import {useGameSessionStore} from '../../store/GameSessionStore.ts'
-import {useGlobalStore} from "../../store/GlobalStore.ts";
+import {useGameSessionStore} from '../../store/GameSessionStore.ts';
 import GameScene from "../../game/GameScene.tsx";
-import {useTranslation} from "react-i18next";
 import {useMenuStore} from "../../store/MenuStore.ts";
-import Button from "../ui/Button.tsx";
 import ModalWindow from "../ModalWindow.tsx";
-import {useLevelsStore} from "../../store/LevelsStore.ts";
 import MobileControls from "../MobileControls.tsx";
 import {SettingsIcon} from "lucide-react";
 import LevelInfo from "../ui/LevelInfo.tsx";
-import VolumeChanger from "../VolumeChanger.tsx";
+import GamingMainMenu from "../menu/GamingMainMenu.tsx";
+import SettingsMenu from "../menu/SettingsMenu.tsx";
+import LanguageMenu from "../menu/LanguageMenu.tsx";
+import VolumeMenu from "../menu/VolumeMenu.tsx";
+import WinMenu from "../menu/WinMenu.tsx";
 
 const GameScreen = () => {
     const {
@@ -17,83 +17,22 @@ const GameScreen = () => {
         stars,
         currentAttempts,
         pause,
-        resume,
-        reset,
         curTime,
-        currentLevelID,
-        startLevel,
     } = useGameSessionStore();
-    const changeGlobalState = useGlobalStore((s) => s.change);
 
-    const {levels} = useLevelsStore();
-
-    const {t, i18n} = useTranslation('translations')
-    const {menu: menu, change: changeMenu} = useMenuStore()
+    const {menu: menu} = useMenuStore()
 
     const renderMenu = () => {
         switch (menu) {
             case 'main':
-                return (
-                    <>
-                        <Button title={t('continue')} onClick={() => {
-                            resume()
-                        }}/>
-                        <Button title={t('settings')} onClick={() => changeMenu('settings')}/>
-                        <Button title={t('exitToLevels')} onClick={() => {
-                            changeGlobalState('levelSelect');
-                            reset();
-                        }}/>
-                        <Button title={t('exitToMenu')} onClick={() => {
-                            changeGlobalState('menu');
-                            reset();
-                        }}/>
-                    </>
-                );
+                return <GamingMainMenu/>;
             case 'settings':
-                return (
-                    <>
-                        <Button title={t('volume')} onClick={() => changeMenu('volume')}/>
-                        <Button title={t('language')} onClick={() => changeMenu('language')}/>
-                        <Button title={t('back')} onClick={() => changeMenu('main')}/>
-                    </>
-                );
+                return <SettingsMenu/>
             case 'language':
-                return (
-                    <>
-                        <Button title='Русский' onClick={() => i18n.changeLanguage('ru')}/>
-                        <Button title='English' onClick={() => i18n.changeLanguage('en')}/>
-                        <Button title={t('back')} onClick={() => changeMenu('settings')}/>
-                    </>
-                )
+                return <LanguageMenu/>;
             case 'volume':
-                return (
-                    <>
-                        <VolumeChanger/>
-                        <Button title={t('back')} onClick={() => changeMenu('settings')}/>
-                    </>
-                )
+                return <VolumeMenu/>;
         }
-    }
-
-    const winMenu = () => {
-        return (
-            <>
-                <h2 className='font-bold text-3xl text-center'>{t('winTitle')}</h2>
-                {currentLevelID && levels[`${parseInt(currentLevelID) + 1}`] &&
-                    <Button title={t("nextLevel")} onClick={() => {
-                        startLevel(`${parseInt(currentLevelID) + 1}`);
-                        changeGlobalState("playing");
-                    }}/>}
-                <Button title={t('exitToLevels')} onClick={() => {
-                    changeGlobalState('levelSelect');
-                    reset();
-                }}/>
-                <Button title={t('exitToMenu')} onClick={() => {
-                    changeGlobalState('menu');
-                    reset();
-                }}/>
-            </>
-        );
     }
 
     return (
@@ -112,7 +51,7 @@ const GameScreen = () => {
                 <SettingsIcon/>
             </button>
             {status === "paused" && (<ModalWindow children={renderMenu()}/>)}
-            {status === "won" && (<ModalWindow children={winMenu()}/>)}
+            {status === "won" && (<ModalWindow children={<WinMenu/>}/>)}
             <MobileControls/>
         </div>
     )

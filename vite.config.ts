@@ -18,13 +18,13 @@ export default defineConfig({
                 type: "module"
             },
             manifest: {
-                name: "Latest Mushroom Hero",
-                short_name: "LMH",
-                description: "Mario-style platformer",
+                name: "SZNS",
+                short_name: "SZNS",
+                description: "2D Platformer",
                 start_url: '/',
                 display: 'standalone',
                 background_color: '#2EC6FE',
-                theme_color: '#8936FF',
+                theme_color: 'rgba(0, 0, 0, 1)',
                 orientation: 'landscape',
                 icons: [
                     {

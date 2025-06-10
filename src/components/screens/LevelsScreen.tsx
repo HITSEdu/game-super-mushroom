@@ -1,6 +1,6 @@
 import {useLevelsStore} from '../../store/LevelsStore.ts'
 import {useGlobalStore} from "../../store/GlobalStore.ts";
-import Button from "../ui/Button.tsx";
+import Button from "../buttons/Button.tsx";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {ArrowLeft} from "lucide-react";
 import LevelInfo from "../ui/LevelInfo.tsx";

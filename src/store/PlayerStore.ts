@@ -86,8 +86,7 @@ export const usePlayerStore = create<PlayerStore>()(
                 let changedSpeed;
                 if (velocityX < 0 && direction === 'right' || velocityX > 0 && direction === 'left') {
                     changedSpeed = speed * 0.6;
-                }
-                else changedSpeed = Math.min(speed, Math.max(speed * 0.6, Math.abs(velocityX) * 1.2));
+                } else changedSpeed = Math.min(speed, Math.max(speed * 0.6, Math.abs(velocityX) * 1.2));
                 const newVelocityX = direction === 'left' ? -changedSpeed : changedSpeed;
                 set({velocityX: newVelocityX});
             },

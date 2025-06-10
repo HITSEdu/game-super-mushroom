@@ -1,6 +1,6 @@
 import {useVolumeStore} from "../store/VolumeStore.ts";
 import VolumeBar from "./ui/VolumeBar.tsx";
-import Button from "./ui/Button.tsx";
+import Button from "./buttons/Button.tsx";
 import {ArrowBigDown, ArrowBigUp} from 'lucide-react'
 import {useEffect} from "react";
 

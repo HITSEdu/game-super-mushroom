@@ -5,7 +5,7 @@ import CharacterCard from "./ui/CharacterCard.tsx";
 import type {ICharacterWithTexture} from "../constants/interfaces.ts";
 import {usePlayerStore} from "../store/PlayerStore.ts";
 import {Assets} from "pixi.js";
-import Button from "./ui/Button.tsx";
+import Button from "./buttons/Button.tsx";
 import {useTranslation} from "react-i18next";
 import {ChevronsRight, ChevronsLeft, LoaderIcon} from "lucide-react";
 import {motion} from "framer-motion";

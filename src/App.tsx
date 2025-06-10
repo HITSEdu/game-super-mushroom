@@ -14,6 +14,26 @@ const App = () => {
     const {t} = useTranslation('translations')
 
     const [orientation, setOrientation] = useState(true);
+    const [background, setBackground] = useState('');
+
+    const backgrounds = [
+        '/backgrounds/1.png',
+        '/backgrounds/2.png',
+        '/backgrounds/3.png',
+        '/backgrounds/4.png',
+        '/backgrounds/5.png',
+        '/backgrounds/6.png',
+        '/backgrounds/7.png',
+        '/backgrounds/8.png',
+        '/backgrounds/9.png',
+        '/backgrounds/10.png',
+        '/backgrounds/11.png',
+    ]
+
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * backgrounds.length);
+        setBackground(backgrounds[randomIndex]);
+    }, []);
 
     useEffect(() => {
         initialize();
@@ -54,8 +74,8 @@ const App = () => {
 
     if (!orientation) {
         return (
-            <div className="w-full h-full flex-center p-10 mt-[20vh]">
-                <p className="text-2xl font-bold text-center flex-center flex-col">
+            <div className="w-full h-full flex-center p-10 mt-[20vh] z-20">
+                <p className="text-2xl font-bold text-center flex-center flex-col text-primary-500">
                     <RotateCwSquareIcon className='w-30 h-30'/> {t("changeOrientation")}
                 </p>
             </div>
@@ -63,7 +83,7 @@ const App = () => {
     }
 
     if (!isInitialized) return (
-        <div className="w-full h-full flex-center p-10 mt-[20vh]">
+        <div className="w-full h-full flex-center p-10 mt-[20vh] z-20">
             <p className="text-6xl font-bold text-center flex-center flex-row gap-4">
                 <LoaderIcon className='w-52 h-52'/> {t("loading")}
             </p>
@@ -71,8 +91,16 @@ const App = () => {
     );
 
     return (
-        <div className="h-screen w-full overflow-y-auto flex flex-col">
-            {screens[state]}
+        <div className="relative min-h-screen w-full overflow-y-auto flex flex-col">
+            <div
+                className="absolute inset-0 bg-cover bg-center brightness-50"
+                style={{
+                    backgroundImage: `url(${background})`,
+                }}
+            />
+            <div className="relative z-20">
+                {screens[state]}
+            </div>
         </div>
     );
 

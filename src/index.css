@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 @font-face {
-    font-family: PressStart2P;
-    src: url("src/assets/fonts/PressStart2P-Regular.ttf");
+    font-family: Pixel Digivolve;
+    src: url("src/assets/fonts/pixel_digivolve.otf");
 }
 
 @theme {
@@ -14,9 +14,9 @@
     --color-secondary-500: #FACC15;
     --color-secondary-900: #713F12;
 
-    --font-pixel: PressStart2P, "sans-serif";
+    --font-pixel: Pixel Digivolve, "sans-serif";
     --color-bg: #f1f1f1;
-    --color-fg: #212121;
+    --color-fg: rgba(216, 220, 220, 1);
     --sky-top: #87ceeb;
     --sky-bottom: #ffffff;
 }
@@ -39,7 +39,6 @@
         touch-action: manipulation;
         overscroll-behavior: none;
 
-        background: linear-gradient(to bottom, var(--sky-top), var(--sky-bottom));
         color: var(--color-fg);
 
         height: 100%;
