@@ -14,7 +14,8 @@ const ButtonBack = ({newState}: IProps) => {
 
     return (
         <Button title={t('back')} onClick={() => changeMenu(newState)}
-                className='text-red-500'
+                textColorClass="text-red-500 hover:text-red-400"
+                textGradientClass="from-rose-700"
                 icon={<IconBack className='w-8 h-8'/>}/>
     );
 }
