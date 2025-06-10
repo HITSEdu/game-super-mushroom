@@ -13,7 +13,7 @@ export const manifest = {
         {
             name: 'player',
             assets: [
-                {alias: 'player', src: 'src/assets/player/player.png'},
+                {alias: 'player', src: 'src/assets/player/player_1.png'},
             ],
         },
         {

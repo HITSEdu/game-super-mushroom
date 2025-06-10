@@ -1,11 +1,16 @@
 {
-  "name": "Denis",
+  "name": "Loki",
   "texture": "player",
-  "source": "src/assets/player/player.png",
+  "source": "src/assets/player/player_3.png",
   "speed": 10,
   "jumpPower": 20,
   "size": {
     "width": 50,
     "height": 50
-  }
+  },
+  "spriteUnderworld": "src/assets/player/spritesheet/player_underworld.png",
+  "spriteSummer": "src/assets/player/spritesheet/player_3_summer.png",
+  "spriteWinter": "src/assets/player/spritesheet/player_3_winter.png",
+  "spriteAutumn": "src/assets/player/spritesheet/player_3_autumn.png",
+  "spriteSpring": "src/assets/player/spritesheet/player_3_spring.png"
 }

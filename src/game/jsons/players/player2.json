@@ -1,11 +1,16 @@
 {
-  "name": "Daniil",
+  "name": "Nova",
   "texture": "player",
-  "source": "src/assets/player/player.png",
+  "source": "src/assets/player/player_2.png", 
   "speed": 10,
   "jumpPower": 20,
   "size": {
     "width": 50,
     "height": 50
-  }
+  },
+  "spriteUnderworld": "src/assets/player/spritesheet/player_underworld.png",
+  "spriteSummer": "src/assets/player/spritesheet/player_2_summer.png",
+  "spriteWinter": "src/assets/player/spritesheet/player_2_winter.png",
+  "spriteAutumn": "src/assets/player/spritesheet/player_2_autumn.png",
+  "spriteSpring": "src/assets/player/spritesheet/player_2_spring.png"
 }

@@ -24,6 +24,8 @@ const GameScene = () => {
         size: playerSize,
         setTexture,
         position: playerPosition,
+        season: playerSeason,
+        sprite: playerSprite,
     } = usePlayerStore();
 
     const {currentLevelID, status: gameStatus} = useGameSessionStore();
@@ -31,8 +33,8 @@ const GameScene = () => {
     useEffect(() => {
         const numberID = Number(currentLevelID);
         load(numberID).then(() => {
-            if (playerTextureString)
-                Assets.load(playerTextureString)
+            if (playerSprite)
+                Assets.load(playerSprite)
                     .then(playerTex => {
                         setTexture(playerTex as Texture);
                     });

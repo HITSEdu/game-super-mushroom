@@ -9,6 +9,7 @@ import Button from "./buttons/Button.tsx";
 import {useTranslation} from "react-i18next";
 import {ChevronsRight, ChevronsLeft, LoaderIcon} from "lucide-react";
 import {motion} from "framer-motion";
+import PLAYER_SPRITE from "../constants/playerSprite.ts";
 
 const SelectorCharacter = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -27,9 +28,12 @@ const SelectorCharacter = () => {
             const loadedPlayers = await Promise.all(
                 rawPlayers.map(async (item) => {
                     return {
+                        id: selectedIndex,
+                        season: item.season,
+                        sprite: item.sprite,
                         size: item.size,
                         name: item.name,
-                        texture: await Assets.load(item.texture),
+                        texture: await Assets.load(PLAYER_SPRITE["player_underworld"]),
                         textureString: item.texture,
                         src: item.source,
                         speed: item.speed,
@@ -54,7 +58,8 @@ const SelectorCharacter = () => {
 
     const handleChoose = () => {
         const curPlayer = players[selectedIndex];
-        init(curPlayer.name, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size);
+        console.log(PLAYER_SPRITE["player_underworld"]);
+        init(curPlayer.name, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size, curPlayer.season, PLAYER_SPRITE["player_underworld"], curPlayer.id);
     }
 
     const handleDragEnd = (event: MouseEvent, info: { offset: { x: number } }) => {

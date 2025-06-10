@@ -12,7 +12,6 @@ const CharacterCard = (character: ICharacter) => {
             <h2 className="text-xl font-bold">{character.name}</h2>
             <p>{t("speed")}: {character.speed}</p>
             <p>{t("jump")}: {character.jumpPower}</p>
-            <p>{t("size")}: {character.size.height}x{character.size.width}</p>
         </div>
     );
 };
