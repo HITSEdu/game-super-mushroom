@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useAssetsStore} from "./store/AssetsStore.ts";
 import {useTranslation} from "react-i18next";
 import {LoaderIcon, RotateCwSquareIcon} from "lucide-react";
+import BaseScreen from "./components/screens/BaseScreen.tsx";
 
 const App = () => {
     const state = useGlobalStore(s => s.global)
@@ -72,38 +73,31 @@ const App = () => {
         playing: <GameScreen/>,
     };
 
-    if (!orientation) {
+    if (!orientation)
         return (
-            <div className="w-full h-full flex-center p-10 mt-[20vh] z-20">
-                <p className="text-2xl font-bold text-center flex-center flex-col text-primary-500">
-                    <RotateCwSquareIcon className='w-30 h-30'/> {t("changeOrientation")}
+            <BaseScreen backgroundUrl={background}>
+                <p className="text-2xl font-bold text-center flex items-center flex-col text-primary-500 p-10 mt-[-12vh] z-20">
+                    <RotateCwSquareIcon className='w-30 h-30 animate-bounce'/> {t("changeOrientation")}
                 </p>
-            </div>
+            </BaseScreen>
         );
-    }
 
-    if (!isInitialized) return (
-        <div className="w-full h-full flex-center p-10 mt-[20vh] z-20">
-            <p className="text-6xl font-bold text-center flex-center flex-row gap-4">
-                <LoaderIcon className='w-52 h-52'/> {t("loading")}
-            </p>
-        </div>
-    );
+    if (!isInitialized)
+        return (
+            <BaseScreen backgroundUrl={background}>
+                <p className="text-5xl font-bold text-center text-white flex-center gap-4 z-20">
+                    <LoaderIcon className='w-32 h-32 animate-spin'/> {t("loading")}
+                </p>
+            </BaseScreen>
+        );
 
     return (
-        <div className="relative min-h-screen w-full overflow-y-auto flex flex-col">
-            <div
-                className="absolute inset-0 bg-cover bg-center brightness-50"
-                style={{
-                    backgroundImage: `url(${background})`,
-                }}
-            />
-            <div className="relative z-20">
+        <BaseScreen backgroundUrl={background} darkenBackground>
+            <div className="relative z-20 w-full h-full text-center flex flex-col overflow-y-auto">
                 {screens[state]}
             </div>
-        </div>
+        </BaseScreen>
     );
-
 }
 
 export default App

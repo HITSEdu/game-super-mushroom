@@ -6,6 +6,6 @@ interface IUsePlayerAnimationProps {
     // frameWidth: number,
 }
 
-export const usePlayerAnimation = () => {
-
+export const usePlayerAnimation = ({texture}: IUsePlayerAnimationProps) => {
+    return texture;
 }

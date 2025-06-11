@@ -24,8 +24,12 @@ const Button = ({
                 }: Props) => {
     return (
         <motion.button
-            className={`group gap-2.5 flex-center p-4 rounded-2xl font-bold text-4xl 
+            className={`group gap-2.5 flex-center rounded-2xl font-bold
                 transition-all duration-300 shadow-lg border-4 relative
+                
+                h-xs:text-sm h-sm:text-base h-md:text-lg h-lg:text-2xl h-xl:text-4xl
+                h-xs:p-2 h-sm:p-3 h-md:p-4 h-lg:p-5 h-xl:p-6
+                
                 ${disabled
                 ? 'bg-gray-600 border-gray-500 text-gray-300 cursor-not-allowed'
                 : `bg-primary-600 border-primary-400 ${textColorClass ?? "text-white hover:text-primary-50"} cursor-pointer`

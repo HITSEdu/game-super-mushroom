@@ -34,7 +34,13 @@ const HomeScreen = () => {
         <div className="flex flex-col pb-[4vh]">
             <div className="gap-y-4 overscroll-auto">
                 <div className="flex-center flex-col">
-                    <h1 className="font-bold text-9xl text-fg mt-12 text-center">
+                    <h1 className="font-bold text-fg text-center
+                            h-xs:text-8xl h-xs:mt-4
+                            h-sm:text-9xl h-sm:mt-6
+                            h-md:text-[10rem] h-md:mt-8
+                            h-lg:text-[11rem] h-lg:mt-10
+                            h-xl:text-[12rem] h-xl:mt-12
+                            ">
                         {t("gameTitle")}
                     </h1>
                     <ButtonsMenu children={renderMenu()}/>

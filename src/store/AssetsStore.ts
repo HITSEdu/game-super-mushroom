@@ -22,7 +22,7 @@ export const useAssetsStore = create<AssetsStore>()(
                 await Assets.loadBundle('player_1_spring');
 
                 await Assets.loadBundle('player_2_winter');
-                await Assets.loadBundle('player_2_summerr');
+                await Assets.loadBundle('player_2_summer');
                 await Assets.loadBundle('player_2_autumn');
                 await Assets.loadBundle('player_2_spring');
                 

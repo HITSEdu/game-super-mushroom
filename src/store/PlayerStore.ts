@@ -78,12 +78,12 @@ export const usePlayerStore = create<PlayerStore>()(
             },
             setTexture: (texture) => set({texture}),
             setSeason: (newSeason) => {
-                const prefix = 'player';
+                const prefix = 'player_';
                 if (newSeason === 'underworld') {
                     set({textureString: prefix + newSeason});
                 }
                 else {
-                    set({textureString: prefix + get().id + newSeason});
+                    set({textureString: prefix + get().id + "_" + newSeason});
                 }
                 set({season: newSeason})
             },

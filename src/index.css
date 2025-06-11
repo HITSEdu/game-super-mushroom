@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@custom-variant h-xs (@media (max-height: 480px));
+@custom-variant h-sm (@media (max-height: 640px) and (min-height: 480px));
+@custom-variant h-md (@media (max-height: 860px) and (min-height: 640px));
+@custom-variant h-lg (@media (max-height: 1024px) and (min-height: 860px));
+@custom-variant h-xl (@media (min-height: 1024px));
+
 @font-face {
     font-family: Pixel Digivolve;
     src: url("src/assets/fonts/pixel_digivolve.otf");
@@ -33,7 +39,7 @@
         font-family: var(--font-pixel), fantasy;
     }
 
-    html, body {
+    html, body, #root {
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;

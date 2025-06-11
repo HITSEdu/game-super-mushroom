@@ -16,3 +16,10 @@ export const GAME_HEIGHT = TILE_SIZE * ROWS - TILE_SIZE
 export const DEFAULT_GROUND_HEIGHT = window.innerHeight * 0.8;
 
 export const PLAYER_COUNT = 3;
+
+export const ICON_STYLES =
+    "        h-xs:w-4 h-sm:h-4\n" +
+    "        h-sm:w-6 h-sm:h-6\n" +
+    "        h-md:w-8 h-md:h-8\n" +
+    "        h-lg:w-10 h-lg:h-10\n" +
+    "        h-xl:w-12 h-xl:h-12"

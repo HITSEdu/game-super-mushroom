@@ -20,7 +20,7 @@ const LevelsScreen = () => {
 
     return (
         playerTexture ? (
-                <div className="relative flex-center flex-col gap-y-4 pb-[4vh]">
+                <div className="flex relative flex-center flex-col gap-y-4 pb-[4vh]">
                     <h1 className="text-center text-3xl font-bold text-fg mt-4">{t('selectLevel')}</h1>
                     <div>
                         <Button title={t("changePlayer")} onClick={() => changePlayer()}/>
@@ -58,7 +58,7 @@ const LevelsScreen = () => {
                     </div>
                 </div>
             ) :
-            <div className="flex flex-col pb-[4vh]">
+            <div className="w-full h-screen overflow-hidden flex flex-col pb-[4vh]">
                 <SelectorCharacter/>
             </div>
     )
