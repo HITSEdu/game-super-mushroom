@@ -5,6 +5,7 @@ import {DEFAULT_PLAYER_SIZE, DEFAULT_START_POSITION} from "../constants/values.t
 import type {ObjectSize} from "../constants/interfaces.ts";
 import {handlePlayerEnemyCollision, handleObstacleCollision} from "../game/systems/collision.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
+import type { SeasonType } from '../constants/types.ts';
 
 interface PlayerStore {
     name: string;
@@ -18,18 +19,22 @@ interface PlayerStore {
     onGround: boolean;
     size: ObjectSize;
     stacked: boolean;
+    season: SeasonType;
+    id: number,
 
     setName: (name: string) => void;
     setPosition: (position: { x: number; y: number }) => void;
     setTexture: (texture: Texture) => void;
     setOnGround: (newState: boolean) => void;
     setVelocity: (direction: 'x' | 'y', newState: number) => void;
+    setSeason: (newSeason: SeasonType) => void;
+    setId: (newId: number) => void;
     reset: () => void;
     jump: () => void;
     come: (direction: 'left' | 'right') => void;
     tick: () => void;
 
-    init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize) => void;
+    init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
     change: () => void;
 }
 
@@ -47,8 +52,10 @@ export const usePlayerStore = create<PlayerStore>()(
             jumpPower: 20,
             onGround: true,
             stacked: false,
+            season: 'underworld',
+            id: 1,
 
-            init: (name, texture, textureString, speed, jumpPower, size) => {
+            init: (name, texture, textureString, speed, jumpPower, size, season, id) => {
                 set({
                     name,
                     texture,
@@ -56,6 +63,8 @@ export const usePlayerStore = create<PlayerStore>()(
                     size,
                     speed,
                     jumpPower,
+                    season,
+                    id,
                 })
             },
             change: () => set({textureString: null}),
@@ -68,12 +77,25 @@ export const usePlayerStore = create<PlayerStore>()(
                 else if (direction === 'x') set({velocityX: newState})
             },
             setTexture: (texture) => set({texture}),
+            setSeason: (newSeason) => {
+                const prefix = 'player';
+                if (newSeason === 'underworld') {
+                    set({textureString: prefix + newSeason});
+                }
+                else {
+                    set({textureString: prefix + get().id + newSeason});
+                }
+                set({season: newSeason})
+            },
+            setId: (id) => set({id}),
             reset: () => set({
                 position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
                 velocityY: 0,
                 velocityX: 0,
                 onGround: true,
-                stacked: false
+                stacked: false,
+                season: 'underworld',
+                id: 1,
             }),
             jump: () => {
                 const {onGround, jumpPower} = get();
@@ -128,6 +150,8 @@ export const usePlayerStore = create<PlayerStore>()(
                 jumpPower: state.jumpPower,
                 onGround: state.onGround,
                 position: {x: state.position.x, y: state.position.y},
+                season: state.season,
+                id: state.id,
             }),
             merge: (persistedState, currentState) => {
                 const s = persistedState as PlayerStore;

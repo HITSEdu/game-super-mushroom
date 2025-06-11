@@ -1,4 +1,5 @@
 import type {PointData, Texture} from "pixi.js";
+import type { SeasonType } from "./types";
 
 export interface ObjectSize {
     width: number
@@ -13,6 +14,8 @@ export interface IObstacle {
 }
 
 export interface ICharacter {
+    id: number,
+    season: SeasonType,
     name: string,
     src: string,
     speed: number,

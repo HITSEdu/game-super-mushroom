@@ -27,10 +27,12 @@ const SelectorCharacter = () => {
             const loadedPlayers = await Promise.all(
                 rawPlayers.map(async (item) => {
                     return {
+                        id: selectedIndex,
+                        season: item.season,
                         size: item.size,
                         name: item.name,
-                        texture: await Assets.load(item.texture),
-                        textureString: item.texture,
+                        texture: await Assets.load(item.spriteUnderworld),
+                        textureString: item.spriteUnderworld,
                         src: item.source,
                         speed: item.speed,
                         jumpPower: item.jumpPower,
@@ -54,7 +56,7 @@ const SelectorCharacter = () => {
 
     const handleChoose = () => {
         const curPlayer = players[selectedIndex];
-        init(curPlayer.name, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size);
+        init(curPlayer.name, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size, curPlayer.season, curPlayer.id);
     }
 
     const handleDragEnd = (event: MouseEvent, info: { offset: { x: number } }) => {

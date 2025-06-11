@@ -24,6 +24,7 @@ const GameScene = () => {
         size: playerSize,
         setTexture,
         position: playerPosition,
+        season: playerSeason,
     } = usePlayerStore();
 
     const {currentLevelID, status: gameStatus} = useGameSessionStore();
@@ -44,7 +45,7 @@ const GameScene = () => {
             cleanupControlSystem();
             resetLevel();
         };
-    }, [currentLevelID]);
+    }, [currentLevelID, playerSeason]);
 
     const getTextureSafe = (alias: string): Texture => {
         return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
