@@ -25,7 +25,6 @@ const GameScene = () => {
         setTexture,
         position: playerPosition,
         season: playerSeason,
-        sprite: playerSprite,
     } = usePlayerStore();
 
     const {currentLevelID, status: gameStatus} = useGameSessionStore();
@@ -33,8 +32,8 @@ const GameScene = () => {
     useEffect(() => {
         const numberID = Number(currentLevelID);
         load(numberID).then(() => {
-            if (playerSprite)
-                Assets.load(playerSprite)
+            if (playerTextureString)
+                Assets.load(playerTextureString)
                     .then(playerTex => {
                         setTexture(playerTex as Texture);
                     });
@@ -46,7 +45,7 @@ const GameScene = () => {
             cleanupControlSystem();
             resetLevel();
         };
-    }, [currentLevelID]);
+    }, [currentLevelID, playerSeason]);
 
     const getTextureSafe = (alias: string): Texture => {
         return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;

@@ -16,7 +16,6 @@ export interface IObstacle {
 export interface ICharacter {
     id: number,
     season: SeasonType,
-    sprite: string,
     name: string,
     src: string,
     speed: number,

@@ -20,7 +20,6 @@ interface PlayerStore {
     size: ObjectSize;
     stacked: boolean;
     season: SeasonType;
-    sprite: string,
     id: number,
 
     setName: (name: string) => void;
@@ -29,14 +28,13 @@ interface PlayerStore {
     setOnGround: (newState: boolean) => void;
     setVelocity: (direction: 'x' | 'y', newState: number) => void;
     setSeason: (newSeason: SeasonType) => void;
-    setSprite: (newSprite: string) => void;
     setId: (newId: number) => void;
     reset: () => void;
     jump: () => void;
     come: (direction: 'left' | 'right') => void;
     tick: () => void;
 
-    init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, sprite: string, id: number) => void;
+    init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
     change: () => void;
 }
 
@@ -55,10 +53,9 @@ export const usePlayerStore = create<PlayerStore>()(
             onGround: true,
             stacked: false,
             season: 'underworld',
-            sprite: "",
             id: 1,
 
-            init: (name, texture, textureString, speed, jumpPower, size, season, sprite, id) => {
+            init: (name, texture, textureString, speed, jumpPower, size, season, id) => {
                 set({
                     name,
                     texture,
@@ -67,7 +64,6 @@ export const usePlayerStore = create<PlayerStore>()(
                     speed,
                     jumpPower,
                     season,
-                    sprite,
                     id,
                 })
             },
@@ -81,8 +77,16 @@ export const usePlayerStore = create<PlayerStore>()(
                 else if (direction === 'x') set({velocityX: newState})
             },
             setTexture: (texture) => set({texture}),
-            setSeason: (newSeason) => set({season: newSeason}),
-            setSprite: (newSprite) => set({sprite: newSprite}),
+            setSeason: (newSeason) => {
+                const prefix = 'player';
+                if (newSeason === 'underworld') {
+                    set({textureString: prefix + newSeason});
+                }
+                else {
+                    set({textureString: prefix + get().id + newSeason});
+                }
+                set({season: newSeason})
+            },
             setId: (id) => set({id}),
             reset: () => set({
                 position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
@@ -91,7 +95,6 @@ export const usePlayerStore = create<PlayerStore>()(
                 onGround: true,
                 stacked: false,
                 season: 'underworld',
-                sprite: "",
                 id: 1,
             }),
             jump: () => {
@@ -148,7 +151,6 @@ export const usePlayerStore = create<PlayerStore>()(
                 onGround: state.onGround,
                 position: {x: state.position.x, y: state.position.y},
                 season: state.season,
-                sprite: state.sprite,
                 id: state.id,
             }),
             merge: (persistedState, currentState) => {

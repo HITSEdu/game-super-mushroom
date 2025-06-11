@@ -16,7 +16,24 @@ export const useAssetsStore = create<AssetsStore>()(
             try {
                 await Assets.init({manifest});
 
-                await Assets.loadBundle('player');
+                await Assets.loadBundle('player_1_winter');
+                await Assets.loadBundle('player_1_summer');
+                await Assets.loadBundle('player_1_autumn');
+                await Assets.loadBundle('player_1_spring');
+
+                await Assets.loadBundle('player_2_winter');
+                await Assets.loadBundle('player_2_summerr');
+                await Assets.loadBundle('player_2_autumn');
+                await Assets.loadBundle('player_2_spring');
+                
+                
+                await Assets.loadBundle('player_3_winter');
+                await Assets.loadBundle('player_3_summer');
+                await Assets.loadBundle('player_3_autumn');
+                await Assets.loadBundle('player_3_spring');
+
+                await Assets.loadBundle('player_underworld');
+                
                 await Assets.loadBundle('enemy');
                 await Assets.loadBundle('star');
                 await Assets.loadBundle('finish');
