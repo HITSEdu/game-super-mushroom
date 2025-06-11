@@ -1,13 +1,12 @@
-import {Sprite, Texture} from "pixi.js";
+import {Sprite, Texture, Container} from "pixi.js";
 import {extend} from '@pixi/react';
 import type {ObjectSize} from "../../constants/interfaces.ts";
-import { Container } from "lucide-react";
 
-extend({Sprite});
+extend({Sprite, Container});
 
 export const Player = ({x, y, texture, size}: { x: number, y: number, texture: Texture, size: ObjectSize }) => {
     return (
-        <Container>
+        <pixiContainer>
             <pixiSprite
                 x={x} y={y} 
                 texture={texture} 
@@ -15,6 +14,6 @@ export const Player = ({x, y, texture, size}: { x: number, y: number, texture: T
                 height={size.height} 
                 eventMode={'static'}
             />
-        </Container>
+        </pixiContainer>
     );
 };
