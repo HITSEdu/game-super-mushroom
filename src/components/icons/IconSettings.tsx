@@ -9,7 +9,7 @@ const IconSettings = ({className}: IProps) => (
         xmlns="http://www.w3.org/2000/svg"
         className={`inline-block ${className}`}
     >
-        <g clip-path="url(#clip0_491_1034)">
+        <g clipPath="url(#clip0_491_1034)">
             <path d="M28.95 7.62V9.14H30.48V10.67H28.95V12.19H32V7.62H28.95Z" fill="#D8DCDC"/>
             <path d="M30.48 13.71H28.95V15.24H30.48V13.71Z" fill="#D8DCDC"/>
             <path d="M30.48 4.57001H28.95V6.09001H30.48V4.57001Z" fill="#D8DCDC"/>

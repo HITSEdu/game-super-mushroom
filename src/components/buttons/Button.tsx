@@ -2,7 +2,7 @@ import type {ReactNode} from "react";
 import {motion} from "framer-motion";
 
 interface Props {
-    title: ReactNode;
+    title?: ReactNode;
     onClick: () => void;
     disabled?: boolean;
     className?: string;
@@ -25,7 +25,7 @@ const Button = ({
     return (
         <motion.button
             className={`group gap-2.5 flex-center p-4 rounded-2xl font-bold text-4xl 
-                transition-all duration-300 shadow-lg border-4 relative overflow-hidden
+                transition-all duration-300 shadow-lg border-4 relative
                 ${disabled
                 ? 'bg-gray-600 border-gray-500 text-gray-300 cursor-not-allowed'
                 : `bg-primary-600 border-primary-400 ${textColorClass ?? "text-white hover:text-primary-50"} cursor-pointer`
@@ -36,7 +36,7 @@ const Button = ({
             whileTap={!disabled ? {scale: 0.95} : {}}
         >
             {!disabled && (
-                <div className={`absolute inset-0 bg-gradient-to-r ${textGradientClass ?? "from-sky-500"}
+                <div className={`rounded-xl absolute inset-0 bg-gradient-to-r ${textGradientClass ?? "from-sky-500"}
                     opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}/>
             )}
             {!disabled && (
@@ -48,7 +48,7 @@ const Button = ({
             )}
 
             {iconPosition === "left" && icon}
-            <span className="relative z-10 drop-shadow-md">{title}</span>
+            {title && <span className="relative z-10 drop-shadow-md">{title}</span>}
             {iconPosition === "right" && icon}
         </motion.button>
     );

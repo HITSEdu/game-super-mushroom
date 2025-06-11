@@ -24,3 +24,7 @@ export interface ICharacterWithTexture extends ICharacter {
     texture: Texture,
     textureString: string,
 }
+
+export interface IIcon {
+    className?: string
+}
