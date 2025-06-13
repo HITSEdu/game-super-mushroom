@@ -55,15 +55,17 @@ const GameScene = () => {
         return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
     }
 
-    const offsetX = -playerPosition.x + containerSize.width / 2 - playerSize.width / 2;
-    const offsetY = -playerPosition.y + containerSize.height / 2 - playerSize.height / 2;
+    const scale = Math.min(1, containerSize.width / 1024);
+
+    const offsetX = containerSize.width / 2 - playerPosition.x * scale - playerSize.width * scale / 2;
+    const offsetY = containerSize.height / 2 - playerPosition.y * scale - playerSize.height * scale / 2;
 
     if (!isLoaded) return null;
 
     return (
         <div ref={containerRef} className="w-full h-full relative z-10">
-            <Application resizeTo={containerRef} backgroundColor={'0xD1D1D1'}>
-                <pixiContainer x={offsetX} y={offsetY}>
+            <Application resizeTo={containerRef} backgroundColor={'black'}>
+                <pixiContainer x={offsetX} y={offsetY} scale={scale}>
                     {playerTexture && gameStatus !== 'lost' &&
                         <Player x={playerPosition.x} y={playerPosition.y} texture={playerTexture} size={playerSize}/>}
 

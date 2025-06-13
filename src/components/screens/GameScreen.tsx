@@ -51,17 +51,26 @@ const GameScreen = () => {
 
     return (
         <div className="w-screen h-screen flex-center flex-col relative overflow-hidden gap-2">
+            <h1 className="mt-auto font-bold text-fg text-center
+                            h-xs:text-5xl
+                            h-sm:text-6xl
+                            h-md:text-7xl
+                            h-lg:text-8xl
+                            h-xl:text-9xl
+                            ">
+                {season}
+            </h1>
             <div
                 className="
-                    mt-auto
+                    my-auto
                     relative
-                    h-[66vh]
-                    w-[80vw]
+                    h-[56vh]
+                    w-[60vw]
                     rounded-xl border-4 border-white
                     flex-center
                 "
             >
-                <div className="fixed top-2 z-1001 flex-center flex-row">
+                <div className="fixed left-2 top-2 z-1001 flex-center flex-row">
                     <LevelInfo attempts={currentAttempts} stars={stars} time={curTime}/>
                 </div>
 
