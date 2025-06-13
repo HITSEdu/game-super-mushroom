@@ -9,6 +9,7 @@ import Button from "./buttons/Button.tsx";
 import {useTranslation} from "react-i18next";
 import {ChevronsRight, ChevronsLeft, LoaderIcon} from "lucide-react";
 import {motion} from "framer-motion";
+import type {SeasonType} from "../constants/types.ts";
 
 const SelectorCharacter = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -28,7 +29,7 @@ const SelectorCharacter = () => {
                 rawPlayers.map(async (item) => {
                     return {
                         id: selectedIndex,
-                        season: item.season,
+                        season: "underworld" as SeasonType,
                         size: item.size,
                         name: item.name,
                         texture: await Assets.load(item.spriteUnderworld),

@@ -1,4 +1,4 @@
-import ButtonsMenu from "../ButtonsMenu.tsx";
+import ButtonsMenu from "../menu/ButtonsMenu.tsx";
 import {useTranslation} from "react-i18next";
 import {useMenuStore} from "../../store/MenuStore.ts";
 import MainMenu from "../menu/MainMenu.tsx";

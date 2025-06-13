@@ -5,6 +5,8 @@
 @custom-variant h-md (@media (max-height: 860px) and (min-height: 640px));
 @custom-variant h-lg (@media (max-height: 1024px) and (min-height: 860px));
 @custom-variant h-xl (@media (min-height: 1024px));
+@custom-variant h-mobile (@media (max-height: 400px));
+@custom-variant h-desktop (@media (min-height: 600px));
 
 @font-face {
     font-family: Pixel Digivolve;

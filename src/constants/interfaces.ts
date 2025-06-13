@@ -31,3 +31,11 @@ export interface ICharacterWithTexture extends ICharacter {
 export interface IIcon {
     className?: string
 }
+
+export interface IItem {
+    id: number;
+    source: string;
+    amount: number;
+    action: () => void;
+    height?: number;
+}

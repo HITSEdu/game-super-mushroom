@@ -7,6 +7,7 @@ import {useAssetsStore} from "./store/AssetsStore.ts";
 import {useTranslation} from "react-i18next";
 import {LoaderIcon, RotateCwSquareIcon} from "lucide-react";
 import BaseScreen from "./components/screens/BaseScreen.tsx";
+import {useBackgroundStore} from "./store/BackgroundStore.tsx";
 
 const App = () => {
     const state = useGlobalStore(s => s.global)
@@ -15,25 +16,11 @@ const App = () => {
     const {t} = useTranslation('translations')
 
     const [orientation, setOrientation] = useState(true);
-    const [background, setBackground] = useState('');
 
-    const backgrounds = [
-        '/backgrounds/1.png',
-        '/backgrounds/2.png',
-        '/backgrounds/3.png',
-        '/backgrounds/4.png',
-        '/backgrounds/5.png',
-        '/backgrounds/6.png',
-        '/backgrounds/7.png',
-        '/backgrounds/8.png',
-        '/backgrounds/9.png',
-        '/backgrounds/10.png',
-        '/backgrounds/11.png',
-    ]
+    const {background, randomBackground} = useBackgroundStore();
 
     useEffect(() => {
-        const randomIndex = Math.floor(Math.random() * backgrounds.length);
-        setBackground(backgrounds[randomIndex]);
+        randomBackground();
     }, []);
 
     useEffect(() => {

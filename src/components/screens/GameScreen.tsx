@@ -10,6 +10,11 @@ import SettingsMenu from "../menu/SettingsMenu.tsx";
 import LanguageMenu from "../menu/LanguageMenu.tsx";
 import VolumeMenu from "../menu/VolumeMenu.tsx";
 import WinMenu from "../menu/WinMenu.tsx";
+import Inventory from "../Inventory.tsx";
+import {usePlayerStore} from "../../store/PlayerStore.ts";
+import {useBackgroundStore} from "../../store/BackgroundStore.tsx";
+import {useEffect} from "react";
+import {backgrounds} from "../../constants/backgrounds.ts";
 
 const GameScreen = () => {
     const {
@@ -20,7 +25,16 @@ const GameScreen = () => {
         curTime,
     } = useGameSessionStore();
 
-    const {menu: menu} = useMenuStore()
+    const {season} = usePlayerStore();
+
+    const {setBackground} = useBackgroundStore();
+
+    const {menu: menu} = useMenuStore();
+
+    useEffect(() => {
+        if (!season) return;
+        setBackground(backgrounds[season]);
+    }, [season, setBackground]);
 
     const renderMenu = () => {
         switch (menu) {
@@ -36,12 +50,13 @@ const GameScreen = () => {
     }
 
     return (
-        <div className="w-screen h-screen flex-center flex-col bg-gray-900 relative overflow-hidden">
+        <div className="w-screen h-screen flex-center flex-col relative overflow-hidden gap-2">
             <div
                 className="
+                    mt-auto
                     relative
-                    h-[70vh]
-                    w-[70vw]
+                    h-[66vh]
+                    w-[80vw]
                     rounded-xl border-4 border-white
                     flex-center
                 "
@@ -61,7 +76,7 @@ const GameScreen = () => {
 
                 <MobileControls/>
             </div>
-
+            <Inventory/>
             {status === "paused" && <ModalWindow>{renderMenu()}</ModalWindow>}
             {status === "won" && <ModalWindow><WinMenu/></ModalWindow>}
         </div>

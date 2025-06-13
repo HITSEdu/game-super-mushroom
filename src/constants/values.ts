@@ -23,3 +23,5 @@ export const ICON_STYLES =
     "        h-md:w-8 h-md:h-8\n" +
     "        h-lg:w-10 h-lg:h-10\n" +
     "        h-xl:w-12 h-xl:h-12"
+
+export const TOTAL_SLOTS = 13;
