@@ -9,7 +9,7 @@ const IconLanguage = ({className}: IProps) => (
         xmlns="http://www.w3.org/2000/svg"
         className={`inline-block ${className}`}
     >
-        <g clip-path="url(#clip0_491_1225)">
+        <g clipPath="url(#clip0_491_1225)">
             <path d="M32 18.29H30.47V28.95H32V18.29Z" fill="#D8DCDC"/>
             <path d="M30.4699 28.95H28.95V30.48H30.4699V28.95Z" fill="#D8DCDC"/>
             <path d="M30.4699 16.76H28.95V18.29H30.4699V16.76Z" fill="#D8DCDC"/>

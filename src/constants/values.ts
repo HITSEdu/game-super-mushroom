@@ -25,3 +25,5 @@ export const ICON_STYLES =
     "        h-xl:w-12 h-xl:h-12"
 
 export const TOTAL_SLOTS = 13;
+
+export const MUSIC_COUNT = 4;
