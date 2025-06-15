@@ -3,6 +3,7 @@ import type {GameStatus} from "../constants/types.ts";
 import {useLevelsStore} from "./LevelsStore.ts";
 import {useLevelStore} from "./LevelStore.ts";
 import {sounds} from "../game/utils/sound.ts";
+import {useMusicPlayerStore} from "./MusicPlayerStore.ts";
 
 interface GameSessionState {
     currentLevelID: string | null
@@ -32,6 +33,7 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
 
     startLevel: (id: string) => {
         Howler.stop();
+        useMusicPlayerStore.getState().playMusic();
 
         set(() => ({
             currentLevelID: id,
@@ -57,6 +59,7 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
         const curLevel = get().currentLevelID;
 
         if (curLevel) {
+            Howler.stop();
             sounds.win.play();
             completeLevel(curLevel, get().curTime, get().stars, get().currentAttempts)
         }
