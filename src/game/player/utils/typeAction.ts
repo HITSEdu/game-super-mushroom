@@ -1,0 +1,1 @@
+export type Action = "idle" | "walk" | "jump" | "climb";

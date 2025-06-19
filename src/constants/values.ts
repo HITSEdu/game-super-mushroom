@@ -1,21 +1,21 @@
 import type {ObjectSize} from "./interfaces.ts";
 import type {PointData} from "pixi.js";
 
-export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 50, height: 50}
+export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 22, height: 48}
 export const DEFAULT_ENEMY_SIZE: ObjectSize = {width: 50, height: 50}
 
-export const DEFAULT_START_POSITION: PointData = {x: window.innerWidth * 0.1, y: window.innerHeight * 0.7};
+export const DEFAULT_START_POSITION: PointData = {x: window.innerWidth * 0.1, y: window.innerHeight * 0.1};
 
-export const TILE_SIZE = 32
-export const COLS = 32
-export const ROWS = 17
+export const TILE_SIZE = 24;
+export const COLS = 42;
+export const ROWS = 21;
 
-export const GAME_WIDTH = TILE_SIZE * COLS - TILE_SIZE
-export const GAME_HEIGHT = TILE_SIZE * ROWS - TILE_SIZE
+export const GAME_WIDTH = TILE_SIZE * COLS - TILE_SIZE;
+export const GAME_HEIGHT = TILE_SIZE * ROWS - TILE_SIZE;
 
-export const DEFAULT_GROUND_HEIGHT = window.innerHeight * 0.8;
+export const DEFAULT_GROUND_HEIGHT = window.innerHeight * 0.2;
 
-export const PLAYER_COUNT = 3;
+export const PLAYER_COUNT = 3;  
 
 export const ICON_STYLES =
     "        h-xs:w-4 h-sm:h-4\n" +
@@ -27,3 +27,5 @@ export const ICON_STYLES =
 export const TOTAL_SLOTS = 13;
 
 export const MUSIC_COUNT = 4;
+export const ANIMATION_SPEED = 20;
+export const DEFAULT_SPRITE_SIZE = 64

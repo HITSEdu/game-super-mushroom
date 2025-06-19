@@ -7,7 +7,7 @@ import {Enemy} from "./entities/Enemy.tsx";
 import {useLevelStore} from "../store/LevelStore.ts";
 import {initControlSystem, cleanupControlSystem} from "./systems/ControlSystem.ts";
 import {useGameSessionStore} from "../store/GameSessionStore.ts";
-import {Player} from "./entities/Player.tsx";
+import {Player} from "./player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 
 extend({

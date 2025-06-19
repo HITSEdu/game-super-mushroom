@@ -79,3 +79,7 @@ export function cleanupControlSystem() {
 export const getPlayerPosition = () => {
     return usePlayerStore.getState().position;
 }
+
+export function isMoving(): boolean {
+    return keys.left || keys.right;
+}
