@@ -2,11 +2,11 @@
   "name": "Neo",
   "texture": "player",
   "source": "src/assets/player/player_1.png",
-  "speed": 10,
-  "jumpPower": 20,
+  "speed": 2,
+  "jumpPower": 18,
   "size": {
-    "width": 50,
-    "height": 50
+    "width": 24,
+    "height": 48
   },
   "spriteUnderworld": "src/assets/player/spritesheet/player_underworld.png",
   "spriteSummer": "src/assets/player/spritesheet/player_1_summer.png",
