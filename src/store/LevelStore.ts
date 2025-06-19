@@ -3,9 +3,10 @@ import {Point} from 'pixi.js';
 import {loadLevel} from '../game/utils/loader.ts';
 import {v4 as uuidv4} from 'uuid';
 import {DEFAULT_START_POSITION} from "../constants/values.ts";
-import {createEnemy, enemies as activeEnemies, type Enemy} from "../game/entities/enemies.ts";
+import {createEnemy, enemies as activeEnemies} from "../game/entities/enemy/enemies.ts";
 import type {ObjectSize} from "../constants/interfaces.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
+import {type IEnemy} from '../constants/interfaces.ts'
 
 interface ObstacleData {
     x: number;
@@ -30,7 +31,7 @@ interface EnemyData {
 interface LevelState {
     playerStart: Point;
     obstacles: ObstacleData[];
-    enemies: Enemy[];
+    enemies: IEnemy[];
     gravity: number;
     isLoaded: boolean;
     load: (id: number) => Promise<void>;

@@ -1,5 +1,5 @@
-import type {PointData, Texture} from "pixi.js";
-import type { SeasonType } from "./types";
+import {Point, type PointData, type Texture} from "pixi.js";
+import type {SeasonType} from "./types";
 
 export interface ObjectSize {
     width: number
@@ -38,4 +38,19 @@ export interface IItem {
     amount: number;
     action: () => void;
     height?: number;
+}
+
+export interface IEnemy {
+    id: string;
+    position: Point;
+    speed: number;
+    patrolArea: [number, number];
+    direction: 'left' | 'right';
+    size: ObjectSize;
+    type: string;
+    update: () => void;
+    state: 'alive' | 'dead';
+    onGround: boolean;
+    velocityY: number;
+    velocityX: number;
 }

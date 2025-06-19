@@ -30,17 +30,17 @@ export default defineConfig({
                     {
                         purpose: "maskable",
                         sizes: "512x512",
-                        src: "/icons/icon512_maskable.png",
+                        src: "icons/icon512_maskable.png",
                         type: "image/png"
                     },
                     {
                         purpose: "any",
                         sizes: "512x512",
-                        src: "/icons/icon512_rounded.png",
+                        src: "icons/icon512_rounded.png",
                         type: "image/png"
                     },
                     {
-                        src: "/icons/icon-192x192.png",
+                        src: "icons/icon-192x192.png",
                         sizes: "192x192",
                         type: "image/png",
                         purpose: 'any'
@@ -48,13 +48,13 @@ export default defineConfig({
                 ],
                 screenshots: [
                     {
-                        src: "/screenshots/desktop.png",
+                        src: "screenshots/desktop.png",
                         type: "image/png",
                         sizes: "1918x862",
                         form_factor: "wide"
                     },
                     {
-                        src: "/screenshots/mobile.png",
+                        src: "screenshots/mobile.png",
                         type: "image/png",
                         sizes: "398x756",
                         form_factor: "narrow"

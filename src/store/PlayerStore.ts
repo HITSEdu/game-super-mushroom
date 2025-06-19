@@ -3,9 +3,9 @@ import {persist} from 'zustand/middleware';
 import {Point, Texture} from 'pixi.js';
 import {DEFAULT_PLAYER_SIZE, DEFAULT_START_POSITION} from "../constants/values.ts";
 import type {ObjectSize} from "../constants/interfaces.ts";
-import {handlePlayerEnemyCollision, handleObstacleCollision} from "../game/systems/collision.ts";
+import {handlePlayerEnemyCollision, handleObstacleCollision} from "../game/systems/CollisionSystem.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
-import type { SeasonType } from '../constants/types.ts';
+import type {SeasonType} from '../constants/types.ts';
 
 interface PlayerStore {
     name: string;
@@ -81,8 +81,7 @@ export const usePlayerStore = create<PlayerStore>()(
                 const prefix = 'player_';
                 if (newSeason === 'underworld') {
                     set({textureString: prefix + newSeason});
-                }
-                else {
+                } else {
                     set({textureString: prefix + get().id + "_" + newSeason});
                 }
                 set({season: newSeason})
@@ -115,14 +114,13 @@ export const usePlayerStore = create<PlayerStore>()(
             tick: () => {
                 handlePlayerEnemyCollision();
 
-                const {position, velocityX, velocityY, size} = get();
                 const {win, getStar} = useGameSessionStore.getState();
 
                 const result = handleObstacleCollision(
-                    position,
-                    size,
-                    velocityX,
-                    velocityY,
+                    get().position,
+                    get().size,
+                    get().velocityX,
+                    get().velocityY,
                     true,
                 );
 

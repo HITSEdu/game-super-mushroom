@@ -4,48 +4,6 @@
     "completed": false,
     "unlocked": true,
     "attempts": 0
-  },
-  "2": {
-    "id": "2",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "3": {
-    "id": "3",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "4": {
-    "id": "4",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "5": {
-    "id": "5",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "6": {
-    "id": "6",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "7": {
-    "id": "7",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
-  },
-  "8": {
-    "id": "8",
-    "completed": false,
-    "unlocked": false,
-    "attempts": 0
   }
 }
 

@@ -1,27 +1,12 @@
 import {Point} from "pixi.js";
-import {getPlayerPosition} from '../systems/ControlSystem.ts';
-import type {ObjectSize} from "../../constants/interfaces.ts";
-import {handleObstacleCollision} from "../systems/collision.ts";
+import {getPlayerPosition} from '../../systems/ControlSystem.ts';
+import type {IEnemy, ObjectSize} from "../../../constants/interfaces.ts";
+import {handleObstacleCollision} from "../../systems/CollisionSystem.ts";
 
-export interface Enemy {
-    id: string;
-    position: Point;
-    speed: number;
-    patrolArea: [number, number];
-    direction: 'left' | 'right';
-    size: ObjectSize;
-    type: string;
-    update: () => void;
-    state: 'alive' | 'dead';
-    onGround: boolean;
-    velocityY: number;
-    velocityX: number;
-}
+export const enemies: IEnemy[] = [];
 
-export const enemies: Enemy[] = [];
-
-export const createEnemy = (id: string, x: number, y: number, patrolStart: number, patrolEnd: number, speed: number, type: string, size: ObjectSize): Enemy => {
-    const enemy: Enemy = {
+export const createEnemy = (id: string, x: number, y: number, patrolStart: number, patrolEnd: number, speed: number, type: string, size: ObjectSize): IEnemy => {
+    const enemy: IEnemy = {
         state: "alive",
         size: size,
         id,
