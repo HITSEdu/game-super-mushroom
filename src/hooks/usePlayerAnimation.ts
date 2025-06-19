@@ -1,12 +1,9 @@
 import {Rectangle, Texture} from "pixi.js";
-import {useEffect, useRef} from "react";
+import {useRef, useMemo} from "react";
 import {useTick} from "@pixi/react";
-import {usePlayerStore} from "../../store/PlayerStore.ts";
-import {isMoving} from "../systems/ControlSystem.ts";
-import type {Action} from "./utils/typeAction.ts";
-import type {Direction} from "./utils/typeDirection.ts";
-import type {AnimationsMap} from "./utils/playerAnimations.ts";
-
+import {usePlayerStore} from "../store/PlayerStore.ts";
+import type {AnimationsMap} from "../game/systems/playerAnimations.ts";
+import type {Action, Direction} from "../constants/types.ts";
 
 interface UsePlayerAnimationProps {
     texture: Texture;
@@ -28,36 +25,40 @@ export function usePlayerAnimation({
     const currentTexture = useRef<Texture>(Texture.EMPTY);
     const lastKey = useRef<string>("");
 
-    const {velocityX, velocityY, onGround} = usePlayerStore.getState();
-    const moving = isMoving();
-    const isMiniGame = false;
+    const velocityX = usePlayerStore(state => state.velocityX);
+    const velocityY = usePlayerStore(state => state.velocityY);
+    const onGround = usePlayerStore(state => state.onGround);
+
+    const isMoving = Math.abs(velocityX) > 0.5;
     const climbing = false;
+    const isMiniGame = false;
 
-    let action: Action = 'idle';
-    let direction: Direction = 'right';
+    const {action, direction} = useMemo(() => {
+        let action: Action = 'idle';
+        let direction: Direction = 'right';
 
-    if (climbing) {
-        action = "climb";
-        direction = velocityY < 0 ? "up" : "down";
-    } else if (!onGround) {
-        action = "jump";
-        direction = velocityX < 0 ? "left" : "right";
-    } else if (moving) {
-        action = "walk";
-        direction = velocityX < 0 ? "left" : "right";
-    }
+        const isActuallyJumping = !onGround && Math.abs(velocityY) > 0.1;
+
+        if (climbing) {
+            action = "climb";
+            direction = velocityY < 0 ? "up" : "down";
+        } else if (isActuallyJumping) {
+            action = "jump";
+            direction = velocityX < 0 ? "left" : "right";
+        } else if (isMoving) {
+            action = "walk";
+            direction = velocityX < 0 ? "left" : "right";
+        }
+
+        return {action, direction};
+    }, [velocityX, velocityY, onGround, isMoving, climbing]);
 
     let key = `${action}-${direction}`;
-    if (isMiniGame) {
-        key += `-mini-game`;
-    }
+    if (isMiniGame) key += "-mini-game";
 
-    console.log(key);
     const anim = animations[key] || animations["idle-right"];
 
-    if (key !== lastKey.current ||
-        (direction === "right" && velocityX < 0) ||
-        (direction === "left" && velocityX > 0)) {
+    if (key !== lastKey.current) {
         frameIndex.current = 0;
         elapsed.current = 0;
         lastKey.current = key;
@@ -80,18 +81,10 @@ export function usePlayerAnimation({
         );
 
         currentTexture.current = new Texture({
-            source: texture.baseTexture,
-            frame: frame,
+            source: texture.source,
+            frame,
         });
     });
-
-    // useEffect(() => {
-    //     return () => {
-    //         if (currentTexture.current !== Texture.EMPTY) {
-    //             currentTexture.current.destroy(true);
-    //         }
-    //     };
-    // }, []);
 
     return currentTexture.current;
 }

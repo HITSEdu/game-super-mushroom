@@ -1,5 +1,5 @@
 import {usePlayerStore} from '../../store/PlayerStore.ts';
-import {enemies} from '../entities/enemies.ts';
+import {enemies} from '../entities/enemy/enemies.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 
 const keys: { [k: string]: boolean } = {left: false, right: false, jump: false, pause: false, down: false};
@@ -38,28 +38,28 @@ export function initControlSystem() {
     let last = performance.now()
 
     const loop = (now: number) => {
-        const dt = (now - last)
-        last = now
+        const dt = now - last;
+        last = now;
 
-        const {come, jump, tick: playerTick, stacked} = usePlayerStore.getState();
-        const {pause, status, tick: sessionTick} = useGameSessionStore.getState();
+        const player = usePlayerStore.getState();
+        const session = useGameSessionStore.getState();
 
-        if (status === 'playing') {
-            if (!stacked) {
-                if (keys.left) come('left');
-                if (keys.right) come('right');
+        if (session.status === 'playing') {
+            if (!player.stacked) {
+                if (keys.left) player.come('left');
+                if (keys.right) player.come('right');
             }
-            if (keys.jump) jump();
 
-            if (keys.pause) pause();
+            if (keys.jump) player.jump();
+            if (keys.pause) session.pause();
 
-            sessionTick(dt);
-            playerTick();
+            session.tick(dt);
+            player.tick();
             enemies.forEach(e => e.update());
         }
 
         frame = requestAnimationFrame(loop);
-    }
+    };
 
     frame = requestAnimationFrame(loop);
 }
@@ -78,8 +78,4 @@ export function cleanupControlSystem() {
 
 export const getPlayerPosition = () => {
     return usePlayerStore.getState().position;
-}
-
-export function isMoving(): boolean {
-    return keys.left || keys.right;
 }

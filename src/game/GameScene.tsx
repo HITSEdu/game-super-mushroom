@@ -2,12 +2,12 @@ import {Application, extend} from '@pixi/react';
 import {Container, Sprite, Graphics, Texture, Assets} from 'pixi.js';
 import {useEffect, useRef} from "react";
 import {usePlayerStore} from "../store/PlayerStore.ts";
-import Obstacle from "./entities/Obstacle.tsx";
-import {Enemy} from "./entities/Enemy.tsx";
+import Obstacle from "./entities/obstacle/Obstacle.tsx";
+import {Enemy} from "./entities/enemy/Enemy.tsx";
 import {useLevelStore} from "../store/LevelStore.ts";
 import {initControlSystem, cleanupControlSystem} from "./systems/ControlSystem.ts";
 import {useGameSessionStore} from "../store/GameSessionStore.ts";
-import {Player} from "./player/Player.tsx";
+import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 
 extend({

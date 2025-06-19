@@ -64,22 +64,62 @@ export const handlePlayerEnemyCollision = () => {
     }
 }
 
-export const handleObstacleCollision = (position: Point, size: ObjectSize, velocityX: number, velocityY: number, player?: boolean) => {
+export const handleObstacleCollision = (
+    position: Point,
+    size: ObjectSize,
+    velocityX: number,
+    velocityY: number,
+    player?: boolean
+) => {
     const {obstacles, gravity} = useLevelStore.getState();
-    const playerHeight = size.height;
-    const playerWidth = size.width;
 
-    let newVelocityY = velocityY + gravity;
+    const playerWidth = size.width;
+    const playerHeight = size.height;
+
     let newVelocityX = velocityX * 0.9;
+    if (Math.abs(newVelocityX) < 0.1) {
+        newVelocityX = 0;
+    }
+    let newVelocityY = velocityY;
+    if (Math.abs(newVelocityY) < 0.1) {
+        newVelocityY = 0;
+    }
 
     let newX = position.x + newVelocityX;
-    let newY = position.y + velocityY;
+    let newY = position.y + newVelocityY;
+
     let onGround = false;
-
     let stacked = false;
-    let obsType = null;
+    let obsType: string | null = null;
 
-    const entityBox = {
+    const boxX = {
+        x: newX,
+        y: position.y,
+        width: playerWidth,
+        height: playerHeight,
+    };
+
+    for (const obs of obstacles) {
+        if (!obs.visible || (!player && (obs.type === 'finish' || obs.type === 'star'))) continue;
+        const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
+
+        const direction = getCollisionDirection(boxX, obsBox);
+        if (!direction) continue;
+
+        if (obs.type === 'star' && player) obs.visible = false;
+        if (direction === 'left') {
+            newX = obs.x - playerWidth;
+            newVelocityX = 0;
+            stacked = true;
+        } else if (direction === 'right') {
+            newX = obs.x + obs.width;
+            newVelocityX = 0;
+            stacked = true;
+        }
+        obsType = obs.type;
+    }
+
+    const boxY = {
         x: newX,
         y: newY,
         width: playerWidth,
@@ -88,50 +128,61 @@ export const handleObstacleCollision = (position: Point, size: ObjectSize, veloc
 
     for (const obs of obstacles) {
         if (!obs.visible || (!player && (obs.type === 'finish' || obs.type === 'star'))) continue;
-        const obsBox = {
-            x: obs.x,
-            y: obs.y,
-            width: obs.width,
-            height: obs.height,
-        };
+        const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
 
-        const direction = getCollisionDirection(entityBox, obsBox);
+        const direction = getCollisionDirection(boxY, obsBox);
+        if (!direction) continue;
 
-        if (direction) {
-            obsType = obs.type;
-            if (obsType === 'star' && player) obs.visible = false;
-        }
-
+        if (obs.type === 'star' && player) obs.visible = false;
         if (direction === 'top') {
             newY = obs.y - playerHeight;
             newVelocityY = 0;
             onGround = true;
-            break;
         } else if (direction === 'bottom') {
             newY = obs.y + obs.height;
             newVelocityY = 0;
-            break;
-        } else if (direction === 'right') {
-            newVelocityX = -velocityX * 0.5;
-            newX = obs.x + obs.width;
-            newY = position.y;
-            stacked = true;
-            break
-        } else if (direction === 'left') {
-            newVelocityX = -velocityX * 0.5;
-            newX = obs.x - playerWidth;
-            newY = position.y;
-            stacked = true;
-            break
         }
+        obsType = obs.type;
+    }
+
+    if (!onGround) {
+        const footBox = {
+            x: newX + 1,
+            y: newY + playerHeight,
+            width: playerWidth - 2,
+            height: 1,
+        };
+
+        for (const obs of obstacles) {
+            if (!obs.visible) continue;
+
+            const obsBox = {
+                x: obs.x,
+                y: obs.y,
+                width: obs.width,
+                height: obs.height,
+            };
+
+            const direction = getCollisionDirection(footBox, obsBox);
+            if (direction === 'top') {
+                onGround = true;
+                newVelocityY = 0;
+                newY = obs.y - playerHeight;
+                break;
+            }
+        }
+    }
+
+    if (!onGround) {
+        newVelocityY += gravity;
     }
 
     return {
         position: new Point(newX, newY),
         velocityX: newVelocityX,
         velocityY: newVelocityY,
-        onGround: onGround,
-        stacked: stacked,
-        obsType: obsType,
+        onGround,
+        stacked,
+        obsType,
     };
-}
+};

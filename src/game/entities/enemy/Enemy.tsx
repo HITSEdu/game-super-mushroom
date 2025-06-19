@@ -1,6 +1,6 @@
 import {Sprite, Texture} from "pixi.js";
 import {extend} from '@pixi/react';
-import type {ObjectSize} from "../../constants/interfaces.ts";
+import type {ObjectSize} from "../../../constants/interfaces.ts";
 
 extend({Sprite});
 

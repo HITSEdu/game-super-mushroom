@@ -1,8 +1,8 @@
-import {ANIMATION_SPEED, DEFAULT_SPRITE_SIZE} from "../../constants/values";
-import {usePlayerAnimation} from "./usePlayerAnimation.ts";
-import {PLAYER_ANIMATIONS} from "./utils/playerAnimations.ts";
+import {ANIMATION_SPEED, DEFAULT_SPRITE_SIZE} from "../../../constants/values.ts";
+import {usePlayerAnimation} from "../../../hooks/usePlayerAnimation.ts";
+import {PLAYER_ANIMATIONS} from "../../systems/playerAnimations.ts";
 import type {Texture} from "pixi.js";
-import type {ObjectSize} from "../../constants/interfaces.ts";
+import type {ObjectSize} from "../../../constants/interfaces.ts";
 
 
 export const Player = (
