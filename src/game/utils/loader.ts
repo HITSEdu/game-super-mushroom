@@ -1,4 +1,4 @@
-export async function loadLevel(id: number) {
+export async function loadLevel(id: string) {
     return await import(`../jsons/levels/level${id}.json`);
 }
 

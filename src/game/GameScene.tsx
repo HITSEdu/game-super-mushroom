@@ -5,83 +5,111 @@ import {usePlayerStore} from "../store/PlayerStore.ts";
 import Obstacle from "./entities/obstacle/Obstacle.tsx";
 import {Enemy} from "./entities/enemy/Enemy.tsx";
 import {useLevelStore} from "../store/LevelStore.ts";
-import {initControlSystem, cleanupControlSystem} from "./systems/ControlSystem.ts";
+import {
+  initControlSystem,
+  cleanupControlSystem
+} from "./systems/ControlSystem.ts";
 import {useGameSessionStore} from "../store/GameSessionStore.ts";
 import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 
 extend({
-    Container,
-    Sprite,
-    Graphics,
+  Container,
+  Sprite,
+  Graphics,
 });
 
 const GameScene = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const containerSize = useContainerSize(containerRef);
+  const {
+    obstacles,
+    enemies: levelEnemies,
+    isLoaded,
+    load
+  } = useLevelStore();
 
-    const {obstacles, enemies: levelEnemies, isLoaded, load, reset: resetLevel} = useLevelStore();
+  const {
+    texture: playerTexture,
+    textureString: playerTextureString,
+    size: playerSize,
+    setTexture,
+    position: playerPosition,
+    season: playerSeason,
+  } = usePlayerStore();
 
-    const {
-        texture: playerTexture,
-        textureString: playerTextureString,
-        size: playerSize,
-        setTexture,
-        position: playerPosition,
-        season: playerSeason,
-    } = usePlayerStore();
+  const {currentLevelID, status: gameStatus} = useGameSessionStore();
 
-    const {currentLevelID, status: gameStatus} = useGameSessionStore();
+  useEffect(() => {
+    if (currentLevelID)
+      load(currentLevelID).then(() => {
+        if (playerTextureString)
+          Assets.load(playerTextureString)
+            .then(playerTex => {
+              setTexture(playerTex as Texture);
+            });
 
-    useEffect(() => {
-        const numberID = Number(currentLevelID);
-        load(numberID).then(() => {
-            if (playerTextureString)
-                Assets.load(playerTextureString)
-                    .then(playerTex => {
-                        setTexture(playerTex as Texture);
-                    });
+        initControlSystem();
+      });
 
-            initControlSystem();
-        });
+    return () => {
+      cleanupControlSystem();
+    };
+  }, [currentLevelID, load, playerSeason, playerTextureString, setTexture]);
 
-        return () => {
-            cleanupControlSystem();
-            resetLevel();
-        };
-    }, [currentLevelID, load, playerSeason, playerTextureString, resetLevel, setTexture]);
+  const getTextureSafe = (alias: string): Texture => {
+    return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
+  }
 
-    const getTextureSafe = (alias: string): Texture => {
-        return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
-    }
+  const containerRef = useRef<HTMLDivElement>(null);
+  const {offsetX, offsetY, scale} = useContainerSize(containerRef, isLoaded);
 
-    const scale = Math.min(1, containerSize.width / 1024);
+  if (!isLoaded) return null;
 
-    const offsetX = containerSize.width / 2 - playerPosition.x * scale - playerSize.width * scale / 2;
-    const offsetY = containerSize.height / 2 - playerPosition.y * scale - playerSize.height * scale / 2;
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative z-10"
+    >
+      <Application
+        resizeTo={containerRef}
+        backgroundColor={'black'}
+      >
+        <pixiContainer
+          x={offsetX}
+          y={offsetY}
+          scale={scale}
+          sortableChildren={true}
+        >
+          {playerTexture && gameStatus !== 'lost' &&
+            <Player
+              x={playerPosition.x}
+              y={playerPosition.y}
+              texture={playerTexture}
+              size={playerSize}
+            />}
 
-    if (!isLoaded) return null;
+          {Texture.from('enemy') && levelEnemies.filter(e => e.state !== 'dead').map((enemy) => (
+            <Enemy
+              key={enemy.id}
+              x={enemy.position.x}
+              y={enemy.position.y}
+              texture={Assets.get('enemy')}
+              size={enemy.size}
+            />
+          ))}
 
-    return (
-        <div ref={containerRef} className="w-full h-full relative z-10">
-            <Application resizeTo={containerRef} backgroundColor={'black'}>
-                <pixiContainer x={offsetX} y={offsetY} scale={scale}>
-                    {playerTexture && gameStatus !== 'lost' &&
-                        <Player x={playerPosition.x} y={playerPosition.y} texture={playerTexture} size={playerSize}/>}
-
-                    {Texture.from('enemy') && levelEnemies.filter(e => e.state !== 'dead').map((enemy) => (
-                        <Enemy key={enemy.id} x={enemy.position.x} y={enemy.position.y} texture={Assets.get('enemy')}
-                               size={enemy.size}/>
-                    ))}
-
-                    {obstacles.filter(e => e.visible).map((obs, i) => (
-                        <Obstacle key={i} x={obs.x} y={obs.y} size={{width: obs.width, height: obs.height}}
-                                  texture={getTextureSafe(obs.type)}/>
-                    ))}
-                </pixiContainer>
-            </Application>
-        </div>
-    );
+          {obstacles.filter(e => e.visible).map((obs, i) => (
+            <Obstacle
+              key={i}
+              x={obs.x}
+              y={obs.y}
+              size={{width: obs.width, height: obs.height}}
+              texture={getTextureSafe(obs.type)}
+            />
+          ))}
+        </pixiContainer>
+      </Application>
+    </div>
+  );
 }
 
 export default GameScene;

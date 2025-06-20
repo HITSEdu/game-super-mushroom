@@ -6,10 +6,17 @@ export interface ObjectSize {
     height: number
 }
 
+export interface IObject {
+    x: number
+    y: number
+    width: number
+    height: number
+}
+
 export interface IObstacle {
     position: PointData
     size: ObjectSize
-    color: string
+    texture: string
     type?: string
 }
 

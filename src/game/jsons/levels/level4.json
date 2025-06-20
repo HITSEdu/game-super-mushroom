@@ -7,7 +7,7 @@
   },
   "playerEnd": {
     "x": 936,
-    "y": 360
+    "y": 432
   },
   "obstacles": [
     {
@@ -504,11 +504,18 @@
       "x": 984,
       "y": 360,
       "width": 24,
-      "height": 48,
-      "type": "door"
+      "height": 24,
+      "type": "platform"
     },
     {
       "x": 0,
+      "y": 384,
+      "width": 24,
+      "height": 24,
+      "type": "platform"
+    },
+    {
+      "x": 984,
       "y": 384,
       "width": 24,
       "height": 24,
@@ -539,18 +546,11 @@
       "x": 984,
       "y": 432,
       "width": 24,
-      "height": 24,
-      "type": "platform"
+      "height": 48,
+      "type": "door"
     },
     {
       "x": 0,
-      "y": 456,
-      "width": 24,
-      "height": 24,
-      "type": "platform"
-    },
-    {
-      "x": 984,
       "y": 456,
       "width": 24,
       "height": 24,

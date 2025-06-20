@@ -4,12 +4,24 @@ import {extend} from '@pixi/react';
 
 extend({Sprite});
 
-const Obstacle = ({x, y, texture, size}: { x: number, y: number, texture: Texture, size: ObjectSize }) => {
-    return (
-        texture &&
-        <pixiSprite x={x} y={y} texture={texture} width={size.width}
-                    height={size.height} eventMode={'static'}/>
-    );
+const Obstacle = ({x, y, texture, size}: {
+  x: number,
+  y: number,
+  texture: Texture,
+  size: ObjectSize
+}) => {
+  return (
+    texture &&
+    <pixiSprite
+      x={x}
+      y={y}
+      texture={texture}
+      width={size.width}
+      height={size.height}
+      eventMode={'static'}
+      zIndex={1}
+    />
+  );
 }
 
 export default Obstacle;
