@@ -25,5 +25,10 @@
   "speed": "Скорость",
   "jump": "Прыжок",
   "size": "Размер",
-  "name": "Имя"
+  "name": "Имя",
+  "currentlyPlaying": "Сейчас играет",
+  "musicIsDisabled": "Музыка отключена",
+  "e": "У",
+  "f": "А",
+  "enterTheDoor": "[У] чтобы зайти..."
 }

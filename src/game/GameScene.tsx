@@ -12,6 +12,7 @@ import {
 import {useGameSessionStore} from "../store/GameSessionStore.ts";
 import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
+import InteractionHint from "../components/ui/InteractionHint.tsx";
 
 extend({
   Container,
@@ -108,6 +109,11 @@ const GameScene = () => {
           ))}
         </pixiContainer>
       </Application>
+      <InteractionHint
+        offsetX={offsetX}
+        offsetY={offsetY}
+        scale={scale}
+      />
     </div>
   );
 }

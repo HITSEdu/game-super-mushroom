@@ -4,6 +4,7 @@ import {Point} from "pixi.js";
 import type {ObjectSize} from "../../constants/interfaces.ts";
 import type {CollisionDirection} from '../../constants/types.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
+import {getNearbyInteractions} from "../utils/getNearbyInteractions.ts";
 
 export const getCollisionDirection = (
   a: { x: number; y: number; width: number; height: number },
@@ -90,10 +91,10 @@ export const handleObstacleCollision = (
 
   let onGround = false;
   let stacked = false;
-  const isEnteredDoor = {
-    value: false,
-    dir: 'left'
-  };
+  const nearInteractive = getNearbyInteractions(
+    newX, newY, playerWidth, playerHeight, obstacles
+  );
+
   let isOnLadder = false;
 
   const boxX = {
@@ -111,14 +112,6 @@ export const handleObstacleCollision = (
     if (!direction) continue;
 
     if (obs.type === 'star' && player) obs.visible = false;
-    if (obs.type.startsWith('door') && player) {
-      let side: 'left' | 'right';
-      if (obs.x === 0) side = 'left';
-      else side = 'right';
-
-      isEnteredDoor.value = true;
-      isEnteredDoor.dir = side;
-    }
 
     if (obs.type === 'ladder' && player) {
       isOnLadder = true;
@@ -214,7 +207,7 @@ export const handleObstacleCollision = (
     velocityY: newVelocityY,
     onGround,
     stacked,
-    isEnteredDoor,
+    nearInteractive,
     onLadder: isOnLadder,
   };
 };

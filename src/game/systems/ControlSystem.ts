@@ -8,12 +8,16 @@ export const keys: { [k: string]: boolean } = {
   jump: false,
   pause: false,
   up: false,
-  down: false
+  down: false,
+  use: false
 };
 
 const keyMap: Record<string, string> = {
   w: 'up', a: 'left', s: 'down', d: 'right',
   ц: 'up', ф: 'left', ы: 'down', в: 'right',
+
+  e: 'use',
+  у: 'use',
 
   ' ': 'jump', escape: 'pause',
 }
@@ -65,6 +69,17 @@ export function initControlSystem() {
         if (keys.jump) player.jump();
       }
       if (keys.pause) session.pause();
+
+      for (const interaction of player.nearInteractive) {
+        const key = interaction.key.toLowerCase();
+        if (keys[key]) {
+          interaction.action();
+          usePlayerStore.setState(() => ({
+            nearInteractive: player.nearInteractive.filter(i => i.id !== interaction.id),
+          }));
+          break;
+        }
+      }
 
       session.tick(dt);
       player.tick();

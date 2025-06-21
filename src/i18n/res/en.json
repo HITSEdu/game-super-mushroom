@@ -25,5 +25,10 @@
   "speed": "Speed",
   "jump": "Jump",
   "size": "Size",
-  "name": "Name"
+  "name": "Name",
+  "currentlyPlaying": "Currently playing",
+  "musicIsDisabled": "Music is disabled",
+  "e": "E",
+  "f": "F",
+  "enterTheDoor": "[E] to enter..."
 }

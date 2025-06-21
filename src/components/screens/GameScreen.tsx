@@ -18,51 +18,53 @@ import {backgrounds} from "../../constants/backgrounds.ts";
 import MusicToast from "../ui/MusicToast.tsx";
 
 const GameScreen = () => {
-    const {
-        status,
-        stars,
-        currentAttempts,
-        pause,
-        curTime,
-    } = useGameSessionStore();
+  const {
+    status,
+    stars,
+    currentAttempts,
+    pause,
+    curTime,
+  } = useGameSessionStore();
 
-    const {season} = usePlayerStore();
+  const {season} = usePlayerStore();
 
-    const {setBackground} = useBackgroundStore();
+  const {setBackground} = useBackgroundStore();
 
-    const {menu: menu} = useMenuStore();
+  const {menu: menu} = useMenuStore();
 
-    useEffect(() => {
-        if (!season) return;
-        setBackground(backgrounds[season]);
-    }, [season, setBackground]);
+  useEffect(() => {
+    if (!season) return;
+    setBackground(backgrounds[season]);
+  }, [season, setBackground]);
 
-    const renderMenu = () => {
-        switch (menu) {
-            case 'main':
-                return <GamingMainMenu/>;
-            case 'settings':
-                return <SettingsMenu/>
-            case 'language':
-                return <LanguageMenu/>;
-            case 'volume':
-                return <VolumeMenu/>;
-        }
+  const renderMenu = () => {
+    switch (menu) {
+      case 'main':
+        return <GamingMainMenu />;
+      case 'settings':
+        return <SettingsMenu />
+      case 'language':
+        return <LanguageMenu />;
+      case 'volume':
+        return <VolumeMenu />;
     }
+  }
 
-    return (
-        <div className="w-screen h-screen flex-center flex-col relative overflow-hidden gap-2">
-            <h1 className="mt-auto font-bold text-fg text-center
+  return (
+    <div className="w-screen h-screen flex-center flex-col relative overflow-hidden gap-2">
+      <h1
+        className="mt-auto font-bold text-fg text-center
                             h-xs:text-5xl
                             h-sm:text-6xl
                             h-md:text-7xl
                             h-lg:text-8xl
                             h-xl:text-9xl
-                            ">
-                {season}
-            </h1>
-            <div
-                className="
+                            "
+      >
+        {season}
+      </h1>
+      <div
+        className="
                     my-auto
                     relative
                     h-[56vh]
@@ -70,28 +72,32 @@ const GameScreen = () => {
                     rounded-xl border-4 border-white
                     flex-center
                 "
-            >
-                <div className="fixed left-2 top-2 z-1001 flex-center flex-row">
-                    <LevelInfo attempts={currentAttempts} stars={stars} time={curTime}/>
-                </div>
-
-                <GameScene/>
-
-                <button
-                    className="z-1001 fixed top-4 right-4 w-10 h-10 bg-gray-800 text-white rounded-lg hover:bg-gray-600 transition flex-center"
-                    onClick={pause}
-                >
-                    <SettingsIcon/>
-                </button>
-
-                <MobileControls/>
-            </div>
-            <Inventory/>
-            {status === "paused" && <ModalWindow>{renderMenu()}</ModalWindow>}
-            {status === "won" && <ModalWindow><WinMenu/></ModalWindow>}
-            <MusicToast/>
+      >
+        <div className="fixed left-2 top-2 z-1001 flex-center flex-row">
+          <LevelInfo
+            attempts={currentAttempts}
+            stars={stars}
+            time={curTime}
+          />
         </div>
-    );
+
+        <GameScene />
+
+        <button
+          className="z-1001 fixed top-4 right-4 w-10 h-10 bg-gray-800 text-white rounded-lg hover:bg-gray-600 transition flex-center"
+          onClick={pause}
+        >
+          <SettingsIcon />
+        </button>
+
+        <MobileControls />
+      </div>
+      <Inventory />
+      {status === "paused" && <ModalWindow>{renderMenu()}</ModalWindow>}
+      {status === "won" && <ModalWindow><WinMenu /></ModalWindow>}
+      <MusicToast />
+    </div>
+  );
 }
 
 export default GameScreen;

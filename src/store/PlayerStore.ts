@@ -5,12 +5,11 @@ import {
   DEFAULT_PLAYER_SIZE,
   DEFAULT_START_POSITION
 } from "../constants/values.ts";
-import type {ObjectSize} from "../constants/interfaces.ts";
+import type {IInteraction, ObjectSize} from "../constants/interfaces.ts";
 import {
   handlePlayerEnemyCollision,
   handleObstacleCollision
 } from "../game/systems/CollisionSystem.ts";
-import {useGameSessionStore} from "./GameSessionStore.ts";
 import type {SeasonType} from '../constants/types.ts';
 
 interface PlayerStore {
@@ -27,7 +26,8 @@ interface PlayerStore {
   stacked: boolean;
   season: SeasonType;
   onLadder: boolean;
-  id: number,
+  id: number;
+  nearInteractive: IInteraction[];
 
   setName: (name: string) => void;
   setPosition: (position: { x: number; y: number }) => void;
@@ -56,6 +56,7 @@ export const usePlayerStore = create<PlayerStore>()(
         width: DEFAULT_PLAYER_SIZE.width,
         height: DEFAULT_PLAYER_SIZE.height
       },
+      nearInteractive: [],
       position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
       velocityY: 0,
       velocityX: 0,
@@ -73,6 +74,10 @@ export const usePlayerStore = create<PlayerStore>()(
           position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
           velocityX: 0,
           velocityY: 0,
+          nearInteractive: [],
+          onLadder: false,
+          onGround: true,
+          stacked: false,
           texture,
           textureString,
           size,
@@ -138,11 +143,10 @@ export const usePlayerStore = create<PlayerStore>()(
           true,
         );
 
-        if (result.isEnteredDoor.value) {
-          useGameSessionStore.getState().enterDoor(result.isEnteredDoor.dir as 'left' | 'right');
-        } else set({stacked: result.stacked});
+        set({stacked: result.stacked});
 
         set({
+          nearInteractive: result.nearInteractive,
           position: result.position,
           velocityX: result.velocityX,
           velocityY: result.velocityY,
