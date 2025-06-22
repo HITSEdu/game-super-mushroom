@@ -3,7 +3,7 @@ import {persist} from 'zustand/middleware';
 import {Point, Texture} from 'pixi.js';
 import {
   DEFAULT_PLAYER_SIZE,
-  DEFAULT_START_POSITION
+  DEFAULT_START_POSITION, GAME_HEIGHT, GAME_WIDTH, TILE_SIZE
 } from "../constants/values.ts";
 import type {IInteraction, ObjectSize} from "../constants/interfaces.ts";
 import {
@@ -90,7 +90,12 @@ export const usePlayerStore = create<PlayerStore>()(
       change: () => set({textureString: null}),
 
       setName: (name) => set({name}),
-      setPosition: (position) => set({position: new Point(position.x, position.y)}),
+      setPosition: (position) => {
+        const clampedX = Math.min(GAME_WIDTH - TILE_SIZE, Math.max(0, position.x));
+        const clampedY = Math.min(GAME_HEIGHT - TILE_SIZE * 3, Math.max(0, position.y));
+
+        set({position: new Point(clampedX, clampedY)})
+      },
       setOnGround: (newState) => set({onGround: newState}),
       setVelocity: (direction: 'x' | 'y', newState: number) => {
         if (direction === 'y') set({velocityY: newState})
@@ -145,9 +150,9 @@ export const usePlayerStore = create<PlayerStore>()(
 
         set({stacked: result.stacked});
 
+        get().setPosition(result.position);
         set({
           nearInteractive: result.nearInteractive,
-          position: result.position,
           velocityX: result.velocityX,
           velocityY: result.velocityY,
           onGround: result.onGround,

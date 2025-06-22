@@ -1,6 +1,12 @@
 export const manifest = {
   bundles: [
     {
+      name: 'item_4',
+      assets: [
+        {alias: 'item_4', src: 'src/assets/items/item_4.png'},
+      ],
+    },
+    {
       name: 'enemy',
       assets: [
         {alias: 'enemy', src: 'src/assets/enemies/enemy.png'},

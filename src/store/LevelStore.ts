@@ -10,7 +10,7 @@ import {
   createEnemy,
   enemies as activeEnemies
 } from "../game/entities/enemy/enemies.ts";
-import type {IItem, ObjectSize} from "../constants/interfaces.ts";
+import type {ObjectSize} from "../constants/interfaces.ts";
 import {type IEnemy} from '../constants/interfaces.ts'
 import type {SeasonType} from "../constants/types.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
@@ -34,13 +34,22 @@ export interface EnemyData {
   size: ObjectSize;
 }
 
+export interface ItemData {
+  id: number;
+  x: number;
+  y: number;
+  type: string;
+  size: ObjectSize;
+  visible: boolean;
+}
+
 interface LevelState {
   playerStart: Point;
   playerEnd: Point;
   levelType: SeasonType;
   obstacles: ObstacleData[];
   enemies: IEnemy[];
-  items: IItem[];
+  items: ItemData[];
   gravity: number;
   isLoaded: boolean;
   load: (id: string) => Promise<void>;
@@ -73,7 +82,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       visible: obs.visible !== undefined ? obs.visible : true,
     }));
 
-    const newItems: IItem[] = (data.items || []).filter((item: IItem) => !useInventoryStore.getState().items.map(item => item.id).includes(item.id));
+    const newItems: ItemData[] = (data.items || []).filter((item: ItemData) => !useInventoryStore.getState().items.map(item => item.id).includes(item.id));
 
     set({
       levelType: data.levelType,

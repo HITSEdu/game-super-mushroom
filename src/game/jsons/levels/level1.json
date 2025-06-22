@@ -907,5 +907,18 @@
       "type": "platform"
     }
   ],
-  "enemies": []
+  "enemies": [],
+  "items": [
+    {
+      "id": 4,
+      "x": 300,
+      "y": 450,
+      "type": "item_4",
+      "size": {
+        "width": 24,
+        "height": 24
+      },
+      "visible": true
+    }
+  ]
 }

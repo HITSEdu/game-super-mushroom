@@ -13,7 +13,8 @@ import {useGameSessionStore} from "../store/GameSessionStore.ts";
 import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 import InteractionHint from "../components/ui/InteractionHint.tsx";
-import { Spirit } from './entities/spirit/Spirit.tsx';
+import {Spirit} from './entities/spirit/Spirit.tsx';
+import Item from "./entities/item/Item.tsx";
 
 extend({
   Container,
@@ -25,6 +26,7 @@ const GameScene = () => {
   const {
     obstacles,
     enemies: levelEnemies,
+    items: levelItems,
     isLoaded,
     load
   } = useLevelStore();
@@ -108,11 +110,22 @@ const GameScene = () => {
               texture={getTextureSafe(obs.type)}
             />
           ))}
-          <Spirit
-              x={100}
-              y={20}
-              size={playerSize}
+
+          {levelItems.filter(e => e.visible).map((item) => (
+            <Item
+              key={item.id}
+              x={item.x}
+              y={item.y}
+              size={item.size}
+              texture={getTextureSafe(`item_${item.id}`)}
             />
+          ))}
+
+          <Spirit
+            x={100}
+            y={20}
+            size={playerSize}
+          />
         </pixiContainer>
       </Application>
       <InteractionHint

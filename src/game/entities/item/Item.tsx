@@ -19,7 +19,7 @@ const Item = ({x, y, texture, size}: {
       width={size.width}
       height={size.height}
       eventMode={'static'}
-      zIndex={1}
+      zIndex={2}
     />
   );
 }

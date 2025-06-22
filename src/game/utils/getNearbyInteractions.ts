@@ -1,6 +1,12 @@
 import type {IInteraction} from "../../constants/interfaces.ts";
-import type {ObstacleData} from "../../store/LevelStore.ts";
+import {
+  type ItemData,
+  type ObstacleData,
+  useLevelStore
+} from "../../store/LevelStore.ts";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
+import {items as globalItems} from '../../constants/items.ts'
+import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 export function getNearbyInteractions(
   playerX: number,
@@ -8,6 +14,7 @@ export function getNearbyInteractions(
   playerWidth: number,
   playerHeight: number,
   obstacles: ObstacleData[],
+  levelItems: ItemData[],
 ): IInteraction[] {
 
   const rangeX = 32;
@@ -20,7 +27,7 @@ export function getNearbyInteractions(
 
   for (const obs of obstacles) {
     if (!obs.visible) continue;
-    if (!(obs.type.startsWith('door') || obs.type === 'item' || obs.type === 'npc')) continue;
+    if (!(obs.type.startsWith('door') || obs.type === 'npc')) continue;
 
     const obsCenterX = obs.x + obs.width / 2;
     const obsCenterY = obs.y + obs.height / 2;
@@ -42,7 +49,51 @@ export function getNearbyInteractions(
         });
       }
 
-      // TODO с предметами и нпс
+      if (obs.type === "npc") {
+        interactions.push({
+          id: `npc-${obs.x}-${obs.y}`,
+          visible: true,
+          x: obs.x,
+          y: obs.y,
+          key: "use",
+          title: "talkToNpc",
+          action: () => {
+          },
+        });
+      }
+    }
+  }
+
+  for (const item of levelItems) {
+    if (!item.visible) continue;
+
+    const itemCenterX = item.x + item.size.width / 2;
+    const itemCenterY = item.y + item.size.height / 2;
+
+    const dx = Math.abs(centerX - itemCenterX);
+    const dy = Math.abs(centerY - itemCenterY);
+
+    if (dx <= rangeX && dy <= rangeY) {
+      const globalItem = globalItems.find((i) => i.id === item.id);
+      if (!globalItem) continue;
+
+      interactions.push({
+        id: `item-${item.id}`,
+        visible: true,
+        x: item.x,
+        y: item.y,
+        key: "use",
+        title: "pickupItem",
+        action: () => {
+          useInventoryStore.getState().addItem(globalItem.id);
+
+          useLevelStore.setState((state) => ({
+            items: state.items.map((it) =>
+              it.id === item.id ? {...it, visible: false} : it
+            ),
+          }));
+        },
+      });
     }
   }
 
