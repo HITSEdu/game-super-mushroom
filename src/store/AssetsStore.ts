@@ -34,6 +34,11 @@ export const useAssetsStore = create<AssetsStore>()(
 
         await Assets.loadBundle('player_underworld');
 
+        await Assets.loadBundle('spirit_laurus');
+        await Assets.loadBundle('spirit_mira');
+        await Assets.loadBundle('spirit_onyx');
+        await Assets.loadBundle('spirit_swifty');
+
         await Assets.loadBundle('enemy');
         await Assets.loadBundle('star');
 

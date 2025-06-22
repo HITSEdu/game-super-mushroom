@@ -162,5 +162,41 @@ export const manifest = {
         },
       ],
     },
+    {
+      name: 'spirit_laurus',
+      assets: [
+        {
+          alias: 'spirit_laurus',
+          src: 'src/assets/spirit/spirit_laurus.png'
+        },
+      ],
+    },
+    {
+      name: 'spirit_mira',
+      assets: [
+        {
+          alias: 'spirit_mira',
+          src: 'src/assets/spirit/spirit_mira.png'
+        },
+      ],
+    },
+    {
+      name: 'spirit_onyx',
+      assets: [
+        {
+          alias: 'spirit_onyx',
+          src: 'src/assets/spirit/spirit_onyx.png'
+        },
+      ],
+    },
+    {
+      name: 'spirit_swifty',
+      assets: [
+        {
+          alias: 'spirit_swifty',
+          src: 'src/assets/spirit/spirit_swifty.png'
+        },
+      ],
+    },
   ]
 };
