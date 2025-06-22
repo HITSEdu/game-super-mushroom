@@ -67,9 +67,9 @@ const GameScreen = () => {
         className="
                     my-auto
                     relative
-                    h-[56vh]
+                    h-[60vh]
                     w-[60vw]
-                    rounded-xl border-4 border-white
+                    border-black
                     flex-center
                 "
       >

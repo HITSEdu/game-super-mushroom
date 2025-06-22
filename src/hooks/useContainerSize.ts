@@ -19,7 +19,7 @@ export function useContainerSize(ref: RefObject<HTMLDivElement | null>, isLoaded
 
   const scale = {
     x: size.width / 1008,
-    y: size.height / 500,
+    y: size.height / 504,
   };
 
   const levelWidth = GAME_WIDTH * scale.x;

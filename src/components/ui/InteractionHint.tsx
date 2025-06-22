@@ -36,16 +36,16 @@ const InteractionHint = ({offsetX, offsetY, scale}: Props) => {
               initial={{opacity: 0, scale: 0.9, y: -10}}
               animate={{opacity: 1, scale: 1, y: 0}}
               exit={{opacity: 0, scale: 0.9, y: -10}}
-              transition={{duration: 0.15, ease: "easeOut"}}
+              transition={{duration: 0.2, ease: "easeOut"}}
               style={{
                 position: "absolute",
                 left: screenX,
                 top: screenY,
                 cursor: "pointer",
               }}
-              className="transform -translate-x-1/2 -translate-y-full
+              className="transform -translate-x-1/2 -translate-y-full hover:border-rose-300
                          bg-[#1e1e1e] border border-[#666] text-white
-                         text-[10px] px-2 py-[2px] rounded
+                         text-[10px] px-2 py-[2px] rounded-lg
                          pointer-events-auto whitespace-nowrap z-20
                          shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_1px_2px_rgba(0,0,0,0.5)]"
             >
