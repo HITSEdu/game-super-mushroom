@@ -13,6 +13,7 @@ import {useGameSessionStore} from "../store/GameSessionStore.ts";
 import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 import InteractionHint from "../components/ui/InteractionHint.tsx";
+import { Spirit } from './entities/spirit/Spirit.tsx';
 
 extend({
   Container,
@@ -107,6 +108,11 @@ const GameScene = () => {
               texture={getTextureSafe(obs.type)}
             />
           ))}
+          <Spirit
+              x={100}
+              y={20}
+              size={playerSize}
+            />
         </pixiContainer>
       </Application>
       <InteractionHint
