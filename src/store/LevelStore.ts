@@ -10,9 +10,10 @@ import {
   createEnemy,
   enemies as activeEnemies
 } from "../game/entities/enemy/enemies.ts";
-import type {ObjectSize} from "../constants/interfaces.ts";
+import type {IItem, ObjectSize} from "../constants/interfaces.ts";
 import {type IEnemy} from '../constants/interfaces.ts'
 import type {SeasonType} from "../constants/types.ts";
+import {useInventoryStore} from "./InventoryStore.ts";
 
 export interface ObstacleData {
   x: number;
@@ -39,6 +40,7 @@ interface LevelState {
   levelType: SeasonType;
   obstacles: ObstacleData[];
   enemies: IEnemy[];
+  items: IItem[];
   gravity: number;
   isLoaded: boolean;
   load: (id: string) => Promise<void>;
@@ -50,6 +52,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
   playerEnd: new Point(DEFAULT_END_POSITION.x, DEFAULT_END_POSITION.y),
   levelType: 'underworld',
   gravity: 1.5,
+  items: [],
   obstacles: [],
   enemies: [],
   isLoaded: false,
@@ -70,11 +73,14 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       visible: obs.visible !== undefined ? obs.visible : true,
     }));
 
+    const newItems: IItem[] = (data.items || []).filter((item: IItem) => !useInventoryStore.getState().items.map(item => item.id).includes(item.id));
+
     set({
       levelType: data.levelType,
       playerStart: new Point(data.playerStart.x, data.playerStart.y),
       playerEnd: new Point(data.playerEnd.x, data.playerEnd.y),
       gravity: data.gravity,
+      items: newItems,
       obstacles: obstaclesWithVisible,
       enemies: activeEnemies,
       isLoaded: true
