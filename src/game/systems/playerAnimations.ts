@@ -12,8 +12,8 @@ export const PLAYER_ANIMATIONS = {
   "idle-left": {row: 24, frames: 2},
   "walk-right": {row: 11, frames: 9},
   "walk-left": {row: 9, frames: 9},
-  "climb-up": {row: 22, frames: 6},
-  "climb-down": {row: 22, frames: 6},
+  "climb-up": {row: 21, frames: 6},
+  "climb-down": {row: 21, frames: 6},
   "jump-right": {row: 28, frames: 5},
   "jump-left": {row: 28, frames: 5},
 
