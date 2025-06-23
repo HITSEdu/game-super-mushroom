@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 import {persist} from "zustand/middleware";
 import type {IItem} from "../constants/interfaces.ts";
-import {initItems, items} from "../constants/items.ts";
+import {initItems, items} from "../constants/items.tsx";
 
 interface InventoryState {
   items: IItem[];

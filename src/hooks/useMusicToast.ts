@@ -1,15 +1,9 @@
 import {type RefObject, useEffect, useState} from "react";
 import {useMusicPlayerStore} from "../store/MusicPlayerStore.ts";
 import {useTranslation} from "react-i18next";
+import {SONG_NAMES} from "../constants/values.ts";
 
 export function useMusicToast(ref: RefObject<ReturnType<typeof setTimeout> | null>) {
-
-  const songNames: Record<string, string> = {
-    'music1': 'winter',
-    'music2': 'spring',
-    'music3': 'summer',
-    'music4': 'autumn',
-  }
 
   const {t} = useTranslation('translations');
 
@@ -21,7 +15,7 @@ export function useMusicToast(ref: RefObject<ReturnType<typeof setTimeout> | nul
     if (!music || music === 'music0') {
       setMessage(`${t('musicIsDisabled')}!`);
     } else {
-      setMessage(`${t('currentlyPlaying')}: ${songNames[music] ?? '???'}`);
+      setMessage(`${t('currentlyPlaying')}: ${SONG_NAMES.find(el => el.key === music)?.label ?? '???'}`);
     }
 
     setVisible(true);

@@ -5,7 +5,7 @@ import {
   useLevelStore
 } from "../../store/LevelStore.ts";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
-import {items as globalItems} from '../../constants/items.ts'
+import {items as globalItems} from '../../constants/items.tsx'
 import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 export function getNearbyInteractions(

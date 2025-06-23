@@ -1,4 +1,4 @@
-export type GameStatus = 'playing' | 'paused' | 'won' | 'lost'
+export type GameStatus = 'playing' | 'paused' | 'won' | 'lost' | 'modalOpen'
 
 export type GlobalType = 'menu' | 'levelSelect' | 'playing'
 

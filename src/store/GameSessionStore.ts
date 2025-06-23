@@ -17,6 +17,7 @@ interface GameSessionState {
   startLevel: (id: string) => void
   pause: () => void
   resume: () => void
+  setStatus: (status: GameStatus) => void
 
   getStar: () => void
   enterDoor: (side: 'left' | 'right') => void
@@ -54,6 +55,10 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
         status: "paused",
       }
     ))
+  },
+
+  setStatus: (status: GameStatus) => {
+    set({status})
   },
 
   resume: () => set(() => ({

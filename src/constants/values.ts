@@ -1,5 +1,6 @@
 import type {ObjectSize} from "./interfaces.ts";
 import type {PointData} from "pixi.js";
+import type {SeasonType} from "./types.ts";
 
 export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 22, height: 48}
 export const DEFAULT_ENEMY_SIZE: ObjectSize = {width: 50, height: 50}
@@ -42,3 +43,43 @@ export const TOTAL_SLOTS = 13;
 export const MUSIC_COUNT = 4;
 export const ANIMATION_SPEED = 20;
 export const DEFAULT_SPRITE_SIZE = 64
+
+export const SONG_NAMES = [
+  {id: 0, label: "turnOff", key: "music0"},
+  {id: 1, label: "winter", key: "music1"},
+  {id: 2, label: "spring", key: "music2"},
+  {id: 3, label: "summer", key: "music3"},
+  {id: 4, label: "autumn", key: "music4"},
+];
+
+export const SEASONS: {
+  key: SeasonType;
+  label: string,
+  className: string
+}[] = [
+  {
+    key: 'underworld',
+    label: 'season.underworld',
+    className: 'bg-red-700 hover:bg-red-800'
+  },
+  {
+    key: 'spring',
+    label: 'season.spring',
+    className: 'bg-green-600 hover:bg-green-700',
+  },
+  {
+    key: 'summer',
+    label: 'season.summer',
+    className: 'bg-yellow-500 hover:bg-yellow-600'
+  },
+  {
+    key: 'autumn',
+    label: 'season.autumn',
+    className: 'bg-orange-600 hover:bg-orange-700'
+  },
+  {
+    key: 'winter',
+    label: 'season.winter',
+    className: 'bg-blue-600 hover:bg-blue-700'
+  },
+];

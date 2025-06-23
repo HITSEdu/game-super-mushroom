@@ -28,8 +28,18 @@
   "name": "Имя",
   "currentlyPlaying": "Сейчас играет",
   "musicIsDisabled": "Музыка отключена",
+  "selectMusic": "Выберите музыку",
+  "turnOff": "Выключить музыку",
   "e": "У",
   "f": "А",
-  "enterTheDoor": "[У] чтобы зайти",
-  "pickupItem": "[У] чтобы взять"
+  "enterTheDoor": "[E] чтобы зайти",
+  "pickupItem": "[E] чтобы взять",
+  "selectLocation": "Выберите локацию",
+  "season": {
+    "spring": "Весна",
+    "summer": "Лето",
+    "autumn": "Осень",
+    "winter": "Зима",
+    "underworld": "Подземный мир"
+  }
 }

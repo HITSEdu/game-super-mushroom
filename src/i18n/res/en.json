@@ -28,8 +28,18 @@
   "name": "Name",
   "currentlyPlaying": "Currently playing",
   "musicIsDisabled": "Music is disabled",
+  "selectMusic": "Select Music",
+  "turnOff": "Turn off Music",
   "e": "E",
   "f": "F",
   "enterTheDoor": "[E] to enter",
-  "pickupItem": "[E] to pick up"
+  "pickupItem": "[E] to pick up",
+  "selectLocation": "Choose a location",
+  "season": {
+    "spring": "Spring",
+    "summer": "Summer",
+    "autumn": "Autumn",
+    "winter": "Winter",
+    "underworld": "Underworld"
+  }
 }
