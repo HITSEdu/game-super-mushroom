@@ -913,10 +913,89 @@
       "id": 4,
       "x": 300,
       "y": 450,
-      "type": "item_4",
+      "type": "item_spring",
       "size": {
         "width": 24,
         "height": 24
+      },
+      "visible": true
+    },
+    {
+      "id": 3,
+      "x": 350,
+      "y": 450,
+      "type": "item_winter",
+      "size": {
+        "width": 24,
+        "height": 24
+      },
+      "visible": true
+    },
+    {
+      "id": 9,
+      "x": 400,
+      "y": 450,
+      "type": "item_summer",
+      "size": {
+        "width": 24,
+        "height": 24
+      },
+      "visible": true
+    },
+    {
+      "id": 10,
+      "x": 450,
+      "y": 450,
+      "type": "item_autumn",
+      "size": {
+        "width": 24,
+        "height": 24
+      },
+      "visible": true
+    }
+  ],
+  "spirits": [
+    {
+      "id": 1,
+      "x": 500,
+      "y": 410,
+      "type": "spirit_onyx",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    },
+    {
+      "id": 2,
+      "x": 550,
+      "y": 410,
+      "type": "spirit_swifty",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    },
+    {
+      "id": 3,
+      "x": 600,
+      "y": 410,
+      "type": "spirit_mira",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    },
+    {
+      "id": 4,
+      "x": 650,
+      "y": 410,
+      "type": "spirit_laurus",
+      "size": {
+        "width": 24,
+        "height": 48
       },
       "visible": true
     }

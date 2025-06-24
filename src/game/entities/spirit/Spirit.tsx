@@ -1,27 +1,21 @@
-import { Texture, Sprite, Assets } from "pixi.js";
-import { extend } from "@pixi/react";
-import { usePlayerAnimation } from "../../../hooks/usePlayerAnimation";
-import { ANIMATION_SPEED, DEFAULT_SPRITE_SIZE } from "../../../constants/values";
-import type { ObjectSize } from "../../../constants/interfaces";
+import {Texture, Sprite} from "pixi.js";
+import {extend} from "@pixi/react";
+import {usePlayerAnimation} from "../../../hooks/usePlayerAnimation";
+import {ANIMATION_SPEED, DEFAULT_SPRITE_SIZE} from "../../../constants/values";
+import type {ObjectSize} from "../../../constants/interfaces";
 
-extend({ Sprite });
+extend({Sprite});
 
 interface SpiritProps {
   x: number;
   y: number;
+  texture: Texture;
   size: ObjectSize;
 }
 
-export const Spirit = ({ x, y, size }: SpiritProps) => {
-  const textureKey = "spirit_mira";
-  const baseTexture = Assets.get(textureKey);
-  if (!baseTexture) {
-    console.warn(`Spirit texture for key '${textureKey}' not found in Assets registry`);
-    return null;
-  }
-  const texture = new Texture(baseTexture);
+export const Spirit = ({x, y, texture, size}: SpiritProps) => {
   const SPIRIT_ANIMATIONS = {
-    "idle-right": { row: 24, frames: 2 },
+    "idle-right": {row: 24, frames: 2},
   };
 
   const spriteTexture = usePlayerAnimation({
@@ -39,7 +33,7 @@ export const Spirit = ({ x, y, size }: SpiritProps) => {
       texture={spriteTexture}
       width={size.width}
       height={size.height}
-      zIndex={10}
+      zIndex={9}
       eventMode="static"
     />
   );

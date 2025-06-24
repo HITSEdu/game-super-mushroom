@@ -41,5 +41,13 @@
     "autumn": "Autumn",
     "winter": "Winter",
     "underworld": "Underworld"
+  },
+  "talkToSpirit": "[E] to talk",
+  "spiritGreeting": "{{name}} says:",
+  "spiritDialogue": {
+    "onyx": "Onyx's speech",
+    "swifty": "Swifty's speech",
+    "mira": "Mira's speech",
+    "laurus": "Laurus's speech"
   }
 }

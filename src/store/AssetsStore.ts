@@ -41,7 +41,11 @@ export const useAssetsStore = create<AssetsStore>()(
 
         await Assets.loadBundle('enemy');
         await Assets.loadBundle('star');
-        await Assets.loadBundle('item_4');
+
+        await Assets.loadBundle('item_winter');
+        await Assets.loadBundle('item_spring');
+        await Assets.loadBundle('item_summer');
+        await Assets.loadBundle('item_autumn');
 
         await Assets.loadBundle('platform_underworld');
         await Assets.loadBundle('door_underworld');

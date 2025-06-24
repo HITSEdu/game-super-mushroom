@@ -47,6 +47,12 @@ export interface IItem {
   height?: number;
 }
 
+export interface ISpirit {
+  id: number;
+  name: string;
+  action: () => void;
+}
+
 export interface IEnemy {
   id: string;
   position: Point;

@@ -1,11 +1,30 @@
 export const manifest = {
   bundles: [
     {
-      name: 'item_4',
+      name: 'item_winter',
       assets: [
-        {alias: 'item_4', src: 'src/assets/items/item_4.png'},
+        {alias: 'item_winter', src: 'src/assets/items/item_winter.png'},
       ],
     },
+    {
+      name: 'item_spring',
+      assets: [
+        {alias: 'item_spring', src: 'src/assets/items/item_spring.png'},
+      ],
+    },
+    {
+      name: 'item_summer',
+      assets: [
+        {alias: 'item_summer', src: 'src/assets/items/item_summer.png'},
+      ],
+    },
+    {
+      name: 'item_autumn',
+      assets: [
+        {alias: 'item_autumn', src: 'src/assets/items/item_autumn.png'},
+      ],
+    },
+
     {
       name: 'enemy',
       assets: [

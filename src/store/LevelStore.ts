@@ -44,6 +44,15 @@ export interface ItemData {
   visible: boolean;
 }
 
+export interface SpiritData {
+  id: number;
+  x: number;
+  y: number;
+  type: string;
+  size: ObjectSize;
+  visible: boolean;
+}
+
 interface LevelState {
   playerStart: Point;
   playerEnd: Point;
@@ -51,6 +60,7 @@ interface LevelState {
   obstacles: ObstacleData[];
   enemies: IEnemy[];
   items: ItemData[];
+  spirits: SpiritData[];
   gravity: number;
   isLoaded: boolean;
 
@@ -64,6 +74,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
   levelType: 'underworld',
   gravity: 1.5,
   items: [],
+  spirits: [],
   obstacles: [],
   enemies: [],
   isLoaded: false,
@@ -88,12 +99,18 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
     const newItems: ItemData[] = (data.items || []).filter((item: ItemData) => !useInventoryStore.getState().items.map(item => item.id).includes(item.id));
 
+    const newSpirits: SpiritData[] = (data.spirits || []).map((spirit: SpiritData) => ({
+      ...spirit,
+      visible: spirit.visible !== undefined ? spirit.visible : true,
+    }));
+
     set({
       levelType: data.levelType,
       playerStart: new Point(data.playerStart.x, data.playerStart.y),
       playerEnd: new Point(data.playerEnd.x, data.playerEnd.y),
       gravity: data.gravity,
       items: newItems,
+      spirits: newSpirits,
       obstacles: obstaclesWithVisible,
       enemies: activeEnemies,
       isLoaded: true
@@ -107,6 +124,8 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       playerStart: new Point(get().playerStart.x, get().playerStart.y),
       playerEnd: new Point(get().playerEnd.x, get().playerEnd.y),
       obstacles: [],
+      spirits: [],
+      items: [],
       enemies: [],
       isLoaded: false
     });

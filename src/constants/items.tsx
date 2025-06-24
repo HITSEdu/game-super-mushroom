@@ -26,11 +26,32 @@ export const items: IItem[] = [
     action: () => useModalStore.getState().open(<PortalModal />),
   },
   {
+    id: 3,
+    source: 'src/assets/items/item_winter.png',
+    amount: 0,
+    action: () => useModalStore.getState().open(
+      <ButterflyModal title={'Зиму'} />),
+  },
+  {
     id: 4,
-    source: 'src/assets/items/item_4.png',
+    source: 'src/assets/items/item_spring.png',
     amount: 0,
     action: () => useModalStore.getState().open(
       <ButterflyModal title={'Весну'} />),
+  },
+  {
+    id: 9,
+    source: 'src/assets/items/item_summer.png',
+    amount: 0,
+    action: () => useModalStore.getState().open(
+      <ButterflyModal title={'Лето'} />),
+  },
+  {
+    id: 10,
+    source: 'src/assets/items/item_autumn.png',
+    amount: 0,
+    action: () => useModalStore.getState().open(
+      <ButterflyModal title={'Осень'} />),
   },
 ];
 

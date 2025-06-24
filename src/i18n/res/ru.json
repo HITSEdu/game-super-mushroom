@@ -41,5 +41,13 @@
     "autumn": "Осень",
     "winter": "Зима",
     "underworld": "Подземный мир"
+  },
+  "talkToSpirit": "[E] чтобы поговорить",
+  "spiritGreeting": "{{name}} сказал:",
+  "spiritDialogue": {
+    "onyx": "Речь оникса",
+    "swifty": "Речь свифти",
+    "mira": "Речь миры",
+    "laurus": "Речь лауруса"
   }
 }

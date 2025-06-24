@@ -27,6 +27,7 @@ const GameScene = () => {
     obstacles,
     enemies: levelEnemies,
     items: levelItems,
+    spirits: levelSpirits,
     isLoaded,
     load
   } = useLevelStore();
@@ -117,15 +118,19 @@ const GameScene = () => {
               x={item.x}
               y={item.y}
               size={item.size}
-              texture={getTextureSafe(`item_${item.id}`)}
+              texture={getTextureSafe(`${item.type}`)}
             />
           ))}
 
-          <Spirit
-            x={100}
-            y={20}
-            size={playerSize}
-          />
+          {levelSpirits.filter(e => e.visible).map((spirit) => (
+            <Spirit
+              key={spirit.id}
+              x={spirit.x}
+              y={spirit.y}
+              size={spirit.size}
+              texture={getTextureSafe(`${spirit.type}`)}
+            />
+          ))}
         </pixiContainer>
       </Application>
       <InteractionHint

@@ -72,7 +72,7 @@ export const handleObstacleCollision = (
   velocityY: number,
   player?: boolean
 ) => {
-  const {obstacles, gravity, items} = useLevelStore.getState();
+  const {obstacles, gravity, items, spirits} = useLevelStore.getState();
 
   const playerWidth = size.width;
   const playerHeight = size.height;
@@ -93,7 +93,7 @@ export const handleObstacleCollision = (
   let stacked = false;
 
   const nearInteractive = getNearbyInteractions(
-    newX, newY, playerWidth, playerHeight, obstacles, items
+    newX, newY, playerWidth, playerHeight, obstacles, items, spirits
   );
 
   let isOnLadder = false;
