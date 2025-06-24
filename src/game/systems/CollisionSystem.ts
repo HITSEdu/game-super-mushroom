@@ -1,10 +1,11 @@
 import {usePlayerStore} from '../../store/PlayerStore.ts';
 import {useLevelStore} from '../../store/LevelStore';
-import {Point} from "pixi.js";
+import {type PointData} from "pixi.js";
 import type {ObjectSize} from "../../constants/interfaces.ts";
 import type {CollisionDirection} from '../../constants/types.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {getNearbyInteractions} from "../utils/getNearbyInteractions.ts";
+import {useMiniGameStore} from "../../store/MiniGameStore.ts";
 
 export const getCollisionDirection = (
   a: { x: number; y: number; width: number; height: number },
@@ -66,7 +67,7 @@ export const handlePlayerEnemyCollision = () => {
 }
 
 export const handleObstacleCollision = (
-  position: Point,
+  position: PointData,
   size: ObjectSize,
   velocityX: number,
   velocityY: number,
@@ -77,10 +78,8 @@ export const handleObstacleCollision = (
   const playerWidth = size.width;
   const playerHeight = size.height;
 
-  let newVelocityX = velocityX * 0.9;
-  if (Math.abs(newVelocityX) < 0.1) {
-    newVelocityX = 0;
-  }
+  let newVelocityX = velocityX;
+
   let newVelocityY = velocityY;
   if (Math.abs(newVelocityY) < 0.1) {
     newVelocityY = 0;
@@ -106,11 +105,15 @@ export const handleObstacleCollision = (
   };
 
   for (const obs of obstacles) {
-    if (!obs.visible || (!player && (obs.type === 'finish' || obs.type === 'star' || obs.type.startsWith('door') || obs.type === 'ladder'))) continue;
+    if (!obs.visible || (!player && (obs.type === 'trap' || obs.type === 'finish' || obs.type === 'star' || obs.type.startsWith('door') || obs.type === 'ladder'))) continue;
     const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
 
     const direction = getCollisionDirection(boxX, obsBox);
     if (!direction) continue;
+
+    if (obs.type === 'trap') useGameSessionStore.getState().lose();
+
+    if (obs.type === 'portal') useMiniGameStore.getState().finishMiniGame();
 
     if (obs.type === 'star' && player) obs.visible = false;
 
@@ -138,7 +141,7 @@ export const handleObstacleCollision = (
   };
 
   for (const obs of obstacles) {
-    if (!obs.visible || (!player && (obs.type === 'finish' || obs.type === 'star' || obs.type.startsWith('door') || obs.type === 'ladder'))) continue;
+    if (!obs.visible || (!player && (obs.type === 'trap' || obs.type === 'finish' || obs.type === 'trap' || obs.type.startsWith('door') || obs.type === 'ladder'))) continue;
     const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
 
     if (obs.type === 'ladder' && player) {
@@ -157,6 +160,10 @@ export const handleObstacleCollision = (
 
     const direction = getCollisionDirection(boxY, obsBox);
     if (!direction) continue;
+
+    if (obs.type === 'trap') useGameSessionStore.getState().lose();
+
+    if (obs.type === 'portal') useMiniGameStore.getState().finishMiniGame();
 
     if (obs.type === 'star' && player) obs.visible = false;
 
@@ -203,7 +210,7 @@ export const handleObstacleCollision = (
   }
 
   return {
-    position: new Point(newX, newY),
+    position: {x: newX, y: newY},
     velocityX: newVelocityX,
     velocityY: newVelocityY,
     onGround,

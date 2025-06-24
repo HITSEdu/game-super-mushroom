@@ -15,6 +15,7 @@ import {type IEnemy} from '../constants/interfaces.ts'
 import type {SeasonType} from "../constants/types.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
+import {useGameSessionStore} from "./GameSessionStore.ts";
 
 export interface ObstacleData {
   x: number;
@@ -61,10 +62,11 @@ interface LevelState {
   enemies: IEnemy[];
   items: ItemData[];
   spirits: SpiritData[];
+  isMiniGame: boolean;
   gravity: number;
   isLoaded: boolean;
 
-  load: (id: string) => Promise<void>;
+  load: (id: string, season?: SeasonType) => Promise<void>;
   reset: () => void;
 }
 
@@ -77,12 +79,16 @@ export const useLevelStore = create<LevelState>((set, get) => ({
   spirits: [],
   obstacles: [],
   enemies: [],
+  isMiniGame: false,
   isLoaded: false,
 
   load: async (id: string, season?: SeasonType) => {
     const currentSeason = season ?? usePlayerStore.getState().season;
 
     const data = await loadLevel(id, currentSeason);
+
+    set({isMiniGame: Number(id) > 4});
+    useGameSessionStore.setState({currentLevelID: id});
 
     activeEnemies.length = 0;
 
@@ -127,6 +133,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       spirits: [],
       items: [],
       enemies: [],
+      isMiniGame: false,
       isLoaded: false
     });
   }

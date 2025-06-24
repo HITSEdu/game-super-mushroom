@@ -1,6 +1,7 @@
 import {usePlayerStore} from '../../store/PlayerStore.ts';
 import {enemies} from '../entities/enemy/enemies.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
+import {useLevelStore} from "../../store/LevelStore.ts";
 
 export const keys: { [k: string]: boolean } = {
   left: false,
@@ -54,20 +55,25 @@ export function initControlSystem() {
 
     const player = usePlayerStore.getState();
     const session = useGameSessionStore.getState();
+    const level = useLevelStore.getState();
 
     if (session.status === 'playing') {
+      const isVertical = player.onLadder || level.isMiniGame;
+
       if (!player.stacked) {
-        if (keys.left) player.come('left');
-        if (keys.right) player.come('right');
+        if (keys.left && !keys.right) player.come('left');
+        else if (keys.right && !keys.left) player.come('right');
+        else player.setVelocity('x', 0);
       }
 
-      if (player.onLadder) {
-        if (keys.up) player.setVelocity('y', -player.speed / 2);
-        else if (keys.down) player.setVelocity('y', +player.speed / 2);
+      if (isVertical) {
+        if (keys.up && !keys.down) player.come('up');
+        else if (keys.down && !keys.up) player.come('down');
         else player.setVelocity('y', 0);
       } else {
         if (keys.jump) player.jump();
       }
+
       if (keys.pause) session.pause();
 
       for (const interaction of player.nearInteractive) {

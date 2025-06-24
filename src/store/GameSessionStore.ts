@@ -6,6 +6,8 @@ import {sounds} from "../game/utils/sound.ts";
 import {useMusicPlayerStore} from "./MusicPlayerStore.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
 import {UNDERWORLD_SPAWN} from "../constants/values.ts";
+import i18next from "i18next";
+import {useToastStore} from "./ToastStore.ts";
 
 interface GameSessionState {
   currentLevelID: string | null
@@ -76,6 +78,9 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
     }
 
     useLevelStore.getState().load(nextID.toString()).then(() => {
+      const message = `${i18next.t('translations:entered')} ${nextID}!`;
+
+      useToastStore.getState().show(message);
       usePlayerStore.getState().setPosition(side === 'right' ? useLevelStore.getState().playerStart : useLevelStore.getState().playerEnd);
     });
     set({currentLevelID: nextID.toString()});
@@ -101,7 +106,10 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
     const reloadLevel = useLevelStore.getState().load;
     const curLevel = get().currentLevelID;
 
-    if (curLevel) reloadLevel(curLevel);
+    if (curLevel) reloadLevel(curLevel).then(() => {
+        usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
+      }
+    );
 
     set((state) => ({
       currentAttempts: state.currentAttempts + 1,

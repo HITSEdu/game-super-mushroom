@@ -35,13 +35,11 @@
   "enterTheDoor": "[E] чтобы зайти",
   "pickupItem": "[E] чтобы взять",
   "selectLocation": "Выберите локацию",
-  "season": {
-    "spring": "Весна",
-    "summer": "Лето",
-    "autumn": "Осень",
-    "winter": "Зима",
-    "underworld": "Подземный мир"
-  },
+  "spring": "Весна",
+  "summer": "Лето",
+  "autumn": "Осень",
+  "winter": "Зима",
+  "underworld": "Подземный мир",
   "talkToSpirit": "[E] чтобы поговорить",
   "spiritGreeting": "{{name}} сказал:",
   "spiritDialogue": {
@@ -49,5 +47,18 @@
     "swifty": "Речь свифти",
     "mira": "Речь миры",
     "laurus": "Речь лауруса"
-  }
+  },
+  "help": "Помочь",
+  "alreadyHelped": "Вы уже помогли",
+  "items": {
+    "pickedUp": "Вы подобрали {{itemName}}!",
+    "names": {
+      "13": "Портал",
+      "3": "Зимнюю Бабочку",
+      "4": "Весеннюю Бабочку",
+      "9": "Летнюю Бабочку",
+      "10": "Осеннюю Бабочку"
+    }
+  },
+  "entered": "Вы зашли в: комната"
 }

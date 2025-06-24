@@ -15,7 +15,6 @@ import {usePlayerStore} from "../../store/PlayerStore.ts";
 import {useBackgroundStore} from "../../store/BackgroundStore.tsx";
 import {useEffect} from "react";
 import {backgrounds} from "../../constants/backgrounds.ts";
-import MusicToast from "../ui/MusicToast.tsx";
 import ItemModal from "../ui/ItemModal.tsx";
 
 const GameScreen = () => {
@@ -97,7 +96,6 @@ const GameScreen = () => {
       <ItemModal />
       {status === "paused" && <ModalWindow>{renderMenu()}</ModalWindow>}
       {status === "won" && <ModalWindow><WinMenu /></ModalWindow>}
-      <MusicToast />
     </div>
   );
 }

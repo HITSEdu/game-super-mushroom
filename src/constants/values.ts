@@ -3,7 +3,7 @@ import type {PointData} from "pixi.js";
 import type {SeasonType} from "./types.ts";
 
 export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 22, height: 48}
-export const DEFAULT_ENEMY_SIZE: ObjectSize = {width: 50, height: 50}
+export const DEFAULT_PLAYER_MINI_GAME_SIZE: ObjectSize = {width: 22, height: 22}
 
 export const UNDERWORLD_SPAWN = {
   x: 24,
@@ -59,27 +59,27 @@ export const SEASONS: {
 }[] = [
   {
     key: 'underworld',
-    label: 'season.underworld',
+    label: 'underworld',
     className: 'bg-red-700 hover:bg-red-800'
   },
   {
+    key: 'winter',
+    label: 'winter',
+    className: 'bg-blue-600 hover:bg-blue-700'
+  },
+  {
     key: 'spring',
-    label: 'season.spring',
+    label: 'spring',
     className: 'bg-green-600 hover:bg-green-700',
   },
   {
     key: 'summer',
-    label: 'season.summer',
+    label: 'summer',
     className: 'bg-yellow-500 hover:bg-yellow-600'
   },
   {
     key: 'autumn',
-    label: 'season.autumn',
+    label: 'autumn',
     className: 'bg-orange-600 hover:bg-orange-700'
-  },
-  {
-    key: 'winter',
-    label: 'season.winter',
-    className: 'bg-blue-600 hover:bg-blue-700'
   },
 ];

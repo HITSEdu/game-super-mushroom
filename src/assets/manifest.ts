@@ -26,6 +26,13 @@ export const manifest = {
     },
 
     {
+      name: 'portal',
+      assets: [
+        {alias: 'portal', src: 'src/assets/items/portal.png'},
+      ],
+    },
+
+    {
       name: 'enemy',
       assets: [
         {alias: 'enemy', src: 'src/assets/enemies/enemy.png'},
@@ -63,6 +70,16 @@ export const manifest = {
         {
           alias: 'ladder',
           src: 'src/assets/obstacles/ladder.png'
+        },
+      ],
+    },
+
+    {
+      name: 'trap',
+      assets: [
+        {
+          alias: 'trap',
+          src: 'src/assets/obstacles/trap.png'
         },
       ],
     },

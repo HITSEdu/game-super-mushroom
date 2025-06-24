@@ -35,13 +35,11 @@
   "enterTheDoor": "[E] to enter",
   "pickupItem": "[E] to pick up",
   "selectLocation": "Choose a location",
-  "season": {
-    "spring": "Spring",
-    "summer": "Summer",
-    "autumn": "Autumn",
-    "winter": "Winter",
-    "underworld": "Underworld"
-  },
+  "spring": "Spring",
+  "summer": "Summer",
+  "autumn": "Autumn",
+  "winter": "Winter",
+  "underworld": "Underworld",
   "talkToSpirit": "[E] to talk",
   "spiritGreeting": "{{name}} says:",
   "spiritDialogue": {
@@ -49,5 +47,18 @@
     "swifty": "Swifty's speech",
     "mira": "Mira's speech",
     "laurus": "Laurus's speech"
-  }
+  },
+  "help": "Help",
+  "alreadyHelped": "You've helped",
+  "items": {
+    "pickedUp": "You've picked up {{itemName}}!",
+    "names": {
+      "13": "Portal",
+      "3": "Winter Butterfly",
+      "4": "Spring Butterfly",
+      "9": "Summer Butterfly",
+      "10": "Autumn Butterfly"
+    }
+  },
+  "entered": "You've entered: room"
 }

@@ -51,6 +51,7 @@ export interface ISpirit {
   id: number;
   name: string;
   action: () => void;
+  season: SeasonType;
 }
 
 export interface IEnemy {

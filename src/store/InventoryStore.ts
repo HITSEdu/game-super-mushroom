@@ -2,6 +2,8 @@ import {create} from 'zustand'
 import {persist} from "zustand/middleware";
 import type {IItem} from "../constants/interfaces.ts";
 import {initItems, items} from "../constants/items.tsx";
+import {useToastStore} from "./ToastStore.ts";
+import i18next from "i18next";
 
 interface InventoryState {
   items: IItem[];
@@ -25,6 +27,10 @@ export const useInventoryStore = create<InventoryState>()(
       },
 
       addItem: (id) => {
+        const itemName = i18next.t(`translations:items.names.${id}`);
+        const message = i18next.t('translations:items.pickedUp', {itemName});
+
+        useToastStore.getState().show(message);
         const newItem = items.find(item => item.id === id);
         if (newItem) {
           set((state) => {
@@ -37,7 +43,7 @@ export const useInventoryStore = create<InventoryState>()(
               );
               return {items: updatedItems};
             } else {
-              return {items: [...state.items, newItem]};
+              return {items: [...state.items, {...newItem, amount: 1}]};
             }
           });
         }

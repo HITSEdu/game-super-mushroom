@@ -5,6 +5,7 @@ import {usePlayerStore} from "../store/PlayerStore.ts";
 import type {AnimationsMap} from "../game/systems/playerAnimations.ts";
 import type {Action, Direction} from "../constants/types.ts";
 import {keys} from "../game/systems/ControlSystem.ts";
+import {useLevelStore} from "../store/LevelStore.ts";
 
 interface UsePlayerAnimationProps {
   texture: Texture;
@@ -30,15 +31,16 @@ export function usePlayerAnimation({
   const velocityY = usePlayerStore(state => state.velocityY);
   const onGround = usePlayerStore(state => state.onGround);
 
-  const isMoving = Math.abs(velocityX) > 0.5;
   const climbing = usePlayerStore(state => state.onLadder);
-  const isMiniGame = false;
+  const isMiniGame = useLevelStore(state => state.isMiniGame);
 
   const {action, direction} = useMemo(() => {
     let action: Action = 'idle';
     let direction: Direction = 'right';
 
     const isActuallyJumping = !onGround && Math.abs(velocityY) > 0.1;
+    const isMovingX = Math.abs(velocityX) > 0.5;
+    const isMovingY = Math.abs(velocityY) > 0.5;
 
     if (climbing) {
       action = "climb";
@@ -46,16 +48,32 @@ export function usePlayerAnimation({
     } else if (isActuallyJumping) {
       action = "jump";
       direction = velocityX < 0 ? "left" : "right";
-    } else if (isMoving) {
+    } else if (isMiniGame) {
+      if (isMovingX || isMovingY) {
+        action = "walk";
+
+        if (Math.abs(velocityX) > Math.abs(velocityY)) {
+          direction = velocityX < 0 ? "left" : "right";
+        } else {
+          direction = velocityY < 0 ? "up" : "down";
+        }
+      }
+    } else if (isMovingX) {
       action = "walk";
       direction = velocityX < 0 ? "left" : "right";
     }
 
+    if (isMiniGame && (action === 'climb' || action === 'jump')) {
+      action = 'idle';
+    }
+
     return {action, direction};
-  }, [velocityX, velocityY, onGround, isMoving, climbing]);
+  }, [velocityX, velocityY, onGround, climbing, isMiniGame]);
+
 
   let key = `${action}-${direction}`;
   if (isMiniGame) key += "-mini-game";
+
 
   const anim = animations[key] || animations["idle-right"];
 

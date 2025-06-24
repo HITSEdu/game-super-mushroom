@@ -1,6 +1,6 @@
 import {useMusicPlayerStore} from "../../store/MusicPlayerStore.ts";
 import {useModalStore} from "../../store/ModalStore.ts";
-import {SONG_NAMES} from "../../constants/values.ts";
+import {SEASONS, SONG_NAMES} from "../../constants/values.ts";
 import {useTranslation} from "react-i18next";
 
 const MusicModal = () => {
@@ -26,7 +26,7 @@ const MusicModal = () => {
               "px-3 py-2 rounded text-white transition text-sm " +
               (track.key === 'music0'
                 ? 'col-span-2 bg-red-500 hover:bg-red-600'
-                : 'col-span-1 bg-blue-600 hover:bg-blue-700')
+                : `${SEASONS.find(el => el.label === track.label)?.className}`)
             }
           >
             {t(track.label)}

@@ -50,6 +50,8 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('platform_underworld');
         await Assets.loadBundle('door_underworld');
         await Assets.loadBundle('ladder');
+        await Assets.loadBundle('trap');
+        await Assets.loadBundle('portal');
 
         set({isInitialized: true});
       } catch (error) {

@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
-import {Point, Texture} from 'pixi.js';
+import {type PointData, Texture} from 'pixi.js';
 import {
   DEFAULT_PLAYER_SIZE,
   DEFAULT_START_POSITION, GAME_HEIGHT, GAME_WIDTH, TILE_SIZE
@@ -10,13 +10,13 @@ import {
   handlePlayerEnemyCollision,
   handleObstacleCollision
 } from "../game/systems/CollisionSystem.ts";
-import type {SeasonType} from '../constants/types.ts';
+import type {Direction, SeasonType} from '../constants/types.ts';
 
 interface PlayerStore {
   name: string;
   texture: Texture | null;
   textureString: string | null;
-  position: Point;
+  position: PointData;
   velocityY: number;
   velocityX: number;
   speed: number;
@@ -39,7 +39,7 @@ interface PlayerStore {
   reset: () => void;
   jump: () => void;
   setOnLadder: (val: boolean) => void,
-  come: (direction: 'left' | 'right') => void;
+  come: (direction: Direction) => void;
   tick: () => void;
 
   init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
@@ -52,12 +52,9 @@ export const usePlayerStore = create<PlayerStore>()(
       name: '',
       texture: null,
       textureString: null,
-      size: {
-        width: DEFAULT_PLAYER_SIZE.width,
-        height: DEFAULT_PLAYER_SIZE.height
-      },
+      size: DEFAULT_PLAYER_SIZE,
       nearInteractive: [],
-      position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
+      position: DEFAULT_START_POSITION,
       velocityY: 0,
       velocityX: 0,
       onLadder: false,
@@ -71,7 +68,7 @@ export const usePlayerStore = create<PlayerStore>()(
       init: (name, texture, textureString, speed, jumpPower, size, season, id) => {
         set({
           name,
-          position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
+          position: DEFAULT_START_POSITION,
           velocityX: 0,
           velocityY: 0,
           nearInteractive: [],
@@ -94,7 +91,7 @@ export const usePlayerStore = create<PlayerStore>()(
         const clampedX = Math.min(GAME_WIDTH - TILE_SIZE, Math.max(0, position.x));
         const clampedY = Math.min(GAME_HEIGHT - TILE_SIZE * 3, Math.max(0, position.y));
 
-        set({position: new Point(clampedX, clampedY)})
+        set({position: {x: clampedX, y: clampedY}});
       },
       setOnGround: (newState) => set({onGround: newState}),
       setVelocity: (direction: 'x' | 'y', newState: number) => {
@@ -113,7 +110,7 @@ export const usePlayerStore = create<PlayerStore>()(
       },
       setId: (id) => set({id}),
       reset: () => set({
-        position: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
+        position: DEFAULT_START_POSITION,
         velocityY: 0,
         velocityX: 0,
         onGround: true,
@@ -128,15 +125,25 @@ export const usePlayerStore = create<PlayerStore>()(
           set({velocityY: -jumpPower, onGround: false});
         }
       },
-      come: (direction) => {
-        const {speed, velocityX} = get();
-        let changedSpeed;
-        if (velocityX < 0 && direction === 'right' || velocityX > 0 && direction === 'left') {
-          changedSpeed = speed * 0.6;
-        } else changedSpeed = Math.min(speed, Math.max(speed * 0.6, Math.abs(velocityX) * 1.2));
-        const newVelocityX = direction === 'left' ? -changedSpeed : changedSpeed;
-        set({velocityX: newVelocityX});
+      come: (direction: Direction) => {
+        const {speed} = get();
+
+        switch (direction) {
+          case 'left':
+            set({velocityX: -speed});
+            break;
+          case 'right':
+            set({velocityX: speed});
+            break;
+          case 'up':
+            set({velocityY: -speed});
+            break;
+          case 'down':
+            set({velocityY: speed});
+            break;
+        }
       },
+
       tick: () => {
         handlePlayerEnemyCollision();
 
@@ -180,7 +187,7 @@ export const usePlayerStore = create<PlayerStore>()(
         return {
           ...currentState,
           ...s,
-          position: new Point(s.position?.x ?? 0, s.position?.y ?? 0),
+          position: s.position ?? DEFAULT_START_POSITION,
         };
       },
     }

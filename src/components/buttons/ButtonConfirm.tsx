@@ -5,6 +5,7 @@ import {useGlobalStore} from "../../store/GlobalStore.ts";
 import {useLevelsStore} from "../../store/LevelsStore.ts";
 import {usePlayerStore} from "../../store/PlayerStore.ts";
 import {useInventoryStore} from "../../store/InventoryStore.ts";
+import {useMiniGameStore} from "../../store/MiniGameStore.ts";
 
 const ButtonConfirm = () => {
   const {t} = useTranslation('translations')
@@ -14,6 +15,7 @@ const ButtonConfirm = () => {
   const resetLevelsState = useLevelsStore((state) => state.resetProgress)
   const {change: playerChange} = usePlayerStore();
   const {reset: resetInventory} = useInventoryStore();
+  const {resetMiniGames} = useMiniGameStore();
 
   return (
     <Button
@@ -23,6 +25,7 @@ const ButtonConfirm = () => {
         resetMenu();
         resetInventory();
         playerChange();
+        resetMiniGames();
         changeGlobalState('levelSelect');
       }}
     />
