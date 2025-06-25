@@ -5,7 +5,7 @@ import {usePlayerStore} from "./PlayerStore.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
 import {type PointData} from "pixi.js";
 import {
-  DEFAULT_PLAYER_MINI_GAME_SIZE, DEFAULT_PLAYER_SIZE,
+  DEFAULT_PLAYER_SIZE,
   UNDERWORLD_SPAWN
 } from "../constants/values.ts";
 
@@ -43,7 +43,6 @@ export const useMiniGameStore = create<MiniGameState>()(
           })
 
           useLevelStore.getState().load('5').then(() => {
-              usePlayerStore.setState({size: DEFAULT_PLAYER_MINI_GAME_SIZE});
               usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
             }
           );

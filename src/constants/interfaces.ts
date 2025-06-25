@@ -54,6 +54,12 @@ export interface ISpirit {
   season: SeasonType;
 }
 
+export interface IObstacleInteractive {
+  id: number;
+  type: string;
+  action: () => void;
+}
+
 export interface IEnemy {
   id: string;
   position: Point;

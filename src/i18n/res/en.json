@@ -6,6 +6,7 @@
   "settings": "Settings",
   "language": "Language",
   "back": "Back",
+  "next": "Next",
   "volume": "Volume",
   "confirmNewGame": "Are u sure? The previous progress will be lost.",
   "cancel": "Cancel",
@@ -41,15 +42,36 @@
   "winter": "Winter",
   "underworld": "Underworld",
   "talkToSpirit": "[E] to talk",
-  "spiritGreeting": "{{name}} says:",
+  "spiritGreeting": "{{name}}, the guardian spirit...",
   "spiritDialogue": {
-    "onyx": "Onyx's speech",
-    "swifty": "Swifty's speech",
-    "mira": "Mira's speech",
-    "laurus": "Laurus's speech"
+    "onyx": {
+      "0": "I am Onyx, spirit of winter. My time has frozen...",
+      "1": "The world is trapped in eternal frost. Winds whisper of a broken balance.",
+      "2": "Have you come to change fate?",
+      "3": "Help me and find the frozen butterfly amidst the snow."
+    },
+    "swifty": {
+      "0": "I am Swifty, spirit of spring. The streams no longer sing.",
+      "1": "Life hides, waiting for harmony to return.",
+      "2": "Only a traveler like you can restore the spring.",
+      "3": "Find the spring butterfly among the blooming flowers."
+    },
+    "mira": {
+      "0": "I am Mira, spirit of summer. My days are endlessly scorching.",
+      "1": "The sun burns hotter than it should. Time has been disturbed.",
+      "2": "Will you bring hope?",
+      "3": "Help me and find the summer butterfly under the bright sun."
+    },
+    "laurus": {
+      "0": "I am Laurus, spirit of autumn. Leaves fall silently like forgotten memories.",
+      "1": "A shadow of time has fallen on my forests.",
+      "2": "Do you hear the rustle of the past?",
+      "3": "Find the autumn butterfly among fallen leaves."
+    }
   },
+  "alreadyHelped": "You have already helped this spirit. Thank you!",
   "help": "Help",
-  "alreadyHelped": "You've helped",
+  "leave": "Leave",
   "items": {
     "pickedUp": "You've picked up {{itemName}}!",
     "names": {
@@ -60,5 +82,17 @@
       "10": "Autumn Butterfly"
     }
   },
-  "entered": "You've entered: room"
+  "entered": "You've entered: room",
+  "useTheObstacle": "[E] to interact",
+
+  "fountain": {
+    "title": "Ancient Fountain",
+    "line1": "You’ve discovered an ancient fountain. Its waters are filled with the magic of a forgotten world.",
+    "line2": "During your last journey, you disrupted the temporal balance.",
+    "line3": "Now the future has changed. Glitches and anomalies have appeared.",
+    "line4": "The fountain asks you to collect butterfly spirits from each season to restore harmony.",
+    "line5": "You receive a Portal that allows you to travel between seasons.",
+    "repeat": "You already have the Portal. Return once you’ve gathered the butterflies.",
+    "understood": "Understood"
+  }
 }
