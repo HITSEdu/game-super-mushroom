@@ -63,7 +63,7 @@ const App = () => {
   if (!orientation)
     return (
       <BaseScreen backgroundUrl={background}>
-        <p className="text-2xl font-bold text-center flex items-center flex-col text-primary-500 p-10 mt-[-12vh] z-20">
+        <p className="text-2xl font-bold text-center flex items-center flex-col text-white-500 p-10 mt-[-12vh] z-20">
           <RotateCwSquareIcon className='w-30 h-30 animate-bounce' /> {t("changeOrientation")}
         </p>
       </BaseScreen>
