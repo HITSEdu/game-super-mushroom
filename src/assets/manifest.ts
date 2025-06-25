@@ -24,46 +24,57 @@ export const manifest = {
         {alias: 'item_autumn', src: 'src/assets/items/item_autumn.png'},
       ],
     },
-
     {
       name: 'portal',
       assets: [
         {alias: 'portal', src: 'src/assets/items/portal.png'},
       ],
     },
-
-    {
-      name: 'enemy',
-      assets: [
-        {alias: 'enemy', src: 'src/assets/enemies/enemy.png'},
-      ],
-    },
-    {
-      name: 'star',
-      assets: [
-        {alias: 'star', src: 'src/assets/obstacles/star.png'},
-      ],
-    },
-    {
-      name: 'platform_underworld',
-      assets: [
-        {
-          alias: 'platform_underworld',
-          src: 'src/assets/obstacles/platform_underworld.png'
-        },
-      ],
-    },
-
     {
       name: 'door_underworld',
       assets: [
         {
           alias: 'door_underworld',
-          src: 'src/assets/obstacles/door_underworld.png'
+          src: 'src/assets/obstacles/door/door_underworld.png'
         },
       ],
     },
-
+    {
+      name: 'door_winter',
+      assets: [
+        {
+          alias: 'door_winter',
+          src: 'src/assets/obstacles/door/door_winter.png'
+        },
+      ],
+    },
+    {
+      name: 'door_summer',
+      assets: [
+        {
+          alias: 'door_summer',
+          src: 'src/assets/obstacles/door/door_summer.png'
+        },
+      ],
+    },
+    {
+      name: 'door_spring',
+      assets: [
+        {
+          alias: 'door_spring',
+          src: 'src/assets/obstacles/door/door_spring.png'
+        },
+      ],
+    },
+    {
+      name: 'door_autumn',
+      assets: [
+        {
+          alias: 'door_autumn',
+          src: 'src/assets/obstacles/door/door_autumn.png'
+        },
+      ],
+    },
     {
       name: 'ladder',
       assets: [
@@ -73,7 +84,6 @@ export const manifest = {
         },
       ],
     },
-
     {
       name: 'trap',
       assets: [
@@ -83,7 +93,6 @@ export const manifest = {
         },
       ],
     },
-
     {
       name: 'player_underworld',
       assets: [
@@ -237,6 +246,87 @@ export const manifest = {
         {
           alias: 'spirit_swifty',
           src: 'src/assets/spirit/spirit_swifty.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_underworld',
+      assets: [
+        {
+          alias: 'platform_underworld',
+          src: 'src/assets/obstacles/platform/default/platform_underworld.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_winter',
+      assets: [
+        {
+          alias: 'platform_winter',
+          src: 'src/assets/obstacles/platform/default/platform_winter.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_summer',
+      assets: [
+        {
+          alias: 'platform_summer',
+          src: 'src/assets/obstacles/platform/default/platform_summer.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_spring',
+      assets: [
+        {
+          alias: 'platform_spring',
+          src: 'src/assets/obstacles/platform/default/platform_spring.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_autumn',
+      assets: [
+        {
+          alias: 'platform_autumn',
+          src: 'src/assets/obstacles/platform/default/platform_autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_winter_games',
+      assets: [
+        {
+          alias: 'platform_winter_games',
+          src: 'src/assets/obstacles/platform/games/platform_winter.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_summer_games',
+      assets: [
+        {
+          alias: 'platform_summer_games',
+          src: 'src/assets/obstacles/platform/games/platform_summer.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_spring_games',
+      assets: [
+        {
+          alias: 'platform_spring_games',
+          src: 'src/assets/obstacles/platform/games/platform_spring.png'
+        },
+      ],
+    },
+    {
+      name: 'platform_autumn_games',
+      assets: [
+        {
+          alias: 'platform_autumn_games',
+          src: 'src/assets/obstacles/platform/games/platform_autumn.png'
         },
       ],
     },
