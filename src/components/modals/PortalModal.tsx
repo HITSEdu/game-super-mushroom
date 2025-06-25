@@ -4,7 +4,7 @@ import type {SeasonType} from "../../constants/types.ts";
 import {useTranslation} from "react-i18next";
 import {SEASONS} from "../../constants/values.ts";
 
-const PortalModal: React.FC = () => {
+const PortalModal = () => {
   const setSeason = usePlayerStore((s) => s.setSeason);
   const close = useModalStore((s) => s.close);
   const { t } = useTranslation('translations');
