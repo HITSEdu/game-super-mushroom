@@ -48,7 +48,21 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('item_autumn');
 
         await Assets.loadBundle('platform_underworld');
+        await Assets.loadBundle('platform_winter');
+        await Assets.loadBundle('platform_summer');
+        await Assets.loadBundle('platform_spring');
+        await Assets.loadBundle('platform_autumn');
+        await Assets.loadBundle('platform_winter_games');
+        await Assets.loadBundle('platform_summer_games');
+        await Assets.loadBundle('platform_spring_games');
+        await Assets.loadBundle('platform_autumn_games');
+
         await Assets.loadBundle('door_underworld');
+        await Assets.loadBundle('door_winter');
+        await Assets.loadBundle('door_summer');
+        await Assets.loadBundle('door_spring');
+        await Assets.loadBundle('door_autumn');
+
         await Assets.loadBundle('ladder');
         await Assets.loadBundle('trap');
         await Assets.loadBundle('portal');

@@ -26,9 +26,9 @@ const SelectorCharacter = () => {
             );
 
             const loadedPlayers = await Promise.all(
-                rawPlayers.map(async (item) => {
+                rawPlayers.map(async (item, index) => {
                     return {
-                        id: selectedIndex,
+                        id: index + 1,
                         season: "underworld" as SeasonType,
                         size: item.size,
                         name: item.name,

@@ -54,32 +54,32 @@ export const SONG_NAMES = [
 
 export const SEASONS: {
   key: SeasonType;
-  label: string,
-  className: string
+  label: string;
+  background: string;
 }[] = [
   {
     key: 'underworld',
     label: 'underworld',
-    className: 'bg-red-700 hover:bg-red-800'
+    background: 'backgrounds/12.png',
   },
   {
     key: 'winter',
     label: 'winter',
-    className: 'bg-blue-600 hover:bg-blue-700'
+    background: 'backgrounds/4.png',
   },
   {
     key: 'spring',
     label: 'spring',
-    className: 'bg-green-600 hover:bg-green-700',
+    background: 'backgrounds/7.png',
   },
   {
     key: 'summer',
     label: 'summer',
-    className: 'bg-yellow-500 hover:bg-yellow-600'
+    background: 'backgrounds/8.png',
   },
   {
     key: 'autumn',
     label: 'autumn',
-    className: 'bg-orange-600 hover:bg-orange-700'
+    background: 'backgrounds/13.png',
   },
 ];

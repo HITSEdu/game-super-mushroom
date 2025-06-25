@@ -1,6 +1,6 @@
 {
   "gravity": 1.5,
-  "levelType": "underworld",
+  "levelType": "winter",
   "playerStart": {
     "x": 48,
     "y": 432
