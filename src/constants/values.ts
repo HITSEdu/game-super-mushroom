@@ -41,7 +41,7 @@ export const ICON_STYLES =
 export const TOTAL_SLOTS = 13;
 
 export const MUSIC_COUNT = 4;
-export const ANIMATION_SPEED = 20;
+export const ANIMATION_SPEED = 4;
 export const DEFAULT_SPRITE_SIZE = 64
 
 export const SONG_NAMES = [
