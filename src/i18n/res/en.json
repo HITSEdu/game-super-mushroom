@@ -95,7 +95,11 @@
     "line4": "The fountain asks you to collect butterfly spirits from each season to restore harmony.",
     "line5": "You receive a Portal that allows you to travel between seasons.",
     "repeat": "You already have the Portal. Return once you’ve gathered the butterflies.",
-    "understood": "Understood"
+    "understood": "Understood",
+    "final1": "You returned to the fountain with all four butterflies.",
+    "final2": "They soar upward, uniting above the fountain.",
+    "final3": "Light fills the world, the broken time restored.",
+    "final4": "Thank you for playing!"
   },
   "overload": "You can't drag more than one item!",
   "miniGame": {
@@ -105,5 +109,11 @@
     "allBoxesDelivered": "All boxes delivered!",
     "allFlowersDelivered": "All Flowers collected!"
   },
-  "success": "Success!"
+  "success": "Success!",
+  "titles": {
+    "thanks": "Thank you for playing!",
+    "message": "You’ve restored the balance of time and saved the world. See you again!",
+    "backToMenu": "Back to menu"
+  }
+
 }

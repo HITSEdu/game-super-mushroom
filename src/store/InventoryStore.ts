@@ -14,6 +14,7 @@ interface InventoryState {
   reduceItem: (id: number) => void;
   removeItem: (id: number) => void;
   removeMiniGameItems: () => void;
+  hasAllButterflies: () => boolean;
   reset: () => void;
 }
 
@@ -23,6 +24,14 @@ export const useInventoryStore = create<InventoryState>()(
       items: [...initItems],
 
       getItem: (id) => get().items.find(item => item.id === id) ?? null,
+
+      hasAllButterflies: () => {
+        const butterflies = [3, 4, 9, 10];
+        return butterflies.every(id => {
+          const item = get().getItem(id);
+          return item && item.amount > 0;
+        });
+      },
 
       doAction: (id) => {
         const item = get().getItem(id);

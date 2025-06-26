@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {LoaderIcon, RotateCwSquareIcon} from "lucide-react";
 import BaseScreen from "./components/screens/BaseScreen.tsx";
 import {useBackgroundStore} from "./store/BackgroundStore.tsx";
+import TitlesScreen from "./components/screens/TitlesScreen.tsx";
 
 const App = () => {
   const state = useGlobalStore(s => s.global)
@@ -58,6 +59,7 @@ const App = () => {
     menu: <HomeScreen />,
     levelSelect: <LevelsScreen />,
     playing: <GameScreen />,
+    titles: <TitlesScreen />
   };
 
   if (!orientation)
