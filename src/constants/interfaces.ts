@@ -1,4 +1,4 @@
-import {Point, type PointData, type Texture} from "pixi.js";
+import {type PointData, type Texture} from "pixi.js";
 import type {SeasonType} from "./types";
 
 export interface ObjectSize {
@@ -62,17 +62,20 @@ export interface IObstacleInteractive {
 
 export interface IEnemy {
   id: string;
-  position: Point;
+  position: PointData;
   speed: number;
   patrolArea: [number, number];
   direction: 'left' | 'right';
   size: ObjectSize;
   type: string;
   update: () => void;
+  kill: () => void;
+  pet: () => void;
   state: 'alive' | 'dead';
   onGround: boolean;
   velocityY: number;
   velocityX: number;
+  isAngry: boolean;
 }
 
 export interface IInteraction {
@@ -83,6 +86,8 @@ export interface IInteraction {
   title: string;
   key: string;
   action: () => void;
+  holdable?: boolean;
+  holdDuration?: number;
 }
 
 export interface MiniGameConfig {

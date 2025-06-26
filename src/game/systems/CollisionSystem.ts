@@ -67,7 +67,7 @@ export const handlePlayerEnemyCollision = () => {
   };
 
   for (const enemy of enemies) {
-    if (enemy.state === 'dead') continue;
+    if (enemy.state === 'dead' || !enemy.isAngry) continue;
     const enemyBox = {
       x: enemy.position.x,
       y: enemy.position.y,
@@ -76,11 +76,7 @@ export const handlePlayerEnemyCollision = () => {
     };
 
     const direction = getCollisionDirection(playerBox, enemyBox);
-    if (direction === 'top') {
-      enemy.state = 'dead';
-      usePlayerStore.getState().setOnGround(true);
-      usePlayerStore.getState().jump();
-    } else if (direction !== null) {
+    if (direction !== null) {
       useGameSessionStore.getState().lose();
     }
   }
@@ -144,8 +140,8 @@ export const handleObstacleCollision = (
 
     if (obs.type === 'portal' && player) useMiniGameStore.getState().finishMiniGame();
 
-    if (obs.type === 'ladder' && player) {
-      isOnLadder = true;
+    if (obs.type === 'ladder') {
+      if (player) isOnLadder = true;
       continue;
     }
 
@@ -171,7 +167,8 @@ export const handleObstacleCollision = (
     if (!obs.visible || hasntCollisions(obs.type)) continue;
     const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
 
-    if (obs.type === 'ladder' && player) {
+    if (obs.type === 'ladder') {
+      if (!player) continue;
       const intersects =
         boxY.x + boxY.width > obsBox.x &&
         boxY.x < obsBox.x + obsBox.width &&

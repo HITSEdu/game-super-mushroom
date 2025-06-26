@@ -900,7 +900,52 @@
       "type": "platform"
     }
   ],
-  "enemies": [],
+  "enemies": [
+    {
+      "x": 500,
+      "y": 450,
+      "type": "dog",
+      "speed": 1,
+      "range": 300,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
+    },
+    {
+      "x": 300,
+      "y": 450,
+      "type": "slug",
+      "speed": 1,
+      "range": 20,
+      "size": {
+        "width": 24,
+        "height": 24
+      }
+    },
+    {
+      "x": 350,
+      "y": 450,
+      "type": "bat",
+      "speed": 1,
+      "range": 20,
+      "size": {
+        "width": 24,
+        "height": 24
+      }
+    },
+    {
+      "x": 250,
+      "y": 450,
+      "type": "underworld_spirit",
+      "speed": 1,
+      "range": 20,
+      "size": {
+        "width": 24,
+        "height": 24
+      }
+    }
+  ],
   "items": [
     {
       "id": 4,

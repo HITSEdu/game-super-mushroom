@@ -81,6 +81,15 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('box2');
         await Assets.loadBundle('box_zone');
 
+        await Assets.loadBundle('slug');
+        await Assets.loadBundle('bat');
+        await Assets.loadBundle('underworld_spirit');
+
+        await Assets.loadBundle('dog_winter');
+        await Assets.loadBundle('dog_spring');
+        await Assets.loadBundle('dog_summer');
+        await Assets.loadBundle('dog_autumn');
+
         set({isInitialized: true});
       } catch (error) {
         console.error("Assets initialization failed:", error);
