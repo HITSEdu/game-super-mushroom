@@ -7,6 +7,9 @@ import {
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {items as globalItems} from '../../constants/items.tsx'
 import {spirits as globalSpirits} from '../../constants/spirits.tsx'
+import {
+  obstaclesWithInteractivity as globalObstacles
+} from "../../constants/obstacles.tsx";
 import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 export function getNearbyInteractions(
@@ -29,7 +32,7 @@ export function getNearbyInteractions(
 
   for (const obs of obstacles) {
     if (!obs.visible) continue;
-    if (!(obs.type.startsWith('door'))) continue;
+    if (!obs.type.startsWith('door') && obs.type !== 'fountain') continue;
 
     const obsCenterX = obs.x + obs.width / 2;
     const obsCenterY = obs.y + obs.height / 2;
@@ -48,6 +51,16 @@ export function getNearbyInteractions(
           key: "use",
           title: "enterTheDoor",
           action: () => useGameSessionStore.getState().enterDoor(side),
+        });
+      } else if (obs.type === 'fountain') {
+        interactions.push({
+          id: `fountain-${obs.x}-${obs.y}`,
+          visible: true,
+          x: obs.x,
+          y: obs.y,
+          key: "use",
+          title: "useTheObstacle",
+          action: globalObstacles[obs.type],
         });
       }
     }

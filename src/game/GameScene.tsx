@@ -1,4 +1,4 @@
-import {Application, extend} from '@pixi/react';
+import {Application, type ApplicationRef, extend} from '@pixi/react';
 import {Container, Sprite, Graphics, Texture, Assets} from 'pixi.js';
 import {useEffect, useRef} from "react";
 import {usePlayerStore} from "../store/PlayerStore.ts";
@@ -15,6 +15,7 @@ import {useContainerSize} from "../hooks/useContainerSize.ts";
 import InteractionHint from "../components/ui/InteractionHint.tsx";
 import {Spirit} from './entities/spirit/Spirit.tsx';
 import Item from "./entities/item/Item.tsx";
+import {game_backgrounds} from "../constants/backgrounds.ts";
 
 extend({
   Container,
@@ -42,6 +43,15 @@ const GameScene = () => {
   } = usePlayerStore();
 
   const {currentLevelID, status: gameStatus} = useGameSessionStore();
+
+  const appRef = useRef<ApplicationRef>(null);
+
+  useEffect(() => {
+    const app = appRef.current?.getApplication?.();
+    if (app) {
+      app.renderer.background.color = Number(game_backgrounds[playerSeason].replace('#', '0x'));
+    }
+  }, [playerSeason]);
 
   useEffect(() => {
     if (currentLevelID)
@@ -76,7 +86,8 @@ const GameScene = () => {
     >
       <Application
         resizeTo={containerRef}
-        backgroundColor={'black'}
+        ref={appRef}
+        backgroundColor={game_backgrounds[playerSeason]}
       >
         <pixiContainer
           x={offsetX}
@@ -92,12 +103,12 @@ const GameScene = () => {
               size={playerSize}
             />}
 
-          {Texture.from('enemy') && levelEnemies.filter(e => e.state !== 'dead').map((enemy) => (
+          {levelEnemies.filter(e => e.state !== 'dead').map((enemy) => (
             <Enemy
               key={enemy.id}
               x={enemy.position.x}
               y={enemy.position.y}
-              texture={Assets.get('enemy')}
+              texture={getTextureSafe('enemy')}
               size={enemy.size}
             />
           ))}

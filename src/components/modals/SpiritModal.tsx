@@ -1,53 +1,69 @@
 import {useTranslation} from "react-i18next";
 import {useModalStore} from "../../store/ModalStore.ts";
-import {spirits} from "../../constants/spirits.tsx";
 import {useMiniGameStore} from "../../store/MiniGameStore.ts";
+import {spirits} from "../../constants/spirits.tsx";
+import {SEASONS} from "../../constants/values.ts";
+import StoryModal from "./StoryModal";
 
 interface SpiritModalProps {
   spiritId: number;
 }
 
 const SpiritModal = ({spiritId}: SpiritModalProps) => {
-    const close = useModalStore((s) => s.close);
-    const {t} = useTranslation('translations');
+  const {t} = useTranslation("translations");
+  const close = useModalStore((s) => s.close);
+  const {startMiniGame, isCompleted} = useMiniGameStore();
 
-    const spirit = spirits.find(s => s.id === spiritId);
-    const {startMiniGame, isCompleted} = useMiniGameStore();
+  const spirit = spirits.find(s => s.id === spiritId);
+  if (!spirit) return null;
 
-    if (!spirit) return null;
+  const spiritKey = spirit.name.toLowerCase();
+  const hasCompleted = isCompleted(spiritKey);
+  const season = SEASONS.find(s => s.key === spirit.season);
+  const background = season?.background;
 
-    const spiritKey = spirit.name.toLowerCase();
+  const handleHelp = () => {
+    startMiniGame(spiritKey);
+    close();
+  };
 
-    const handleHelpClick = () => {
-      startMiniGame(spiritKey);
-      close();
-    };
+  const handleLeave = () => {
+    close();
+  };
 
-    return (
-      <div className="flex flex-col gap-4 items-center text-lg text-white">
-        <h2 className="text-lg font-bold">{t('spiritGreeting', {name: spirit.name})}</h2>
-        <p>{t(`spiritDialogue.${spiritKey}`)}</p>
-        <div className="flex items-center justify-between w-full gap-3">
-          {!isCompleted(spiritKey) ? <button
-              onClick={handleHelpClick}
-              className={`w-full px-5 py-3 rounded bg-gray-600 hover:bg-gray-800 transition`}
-            >
-              {t('help')}
-            </button> :
-            <div
-              className={`w-full px-5 py-3 rounded bg-gray-500 transition`}
-            >{t('alreadyHelped')}</div>}
+  const pages = hasCompleted
+    ? [
+      {
+        title: t("spiritGreeting", {name: spirit.name}),
+        content: t("alreadyHelped"),
+        image: background,
+      }
+    ]
+    : [
+      {
+        title: t("spiritGreeting", {name: spirit.name}),
+        content: t(`spiritDialogue.${spiritKey}.0`),
+        image: background,
+      },
+      {
+        content: t(`spiritDialogue.${spiritKey}.1`),
+        image: background,
+      },
+      {
+        content: t(`spiritDialogue.${spiritKey}.2`),
+        image: background,
+      }
+    ];
 
-          <button
-            onClick={close}
-            className="px-3 py-3 rounded bg-gray-700 text-white hover:bg-gray-800 transition"
-          >
-            {t('back')}
-          </button>
-        </div>
-      </div>
-    );
-  }
-;
+  return (
+    <StoryModal
+      pages={pages}
+      onComplete={!hasCompleted ? handleHelp : undefined}
+      onSecondary={!hasCompleted ? handleLeave : handleLeave}
+      primaryLabel={!hasCompleted ? "help" : undefined}
+      secondaryLabel="leave"
+    />
+  );
+};
 
 export default SpiritModal;

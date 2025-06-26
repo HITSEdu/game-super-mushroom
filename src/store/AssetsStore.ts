@@ -65,6 +65,7 @@ export const useAssetsStore = create<AssetsStore>()(
 
         await Assets.loadBundle('ladder');
         await Assets.loadBundle('trap');
+        await Assets.loadBundle('fountain');
         await Assets.loadBundle('portal');
 
         set({isInitialized: true});
