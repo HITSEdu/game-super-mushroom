@@ -58,5 +58,4 @@ export const items: IItem[] = [
 export const initItems: IItem[] = [
   {...items[0], amount: 1},
   {...items[1], amount: 1},
-  {...items[2], amount: 1},
 ];

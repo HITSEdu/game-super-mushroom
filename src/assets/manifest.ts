@@ -94,6 +94,16 @@ export const manifest = {
       ],
     },
     {
+      name: 'fountain',
+      assets: [
+        {
+          alias: 'fountain',
+          src: 'src/assets/obstacles/fountain.png'
+        },
+      ],
+    },
+
+    {
       name: 'player_underworld',
       assets: [
         {
