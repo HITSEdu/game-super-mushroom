@@ -27,7 +27,6 @@ export interface ObstacleData {
 }
 
 export interface EnemyData {
-  id: string;
   x: number;
   y: number;
   type: string;
@@ -92,9 +91,15 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
     activeEnemies.length = 0;
 
-    (data.enemies || []).forEach((e: EnemyData) => {
+    (data.enemies || []).map((item: EnemyData) => {
+      return {
+        ...item,
+        type: (item.type === 'dog') ? item.type + "_" + data.levelType : item.type,
+      }
+    }).forEach((e: EnemyData) => {
       const id = uuidv4();
-      createEnemy(id, e.x, e.y, e.x - e.range / 2, e.x + e.range / 2, e.speed, e.type, e.size);
+      const isAngry = !e.type.startsWith('dog');
+      createEnemy(id, e.x, e.y, e.x - e.range / 2, e.x + e.range / 2, e.speed, e.type, e.size, isAngry);
     });
 
     const obstaclesWithVisible = (data.obstacles || []).map((obs: ObstacleData) => ({

@@ -1,6 +1,53 @@
 export const manifest = {
   bundles: [
     {
+      name: 'bat',
+      assets: [
+        {alias: 'bat', src: 'src/assets/creatures/enemy/bat.png'},
+      ],
+    },
+    {
+      name: 'slug',
+      assets: [
+        {alias: 'slug', src: 'src/assets/creatures/enemy/slug.png'},
+      ],
+    },
+    {
+      name: 'underworld_spirit',
+      assets: [
+        {
+          alias: 'underworld_spirit',
+          src: 'src/assets/creatures/enemy/underworld_spirit.png'
+        },
+      ],
+    },
+
+    {
+      name: 'dog_autumn',
+      assets: [
+        {alias: 'dog_autumn', src: 'src/assets/creatures/dog/dog_autumn.png'},
+      ],
+    },
+    {
+      name: 'dog_winter',
+      assets: [
+        {alias: 'dog_winter', src: 'src/assets/creatures/dog/dog_winter.png'},
+      ],
+    },
+    {
+      name: 'dog_summer',
+      assets: [
+        {alias: 'dog_summer', src: 'src/assets/creatures/dog/dog_summer.png'},
+      ],
+    },
+    {
+      name: 'dog_spring',
+      assets: [
+        {alias: 'dog_spring', src: 'src/assets/creatures/dog/dog_spring.png'},
+      ],
+    },
+
+    {
       name: 'flower1',
       assets: [
         {alias: 'flower1', src: 'src/assets/obstacles/flowers/flower1.png'},

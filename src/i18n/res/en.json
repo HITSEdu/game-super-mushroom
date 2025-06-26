@@ -114,6 +114,13 @@
     "thanks": "Thank you for playing!",
     "message": "You’ve restored the balance of time and saved the world. See you again!",
     "backToMenu": "Back to menu"
+  },
+  "enemy": {
+    "kill": "[F] to attack",
+    "pet": "[F] to pet",
+    "angry": "angry creature",
+    "dog": "dog",
+    "petToast": "You gently pet the {{name}}.",
+    "killedToast": "You killed the monster!"
   }
-
 }

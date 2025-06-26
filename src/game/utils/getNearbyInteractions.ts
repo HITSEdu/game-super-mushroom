@@ -17,6 +17,7 @@ import {useToastStore} from "../../store/ToastStore.ts";
 import {MINI_GAMES} from "../../constants/miniGames.tsx";
 import {isNearEnough} from "../systems/CollisionSystem.ts";
 import i18next from "i18next";
+import {enemies} from "../entities/enemy/enemies.ts";
 
 export function getNearbyInteractions(
   playerX: number,
@@ -54,6 +55,31 @@ export function getNearbyInteractions(
         action: miniGame.deliverItem,
       });
     }
+  }
+
+  for (const enemy of enemies) {
+    if (enemy.state === 'dead') continue;
+
+    const isNear = isNearEnoughWrapper(enemy.position.x, enemy.position.y, enemy.size.width, enemy.size.height, 52);
+    if (!isNear) continue;
+
+    interactions.push({
+      id: `enemy-${enemy.id}`,
+      visible: true,
+      x: enemy.position.x,
+      y: enemy.position.y,
+      key: 'interact',
+      title: enemy.isAngry ? 'enemy.kill' : 'enemy.pet',
+      action: () => {
+        if (enemy.isAngry) {
+          enemy.kill();
+        } else {
+          enemy.pet();
+        }
+      },
+      holdable: true,
+      holdDuration: 1000,
+    });
   }
 
   for (const obs of obstacles) {
