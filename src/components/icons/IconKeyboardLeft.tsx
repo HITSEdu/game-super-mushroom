@@ -12,7 +12,7 @@ const IconKeyboardLeft = ({className}: IIcon) => (
     >
         <path 
             d="M17.4885 32V28.4315H21V3.56851H17.4885V0H3.51148V3.56851H0V28.4315H3.51148V32H17.4885ZM3.51148 14.2274H7V10.6589H10.4885V7.1137H14V24.8863H10.4885V21.3178H7V17.7726H3.51148V14.2274Z" 
-            fill="white"/>
+            fill="currentColor"/>
     </svg>
 );
 

@@ -1,6 +1,66 @@
 export const manifest = {
   bundles: [
     {
+      name: 'flower1',
+      assets: [
+        {alias: 'flower1', src: 'src/assets/obstacles/flowers/flower1.png'},
+      ],
+    },
+    {
+      name: 'flower2',
+      assets: [
+        {alias: 'flower2', src: 'src/assets/obstacles/flowers/flower2.png'},
+      ],
+    },
+    {
+      name: 'flower3',
+      assets: [
+        {alias: 'flower3', src: 'src/assets/obstacles/flowers/flower3.png'},
+      ],
+    },
+    {
+      name: 'flower4',
+      assets: [
+        {alias: 'flower4', src: 'src/assets/obstacles/flowers/flower4.png'},
+      ],
+    },
+
+    {
+      name: 'bag',
+      assets: [
+        {alias: 'bag', src: 'src/assets/obstacles/bag.png'},
+      ],
+    },
+
+    {
+      name: 'shelf',
+      assets: [
+        {alias: 'shelf', src: 'src/assets/obstacles/shelf.png'},
+      ],
+    },
+
+    {
+      name: 'box1',
+      assets: [
+        {alias: 'box1', src: 'src/assets/obstacles/boxes/box1.png'},
+      ],
+    },
+
+    {
+      name: 'box2',
+      assets: [
+        {alias: 'box2', src: 'src/assets/obstacles/boxes/box2.png'},
+      ],
+    },
+
+    {
+      name: 'box_zone',
+      assets: [
+        {alias: 'box_zone', src: 'src/assets/obstacles/boxes/box_zone.png'},
+      ],
+    },
+
+    {
       name: 'item_winter',
       assets: [
         {alias: 'item_winter', src: 'src/assets/items/item_winter.png'},

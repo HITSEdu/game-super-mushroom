@@ -11,6 +11,9 @@ interface InventoryState {
   getItem: (id: number) => IItem | null;
   doAction: (id: number) => void;
   addItem: (id: number) => void;
+  reduceItem: (id: number) => void;
+  removeItem: (id: number) => void;
+  removeMiniGameItems: () => void;
   reset: () => void;
 }
 
@@ -24,6 +27,17 @@ export const useInventoryStore = create<InventoryState>()(
       doAction: (id) => {
         const item = get().getItem(id);
         if (item?.action) item.action();
+      },
+
+      removeItem: (id) => {
+        set((state) => ({
+          items: state.items.filter(item => item.id !== id)
+        }));
+      },
+
+      removeMiniGameItems: () => {
+        get().removeItem(2);
+        get().removeItem(8);
       },
 
       addItem: (id) => {
@@ -47,6 +61,21 @@ export const useInventoryStore = create<InventoryState>()(
             }
           });
         }
+      },
+
+      reduceItem: (id) => {
+        const item = get().getItem(id);
+        if (!item) return;
+
+        set((state) => {
+          const updatedItems = state.items
+            .map((it) =>
+              it.id === id ? {...it, amount: Math.max(0, it.amount - 1)} : it
+            )
+            .filter(it => it.amount > 0);
+
+          return {items: updatedItems};
+        });
       },
 
       reset: () => {

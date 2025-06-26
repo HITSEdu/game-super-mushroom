@@ -16,6 +16,7 @@ import InteractionHint from "../components/ui/InteractionHint.tsx";
 import {Spirit} from './entities/spirit/Spirit.tsx';
 import Item from "./entities/item/Item.tsx";
 import {game_backgrounds} from "../constants/backgrounds.ts";
+import {useMiniGameStore} from "../store/MiniGameStore.ts";
 
 extend({
   Container,
@@ -43,6 +44,13 @@ const GameScene = () => {
   } = usePlayerStore();
 
   const {currentLevelID, status: gameStatus} = useGameSessionStore();
+
+  const {
+    carriedItem,
+    currentMiniGame,
+    deliveryZones,
+    activeDeliveryZoneIndex
+  } = useMiniGameStore();
 
   const appRef = useRef<ApplicationRef>(null);
 
@@ -125,7 +133,7 @@ const GameScene = () => {
 
           {levelItems.filter(e => e.visible).map((item) => (
             <Item
-              key={item.id}
+              key={`${item.id}-${item.x}-${item.y}`}
               x={item.x}
               y={item.y}
               size={item.size}
@@ -142,6 +150,14 @@ const GameScene = () => {
               texture={getTextureSafe(`${spirit.type}`)}
             />
           ))}
+          {carriedItem === 8 && currentMiniGame === 'autumn' && deliveryZones.length > 0 && (
+            <Item
+              x={deliveryZones[activeDeliveryZoneIndex]?.x}
+              y={deliveryZones[activeDeliveryZoneIndex]?.y}
+              texture={getTextureSafe('box_zone')}
+              size={{width: 24, height: 24}}
+            />
+          )}
         </pixiContainer>
       </Application>
       <InteractionHint

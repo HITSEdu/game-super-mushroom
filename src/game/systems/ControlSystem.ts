@@ -25,12 +25,15 @@ const keyMap: Record<string, string> = {
 
 let frame: number | null = null;
 
+const pressedOnce: { [key: string]: boolean } = {};
+
 export function press(action: keyof typeof keys) {
   keys[action] = true;
 }
 
 export function release(action: keyof typeof keys) {
   keys[action] = false;
+  pressedOnce[action] = false;
 }
 
 function onKeyDown(e: KeyboardEvent) {
@@ -40,7 +43,10 @@ function onKeyDown(e: KeyboardEvent) {
 
 function onKeyUp(e: KeyboardEvent) {
   const action = keyMap[e.key.toLowerCase()];
-  if (action) keys[action] = false;
+  if (action) {
+    keys[action] = false;
+    pressedOnce[action] = false;
+  }
 }
 
 export function initControlSystem() {
@@ -78,7 +84,8 @@ export function initControlSystem() {
 
       for (const interaction of player.nearInteractive) {
         const key = interaction.key.toLowerCase();
-        if (keys[key]) {
+        if (keys[key] && !pressedOnce[key]) {
+          pressedOnce[key] = true;
           interaction.action();
           usePlayerStore.setState(() => ({
             nearInteractive: player.nearInteractive.filter(i => i.id !== interaction.id),

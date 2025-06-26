@@ -13,9 +13,9 @@ import {
 import type {ObjectSize} from "../constants/interfaces.ts";
 import {type IEnemy} from '../constants/interfaces.ts'
 import type {SeasonType} from "../constants/types.ts";
-import {useInventoryStore} from "./InventoryStore.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
+import {useInventoryStore} from "./InventoryStore.ts";
 
 export interface ObstacleData {
   x: number;
@@ -103,7 +103,23 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       visible: obs.visible !== undefined ? obs.visible : true,
     }));
 
-    const newItems: ItemData[] = (data.items || []).filter((item: ItemData) => !useInventoryStore.getState().items.map(item => item.id).includes(item.id));
+    const newItems: ItemData[] = (data.items || []).map((item: ItemData) => {
+      if (item.type === 'flower') {
+        return {
+          ...item,
+          type: item.type + `${Math.ceil(Math.random() * 4)}`
+        };
+      } else if (item.type === 'box') {
+        return {
+          ...item,
+          type: item.type + `${Math.ceil(Math.random() * 2)}`
+        };
+      }
+      return {
+        ...item,
+        visible: !useInventoryStore.getState().getItem(item.id) && item.visible,
+      }
+    });
 
     const newSpirits: SpiritData[] = (data.spirits || []).map((spirit: SpiritData) => ({
       ...spirit,

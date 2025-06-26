@@ -1,16 +1,22 @@
 import type {IInteraction} from "../../constants/interfaces.ts";
 import {
   type ItemData,
-  type ObstacleData, type SpiritData,
+  type ObstacleData,
+  type SpiritData,
   useLevelStore
 } from "../../store/LevelStore.ts";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
-import {items as globalItems} from '../../constants/items.tsx'
-import {spirits as globalSpirits} from '../../constants/spirits.tsx'
+import {items as globalItems} from '../../constants/items.tsx';
+import {spirits as globalSpirits} from '../../constants/spirits.tsx';
 import {
   obstaclesWithInteractivity as globalObstacles
 } from "../../constants/obstacles.tsx";
 import {useInventoryStore} from "../../store/InventoryStore.ts";
+import {useMiniGameStore} from "../../store/MiniGameStore.ts";
+import {useToastStore} from "../../store/ToastStore.ts";
+import {MINI_GAMES} from "../../constants/miniGames.tsx";
+import {isNearEnough} from "../systems/CollisionSystem.ts";
+import i18next from "i18next";
 
 export function getNearbyInteractions(
   playerX: number,
@@ -21,107 +27,146 @@ export function getNearbyInteractions(
   levelItems: ItemData[],
   levelSpirits: SpiritData[],
 ): IInteraction[] {
-
-  const rangeX = 32;
-  const rangeY = 24;
-
-  const centerX = playerX + playerWidth / 2;
-  const centerY = playerY + playerHeight / 2;
-
   const interactions: IInteraction[] = [];
+
+  const miniGame = useMiniGameStore.getState();
+  const currentGame = miniGame.currentMiniGame
+    ? MINI_GAMES[miniGame.currentMiniGame]
+    : null;
+
+  const isNearEnoughWrapper = (
+    x: number, y: number, width: number, height: number, padding: number
+  ) => isNearEnough(
+    playerX, playerY, playerWidth, playerHeight,
+    x, y, width, height, padding
+  );
+
+  if (currentGame?.id === 'autumn') {
+    const zone = miniGame.deliveryZones[miniGame.activeDeliveryZoneIndex];
+    if (isNearEnoughWrapper(zone.x, zone.y, 24, 24, 16) && miniGame.carriedItem) {
+      interactions.push({
+        id: `box_zone-${zone.x}-${zone.y}`,
+        visible: true,
+        x: zone.x,
+        y: zone.y,
+        key: "use",
+        title: "useTheObstacle",
+        action: miniGame.deliverItem,
+      });
+    }
+  }
 
   for (const obs of obstacles) {
     if (!obs.visible) continue;
-    if (!obs.type.startsWith('door') && obs.type !== 'fountain') continue;
 
-    const obsCenterX = obs.x + obs.width / 2;
-    const obsCenterY = obs.y + obs.height / 2;
+    const isAllowedType =
+      obs.type.startsWith('door') ||
+      obs.type === 'fountain' ||
+      ((obs.type === 'bag' || obs.type === 'shelf') && miniGame.currentMiniGame);
 
-    const dx = Math.abs(centerX - obsCenterX);
-    const dy = Math.abs(centerY - obsCenterY);
+    if (!isAllowedType) continue;
 
-    if (dx <= rangeX && dy <= rangeY) {
-      if (obs.type.startsWith('door')) {
-        const side: 'left' | 'right' = obs.x === 0 ? 'left' : 'right';
-        interactions.push({
-          id: `door-${obs.x}-${obs.y}`,
-          visible: true,
-          x: obs.x,
-          y: obs.y,
-          key: "use",
-          title: "enterTheDoor",
-          action: () => useGameSessionStore.getState().enterDoor(side),
-        });
-      } else if (obs.type === 'fountain') {
-        interactions.push({
-          id: `fountain-${obs.x}-${obs.y}`,
-          visible: true,
-          x: obs.x,
-          y: obs.y,
-          key: "use",
-          title: "useTheObstacle",
-          action: globalObstacles[obs.type],
-        });
-      }
+    const isNear = isNearEnoughWrapper(obs.x, obs.y, obs.width, obs.height, 32);
+    if (!isNear) continue;
+
+    const id = `${obs.type}-${obs.x}-${obs.y}`;
+
+    if (obs.type.startsWith('door')) {
+      const side: 'left' | 'right' = obs.x === 0 ? 'left' : 'right';
+      interactions.push({
+        id,
+        visible: true,
+        x: obs.x,
+        y: obs.y,
+        key: "use",
+        title: "enterTheDoor",
+        action: () => useGameSessionStore.getState().enterDoor(side),
+      });
+    } else if (obs.type === 'fountain' || obs.type === 'bag' || obs.type === 'shelf') {
+      interactions.push({
+        id,
+        visible: true,
+        x: obs.x,
+        y: obs.y,
+        key: "use",
+        title: "useTheObstacle",
+        action: globalObstacles[obs.type],
+      });
     }
   }
 
   for (const item of levelItems) {
     if (!item.visible) continue;
 
-    const itemCenterX = item.x + item.size.width / 2;
-    const itemCenterY = item.y + item.size.height / 2;
+    const isNear = isNearEnoughWrapper(item.x, item.y, item.size.width, item.size.height, 16);
+    if (!isNear) continue;
 
-    const dx = Math.abs(centerX - itemCenterX);
-    const dy = Math.abs(centerY - itemCenterY);
+    const globalItem = globalItems.find((i) => i.id === item.id);
+    if (!globalItem) continue;
 
-    if (dx <= rangeX && dy <= rangeY) {
-      const globalItem = globalItems.find((i) => i.id === item.id);
-      if (!globalItem) continue;
+    const inventory = useInventoryStore.getState();
+    const isSingleCarryItem = currentGame && item.id === currentGame.itemId;
 
-      interactions.push({
-        id: `item-${item.id}`,
-        visible: true,
-        x: item.x,
-        y: item.y,
-        key: "use",
-        title: "pickupItem",
-        action: () => {
-          useInventoryStore.getState().addItem(globalItem.id);
+    const autoFinish = currentGame?.butterflyId === item.id;
 
-          useLevelStore.setState((state) => ({
-            items: state.items.map((it) =>
-              it.id === item.id ? {...it, visible: false} : it
-            ),
-          }));
-        },
-      });
-    }
+    interactions.push({
+      id: `item-${item.x}-${item.y}-${item.type}`,
+      visible: true,
+      x: item.x,
+      y: item.y,
+      key: "use",
+      title: "pickupItem",
+      action: () => {
+        if (isSingleCarryItem && inventory.getItem(item.id)) {
+          const message = i18next.t('translations:overload');
+          useToastStore.getState().show(message);
+          return;
+        }
+
+        inventory.addItem(globalItem.id);
+
+        if (autoFinish) {
+          miniGame.finishMiniGame();
+        } else if (currentGame) {
+          useMiniGameStore.setState({carriedItem: globalItem.id});
+        }
+
+        useLevelStore.setState((state) => ({
+          items: state.items.map((it) =>
+            it.x === item.x && it.y === item.y && it.id === item.id
+              ? {...it, visible: false}
+              : it
+          ),
+        }));
+      },
+    });
   }
 
   for (const spirit of levelSpirits) {
     if (!spirit.visible) continue;
 
-    const spiritCenterX = spirit.x + spirit.size.width / 2;
-    const spiritCenterY = spirit.y + spirit.size.height / 2;
+    const isNear = isNearEnoughWrapper(
+      spirit.x,
+      spirit.y,
+      spirit.size.width,
+      spirit.size.height,
+      16
+    );
 
-    const dx = Math.abs(centerX - spiritCenterX);
-    const dy = Math.abs(centerY - spiritCenterY);
+    if (!isNear) continue;
 
-    if (dx <= rangeX && dy <= rangeY) {
-      const globalSpirit = globalSpirits.find((i) => i.id === spirit.id);
-      if (!globalSpirit) continue;
+    const globalSpirit = globalSpirits.find((i) => i.id === spirit.id);
+    if (!globalSpirit) continue;
 
-      interactions.push({
-        id: `spirit-${spirit.id}`,
-        visible: true,
-        x: spirit.x,
-        y: spirit.y,
-        key: "use",
-        title: "talkToSpirit",
-        action: globalSpirit.action,
-      });
-    }
+    interactions.push({
+      id: `spirit-${spirit.id}`,
+      visible: true,
+      x: spirit.x,
+      y: spirit.y,
+      key: "use",
+      title: "talkToSpirit",
+      action: globalSpirit.action,
+    });
   }
 
   return interactions;

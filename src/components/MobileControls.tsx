@@ -3,13 +3,18 @@ import IconKeyboardDown from './icons/IconKeyboardDown.tsx';
 import IconKeyboardLeft from './icons/IconKeyboardLeft.tsx';
 import IconKeyboardRight from './icons/IconKeyboardRight.tsx';
 import IconKeyboardUp from './icons/IconKeyboardUp.tsx';
+import {usePlayerStore} from "../store/PlayerStore.ts";
+import {useLevelStore} from "../store/LevelStore.ts";
 
 const MobileControls = () => {
-  const isMobile = window.innerWidth <= 1000;
+  const isMobile = window.innerWidth <= 1000 || window.innerHeight <= 600;
   if (!isMobile) return null;
 
   const iconClasses = 'w-18 h-18';
   const btnWrapper = 'pointer-events-auto flex items-center justify-center';
+
+  const {onLadder} = usePlayerStore.getState();
+  const {isMiniGame} = useLevelStore.getState();
 
   return (
     <div className="fixed bottom-4 left-8 right-4 flex justify-between items-end px-4 z-50 pointer-events-none">
@@ -37,9 +42,21 @@ const MobileControls = () => {
       <div className="flex flex-col gap-2">
         <button
           className={btnWrapper}
-          onTouchStart={() => press('jump')}
-          onTouchEnd={() => release('jump')}
-          onTouchCancel={() => release('jump')}
+          onTouchStart={() => {
+            if (onLadder || isMiniGame) {
+              press('up');
+            } else {
+              press('jump');
+            }
+          }}
+          onTouchEnd={() => {
+            release('up');
+            release('jump');
+          }}
+          onTouchCancel={() => {
+            release('up');
+            release('jump');
+          }}
           type="button"
         >
           <IconKeyboardUp className={iconClasses} />
@@ -55,7 +72,8 @@ const MobileControls = () => {
         </button>
       </div>
     </div>
-  );
+  )
+    ;
 };
 
 export default MobileControls;

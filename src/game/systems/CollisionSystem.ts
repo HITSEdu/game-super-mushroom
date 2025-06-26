@@ -7,6 +7,26 @@ import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {getNearbyInteractions} from "../utils/getNearbyInteractions.ts";
 import {useMiniGameStore} from "../../store/MiniGameStore.ts";
 
+export const isNearEnough = (
+  ax: number,
+  ay: number,
+  aw: number,
+  ah: number,
+  bx: number,
+  by: number,
+  bw: number,
+  bh: number,
+  margin: number
+) => {
+  return (
+    ax < bx + bw + margin &&
+    ax + aw > bx - margin &&
+    ay < by + bh + margin &&
+    ay + ah > by - margin
+  );
+}
+
+
 export const getCollisionDirection = (
   a: { x: number; y: number; width: number; height: number },
   b: { x: number; y: number; width: number; height: number }
@@ -67,7 +87,7 @@ export const handlePlayerEnemyCollision = () => {
 }
 
 const hasntCollisions = (type: string) => {
-  const types = ['fountain', 'box', 'tree', 'grass', 'fire', 'flower', 'snowman']
+  const types = ['fountain', 'tree', 'grass', 'fire', 'flower', 'snowman']
   for (const it of types) {
     if (type.startsWith(it)) return true;
   }

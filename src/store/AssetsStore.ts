@@ -68,6 +68,19 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('fountain');
         await Assets.loadBundle('portal');
 
+        await Assets.loadBundle('flower1');
+        await Assets.loadBundle('flower2');
+        await Assets.loadBundle('flower3');
+        await Assets.loadBundle('flower4');
+
+
+        await Assets.loadBundle('bag');
+        await Assets.loadBundle('shelf');
+
+        await Assets.loadBundle('box1');
+        await Assets.loadBundle('box2');
+        await Assets.loadBundle('box_zone');
+
         set({isInitialized: true});
       } catch (error) {
         console.error("Assets initialization failed:", error);

@@ -18,12 +18,12 @@ const SpiritModal = ({spiritId}: SpiritModalProps) => {
   if (!spirit) return null;
 
   const spiritKey = spirit.name.toLowerCase();
-  const hasCompleted = isCompleted(spiritKey);
+  const hasCompleted = isCompleted(spirit.season);
   const season = SEASONS.find(s => s.key === spirit.season);
   const background = season?.background;
 
   const handleHelp = () => {
-    startMiniGame(spiritKey);
+    startMiniGame(spirit.season);
     close();
   };
 

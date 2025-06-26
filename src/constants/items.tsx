@@ -53,6 +53,20 @@ export const items: IItem[] = [
     action: () => useModalStore.getState().open(
       <ButterflyModal title={'Осень'} />),
   },
+  {
+    id: 2,
+    source: 'src/assets/items/item_flower.png',
+    amount: 0,
+    action: () => {
+    },
+  },
+  {
+    id: 8,
+    source: 'src/assets/items/item_box.png',
+    amount: 0,
+    action: () => {
+    },
+  }
 ];
 
 export const initItems: IItem[] = [

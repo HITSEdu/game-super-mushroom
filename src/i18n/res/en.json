@@ -76,8 +76,10 @@
     "pickedUp": "You've picked up {{itemName}}!",
     "names": {
       "13": "Portal",
+      "2": "Flower",
       "3": "Winter Butterfly",
       "4": "Spring Butterfly",
+      "8": "Box",
       "9": "Summer Butterfly",
       "10": "Autumn Butterfly"
     }
@@ -94,5 +96,14 @@
     "line5": "You receive a Portal that allows you to travel between seasons.",
     "repeat": "You already have the Portal. Return once you’ve gathered the butterflies.",
     "understood": "Understood"
-  }
+  },
+  "overload": "You can't drag more than one item!",
+  "miniGame": {
+    "delivered": "Delivered: {{itemName}}. Remaining: {{remaining}}",
+    "noItem": "Please collect the item first: {{itemName}}",
+    "takeBox": "You picked up a box. Deliver it to the zone.",
+    "allBoxesDelivered": "All boxes delivered!",
+    "allFlowersDelivered": "All Flowers collected!"
+  },
+  "success": "Success!"
 }

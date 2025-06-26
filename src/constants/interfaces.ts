@@ -84,3 +84,14 @@ export interface IInteraction {
   key: string;
   action: () => void;
 }
+
+export interface MiniGameConfig {
+  id: SeasonType;
+  level: string;
+  goal: number;
+  itemId: number;
+  butterflyId: number;
+  itemName: string;
+  deliverTo?: string;
+  description: string;
+}

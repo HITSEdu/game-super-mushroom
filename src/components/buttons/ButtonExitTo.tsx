@@ -4,30 +4,35 @@ import type {GlobalType} from "../../constants/types.ts";
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {useGlobalStore} from "../../store/GlobalStore.ts";
 import {useBackgroundStore} from "../../store/BackgroundStore.tsx";
+import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 interface IProps {
-    title: string;
-    newState: GlobalType;
+  title: string;
+  newState: GlobalType;
 }
 
 const ButtonExitTo = ({title, newState}: IProps) => {
-    const {
-        reset,
-    } = useGameSessionStore();
+  const {
+    reset,
+  } = useGameSessionStore();
 
-    const {resetBackground} = useBackgroundStore();
+  const {resetBackground} = useBackgroundStore();
 
-    const changeGlobalState = useGlobalStore((s) => s.change);
+  const changeGlobalState = useGlobalStore((s) => s.change);
 
-    const {t} = useTranslation('translations')
+  const {t} = useTranslation('translations')
 
-    return (
-        <Button title={t(title)} onClick={() => {
-            changeGlobalState(newState);
-            reset();
-            resetBackground();
-        }}/>
-    );
+  return (
+    <Button
+      title={t(title)}
+      onClick={() => {
+        changeGlobalState(newState);
+        reset();
+        resetBackground();
+        useInventoryStore.getState().removeMiniGameItems();
+      }}
+    />
+  );
 }
 
 export default ButtonExitTo;
