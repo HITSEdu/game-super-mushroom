@@ -87,7 +87,7 @@ export function usePlayerAnimation({
   useTick((ticker) => {
     const delta = ticker.deltaMS / (1000 / 60);
     elapsed.current += delta;
-    if (action == 'idle') animationSpeed *= 4
+    if (action == 'idle') animationSpeed *= 3
     if (elapsed.current >= animationSpeed) {
       elapsed.current = 0;
       frameIndex.current = (frameIndex.current + 1) % anim.frames;
