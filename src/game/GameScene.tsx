@@ -140,7 +140,7 @@ const GameScene = () => {
               key={enemy.id}
               x={enemy.position.x}
               y={enemy.position.y}
-              texture={getTextureSafe('enemy')}
+              texture={getTextureSafe(enemy.type)}
               size={enemy.size}
             />
           ))}
