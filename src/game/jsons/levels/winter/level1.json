@@ -942,8 +942,28 @@
       "type": "platform"
     }
   ],
-  "decorations": [],
+  "decorations": [
+    {
+      "x": 24,
+      "y": 24,
+      "width": 120,
+      "height": 120,
+      "type": "moon"
+    }
+  ],
   "enemies": [],
-  "spirits": [],
+  "spirits": [
+    {
+      "id": 1,
+      "x": 624,
+      "y": 288,
+      "type": "spirit_onyx",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    }
+  ],
   "items": []
 }

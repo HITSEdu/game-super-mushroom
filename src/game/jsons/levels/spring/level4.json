@@ -1434,6 +1434,18 @@
   ],
   "decorations": [],
   "enemies": [],
-  "spirits": [],
+  "spirits": [
+    {
+      "id": 2,
+      "x": 408,
+      "y": 240,
+      "type": "spirit_swifty",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    }
+  ],
   "items": []
 }
