@@ -46,7 +46,7 @@ const LevelsScreen = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === 'f' && !isJumping) {
+      if ((e.key.toLowerCase() === 'а' || e.key.toLowerCase() === 'f') && !isJumping) {
         startJump();
       }
     };
