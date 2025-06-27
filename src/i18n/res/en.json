@@ -11,7 +11,7 @@
   "confirmNewGame": "Are u sure? The previous progress will be lost.",
   "cancel": "Cancel",
   "confirm": "Confirm",
-  "exitToLevels": "Back to levels",
+  "exitToLevels": "Back to the Portal",
   "exitToMenu": "Back to menu",
   "defaultPlayerName": "The nameless hero",
   "winTitle": "Level complete!",
@@ -122,5 +122,7 @@
     "dog": "dog",
     "petToast": "You gently pet the {{name}}.",
     "killedToast": "You killed the monster!"
-  }
+  },
+  "jumpInto": "Jump into SZNS",
+  "timeJump": "Press [F] to Time Jump"
 }
