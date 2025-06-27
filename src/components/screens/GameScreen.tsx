@@ -51,7 +51,7 @@ const GameScreen = () => {
   }
 
   return (
-    <div className="w-screen h-screen flex-center flex-col relative overflow-hidden gap-2">
+    <div className="w-screen h-screen flex-center flex-col relative overflow-auto gap-2">
       <h1
         className="mt-auto font-bold text-fg text-center
                             h-xs:text-5xl

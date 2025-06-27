@@ -88,7 +88,8 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('fire');
         await Assets.loadBundle('fire_underworld');
 
-        set({ isInitialized: true });
+        await Assets.loadBundle('sun');
+        await Assets.loadBundle('moon');
         await Assets.loadBundle('slug');
         await Assets.loadBundle('bat');
         await Assets.loadBundle('underworld_spirit');

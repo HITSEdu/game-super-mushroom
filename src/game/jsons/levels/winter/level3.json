@@ -1391,7 +1391,17 @@
     }
   ],
   "decorations": [],
-  "enemies": [],
+  "enemies": [
+     {
+      "x": 312,
+      "y": 168,
+      "size": {
+        "width": 48,
+        "height": 24
+      },
+      "type": "dog"
+    }
+  ],
   "spirits": [],
   "items": []
 }

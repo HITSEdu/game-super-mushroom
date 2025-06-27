@@ -26,6 +26,15 @@ export interface ObstacleData {
   visible: boolean;
 }
 
+export interface DecorationData {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  type: string;
+  visible: boolean;
+}
+
 export interface EnemyData {
   x: number;
   y: number;
@@ -60,6 +69,7 @@ interface LevelState {
   obstacles: ObstacleData[];
   enemies: IEnemy[];
   items: ItemData[];
+  decorations: DecorationData[],
   spirits: SpiritData[];
   isMiniGame: boolean;
   gravity: number;
@@ -75,6 +85,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
   levelType: 'underworld',
   gravity: 1.5,
   items: [],
+  decorations: [],
   spirits: [],
   obstacles: [],
   enemies: [],
@@ -126,6 +137,27 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       }
     });
 
+    const newDecorations: DecorationData[] = (data.decorations || []).map((d: DecorationData) => {
+      if (d.type.startsWith("fire")) {
+        return {
+          ...d,
+          visible: true,
+        }
+      } else if (d.type.startsWith("tree")) {
+        return {
+          ...d,
+          type: d.type + data.levelType,
+          visible: true,
+        }
+      } else if (d.type === "moon" || d.type === "sun") {
+        return {
+          ...d,
+          type: d.type,
+          visible: true,
+        }
+      }
+    });
+
     const newSpirits: SpiritData[] = (data.spirits || []).map((spirit: SpiritData) => ({
       ...spirit,
       visible: spirit.visible !== undefined ? spirit.visible : true,
@@ -137,6 +169,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       playerEnd: new Point(data.playerEnd.x, data.playerEnd.y),
       gravity: data.gravity,
       items: newItems,
+      decorations: newDecorations,
       spirits: newSpirits,
       obstacles: obstaclesWithVisible,
       enemies: activeEnemies,

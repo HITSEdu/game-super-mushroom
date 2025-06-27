@@ -25,7 +25,7 @@ const LevelsScreen = () => {
     if (!firstLevel) return;
 
     setIsJumping(true);
-    sounds['portal'].play();
+    // sounds['portal'].play();
 
     sounds['portal'].rate(1);
     let rate = 1.0;
@@ -125,7 +125,8 @@ const LevelsScreen = () => {
         {isJumping && (
           <>
             <motion.div
-              className="absolute inset-0 z-20 bg-gradient-to-br from-cyan-400 via-indigo-600 to-purple-800"
+              // className="absolute inset-0 z-20 bg-gradient-to-br from-cyan-400 via-indigo-600 to-purple-800"
+              className="absolute inset-0 z-20 bg-black"
               initial={{opacity: 0}}
               animate={{opacity: 1}}
               exit={{opacity: 0}}

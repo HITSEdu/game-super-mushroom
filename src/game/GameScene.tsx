@@ -19,6 +19,10 @@ import {game_backgrounds} from "../constants/backgrounds.ts";
 import {useMiniGameStore} from "../store/MiniGameStore.ts";
 import { Snow } from './effects/Snow.tsx';
 import { Rain } from './effects/Rain.tsx';
+import { Fire } from './effects/Fire.tsx';
+import Tree from './entities/decoration/Tree.tsx';
+import SkyElement from './entities/decoration/SkyElement.tsx';
+import Cloud from './entities/decoration/Cloud.tsx';
 
 extend({
   Container,
@@ -31,6 +35,7 @@ const GameScene = () => {
     obstacles,
     enemies: levelEnemies,
     items: levelItems,
+    decorations: levelDecorations,
     spirits: levelSpirits,
     isLoaded,
     load
@@ -103,6 +108,25 @@ const GameScene = () => {
     }
   }
 
+    const clouds = useRef<Array<{
+    id: string;
+    x: number;
+    y: number;
+    speed: number;
+    textureAlias: string;
+  }>>( []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    clouds.current = Array.from({ length: 5 }).map((_, i) => ({
+      id: `cloud-${i}`,
+      x: Math.random() * window.innerWidth,
+      y: 50 + Math.random() * 100,
+      speed: 0.2,
+      textureAlias: `cloud${1 + Math.floor(Math.random() * 7)}`,
+    }));
+  }, [isLoaded]);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const {offsetX, offsetY, scale} = useContainerSize(containerRef, isLoaded);
 
@@ -124,8 +148,21 @@ const GameScene = () => {
           scale={scale}
           sortableChildren={true}
         >
-          {playerSeason === 'autumn' && rainTiles }
-          {playerSeason === 'winter' && snowTiles }
+          {playerSeason === 'autumn' && currentMiniGame !== 'autumn' && rainTiles }
+          {playerSeason === 'winter' && currentMiniGame !== 'winter' && snowTiles }
+
+          {playerSeason !== 'underworld' && clouds.current.map(c => (
+            <Cloud
+              key={c.id}
+              x={c.x}
+              y={c.y}
+              width={128}
+              height={64}
+              speed={c.speed}
+              boundsWidth={window.innerWidth}
+              texture={getTextureSafe(c.textureAlias)}
+            />
+          ))}
 
           {playerTexture && gameStatus !== 'lost' &&
             <Player
@@ -173,6 +210,28 @@ const GameScene = () => {
               texture={getTextureSafe(`${spirit.type}`)}
             />
           ))}
+          {levelDecorations.filter(e => e.visible && e.type.startsWith("fire")).map((fire) => (
+            <Fire
+              x={fire.x}
+              y={fire.y}
+            />
+          ))}
+
+          {levelDecorations.filter(e => e.visible && e.type.startsWith("tree")).map((d) => (
+            <Tree
+              x={d.x}
+              y={d.y}
+              texture={getTextureSafe(d.type)}
+            />
+          ))}
+          {levelDecorations.filter(e => e.visible && (e.type === "moon" || e.type === "sun")).map((d) => (
+            <SkyElement
+              x={d.x}
+              y={d.y}
+              texture={getTextureSafe(d.type)}
+            />
+          ))}
+          
           {carriedItem === 8 && currentMiniGame === 'autumn' && deliveryZones.length > 0 && (
             <Item
               x={deliveryZones[activeDeliveryZoneIndex]?.x}

@@ -1392,6 +1392,18 @@
   ],
   "decorations": [],
   "enemies": [],
-  "spirits": [],
+  "spirits": [
+    {
+      "id": 3,
+      "x": 264,
+      "y": 336,
+      "type": "spirit_mira",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
+    }
+  ],
   "items": []
 }
