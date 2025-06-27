@@ -24,6 +24,54 @@ export const manifest = {
         {alias: 'flower4', src: 'src/assets/obstacles/flowers/flower4.png'},
       ],
     },
+    {
+      name: 'flower5',
+      assets: [
+        {alias: 'flower5', src: 'src/assets/obstacles/flowers/flower5.png'},
+      ],
+    },
+    {
+      name: 'flower6',
+      assets: [
+        {alias: 'flower6', src: 'src/assets/obstacles/flowers/flower6.png'},
+      ],
+    },
+    {
+      name: 'flower7',
+      assets: [
+        {alias: 'flower7', src: 'src/assets/obstacles/flowers/flower7.png'},
+      ],
+    },
+    {
+      name: 'flower8',
+      assets: [
+        {alias: 'flower8', src: 'src/assets/obstacles/flowers/flower8.png'},
+      ],
+    },
+    {
+      name: 'flower9',
+      assets: [
+        {alias: 'flower9', src: 'src/assets/obstacles/flowers/flower9.png'},
+      ],
+    },
+    {
+      name: 'flower10',
+      assets: [
+        {alias: 'flower10', src: 'src/assets/obstacles/flowers/flower10.png'},
+      ],
+    },
+    {
+      name: 'flower11',
+      assets: [
+        {alias: 'flower11', src: 'src/assets/obstacles/flowers/flower11.png'},
+      ],
+    },
+    {
+      name: 'flower12',
+      assets: [
+        {alias: 'flower12', src: 'src/assets/obstacles/flowers/flower12.png'},
+      ],
+    },
 
     {
       name: 'bag',
@@ -136,11 +184,47 @@ export const manifest = {
       ],
     },
     {
-      name: 'ladder',
+      name: 'ladder_underworld',
       assets: [
         {
-          alias: 'ladder',
-          src: 'src/assets/obstacles/ladder.png'
+          alias: 'ladder_underworld',
+          src: 'src/assets/obstacles/ladder/ladder_underworld.png'
+        },
+      ],
+    },
+    {
+      name: 'ladder_winter',
+      assets: [
+        {
+          alias: 'ladder_winter',
+          src: 'src/assets/obstacles/ladder/ladder_winter.png'
+        },
+      ],
+    },
+    {
+      name: 'ladder_summer',
+      assets: [
+        {
+          alias: 'ladder_summer',
+          src: 'src/assets/obstacles/ladder/ladder_summer.png'
+        },
+      ],
+    },
+    {
+      name: 'ladder_spring',
+      assets: [
+        {
+          alias: 'ladder_spring',
+          src: 'src/assets/obstacles/ladder/ladder_spring.png'
+        },
+      ],
+    },
+    {
+      name: 'ladder_autumn',
+      assets: [
+        {
+          alias: 'ladder_autumn',
+          src: 'src/assets/obstacles/ladder/ladder_autumn.png'
         },
       ],
     },
@@ -397,6 +481,249 @@ export const manifest = {
         {
           alias: 'platform_autumn_games',
           src: 'src/assets/obstacles/platform/games/platform_autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'glitch1',
+      assets: [
+        {
+          alias: 'glitch1',
+          src: 'src/assets/clouds/glitch/glitch1.png'
+        },
+      ],
+    },
+    {
+      name: 'glitch2',
+      assets: [
+        {
+          alias: 'glitch2',
+          src: 'src/assets/clouds/glitch/glitch2.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud1',
+      assets: [
+        {
+          alias: 'cloud1',
+          src: 'src/assets/clouds/cloud1.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud2',
+      assets: [
+        {
+          alias: 'cloud2',
+          src: 'src/assets/clouds/cloud2.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud3',
+      assets: [
+        {
+          alias: 'cloud3',
+          src: 'src/assets/clouds/cloud3.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud4',
+      assets: [
+        {
+          alias: 'cloud4',
+          src: 'src/assets/clouds/cloud4.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud5',
+      assets: [
+        {
+          alias: 'cloud5',
+          src: 'src/assets/clouds/cloud5.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud6',
+      assets: [
+        {
+          alias: 'cloud6',
+          src: 'src/assets/clouds/cloud6.png'
+        },
+      ],
+    },
+    {
+      name: 'cloud7',
+      assets: [
+        {
+          alias: 'cloud7',
+          src: 'src/assets/clouds/cloud7.png'
+        },
+      ],
+    },
+    {
+      name: 'snow',
+      assets: [
+        {
+          alias: 'snow',
+          src: 'src/assets/effects/snow.png'
+        },
+      ],
+    },
+    {
+      name: 'rain',
+      assets: [
+        {
+          alias: 'rain',
+          src: 'src/assets/effects/rain.png'
+        },
+      ],
+    },
+    {
+      name: 'fire',
+      assets: [
+        {
+          alias: 'fire',
+          src: 'src/assets/fire/fire.png'
+        },
+      ],
+    },
+    {
+      name: 'fire_underworld',
+      assets: [
+        {
+          alias: 'fire_underworld',
+          src: 'src/assets/fire/fire_underworld.png'
+        },
+      ],
+    },
+    {
+      name: 'tree1winter',
+      assets: [
+        {
+          alias: 'tree1winter',
+          src: 'src/assets/obstacles/trees/tree1winter.png'
+        },
+      ],
+    },
+    {
+      name: 'tree2winter',
+      assets: [
+        {
+          alias: 'tree2winter',
+          src: 'src/assets/obstacles/trees/tree2winter.png'
+        },
+      ],
+    },
+    {
+      name: 'tree3winter',
+      assets: [
+        {
+          alias: 'tree3winter',
+          src: 'src/assets/obstacles/trees/tree3winter.png'
+        },
+      ],
+    },
+    {
+      name: 'tree1summer',
+      assets: [
+        {
+          alias: 'tree1summer',
+          src: 'src/assets/obstacles/trees/tree1summer.png'
+        },
+      ],
+    },
+    {
+      name: 'tree2summer',
+      assets: [
+        {
+          alias: 'tree2summer',
+          src: 'src/assets/obstacles/trees/tree2summer.png'
+        },
+      ],
+    },
+    {
+      name: 'tree3summer',
+      assets: [
+        {
+          alias: 'tree3summer',
+          src: 'src/assets/obstacles/trees/tree3summer.png'
+        },
+      ],
+    },
+    {
+      name: 'tree1spring',
+      assets: [
+        {
+          alias: 'tree1spring',
+          src: 'src/assets/obstacles/trees/tree1spring.png'
+        },
+      ],
+    },
+    {
+      name: 'tree2spring',
+      assets: [
+        {
+          alias: 'tree2spring',
+          src: 'src/assets/obstacles/trees/tree2spring.png'
+        },
+      ],
+    },
+    {
+      name: 'tree3spring',
+      assets: [
+        {
+          alias: 'tree3spring',
+          src: 'src/assets/obstacles/trees/tree3spring.png'
+        },
+      ],
+    },
+    {
+      name: 'tree1autumn',
+      assets: [
+        {
+          alias: 'tree1autumn',
+          src: 'src/assets/obstacles/trees/tree1autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'tree2autumn',
+      assets: [
+        {
+          alias: 'tree2autumn',
+          src: 'src/assets/obstacles/trees/tree2autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'tree3autumn',
+      assets: [
+        {
+          alias: 'tree3autumn',
+          src: 'src/assets/obstacles/trees/tree3autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'moon',
+      assets: [
+        {
+          alias: 'moon',
+          src: 'src/assets/obstacles/decoration/moon.png'
+        },
+      ],
+    },
+    {
+      name: 'sun',
+      assets: [
+        {
+          alias: 'sun',
+          src: 'src/assets/obstacles/decoration/sun.png'
         },
       ],
     },

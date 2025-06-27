@@ -17,6 +17,8 @@ import {Spirit} from './entities/spirit/Spirit.tsx';
 import Item from "./entities/item/Item.tsx";
 import {game_backgrounds} from "../constants/backgrounds.ts";
 import {useMiniGameStore} from "../store/MiniGameStore.ts";
+import { Snow } from './effects/Snow.tsx';
+import { Rain } from './effects/Rain.tsx';
 
 extend({
   Container,
@@ -82,6 +84,25 @@ const GameScene = () => {
     return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
   }
 
+  const rainTiles = [];
+  const snowTiles = []
+  for (let row = 0; row < 42; row+=8) {
+    for (let col = 0; col < 21 + 24; col+=8) {
+      rainTiles.push(
+        <Rain
+          x={col * 24}
+          y={row * 24}
+        />
+      );
+      snowTiles.push(
+        <Snow
+          x={col * 24}
+          y={row * 24}
+        />
+      );
+    }
+  }
+
   const containerRef = useRef<HTMLDivElement>(null);
   const {offsetX, offsetY, scale} = useContainerSize(containerRef, isLoaded);
 
@@ -103,6 +124,9 @@ const GameScene = () => {
           scale={scale}
           sortableChildren={true}
         >
+          {playerSeason === 'autumn' && rainTiles }
+          {playerSeason === 'winter' && snowTiles }
+
           {playerTexture && gameStatus !== 'lost' &&
             <Player
               x={playerPosition.x}
@@ -120,7 +144,6 @@ const GameScene = () => {
               size={enemy.size}
             />
           ))}
-
           {obstacles.filter(e => e.visible).map((obs, i) => (
             <Obstacle
               key={i}

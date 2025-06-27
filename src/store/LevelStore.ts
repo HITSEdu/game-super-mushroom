@@ -99,7 +99,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
     const obstaclesWithVisible = (data.obstacles || []).map((obs: ObstacleData) => ({
       ...obs,
-      type: (obs.type === 'platform') || (obs.type === 'door') ? obs.type + '_' + data.levelType : obs.type,
+      type: (obs.type === 'platform') || (obs.type === 'door') || (obs.type === 'ladder') ? obs.type + '_' + data.levelType : obs.type,
       visible: obs.visible !== undefined ? obs.visible : true,
     }));
 

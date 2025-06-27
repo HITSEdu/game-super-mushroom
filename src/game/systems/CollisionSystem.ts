@@ -144,7 +144,7 @@ export const handleObstacleCollision = (
 
     if (obs.type === 'portal' && player) useMiniGameStore.getState().finishMiniGame();
 
-    if (obs.type === 'ladder' && player) {
+    if (obs.type.startsWith('ladder') && player) {
       isOnLadder = true;
       continue;
     }
@@ -171,7 +171,7 @@ export const handleObstacleCollision = (
     if (!obs.visible || hasntCollisions(obs.type)) continue;
     const obsBox = {x: obs.x, y: obs.y, width: obs.width, height: obs.height};
 
-    if (obs.type === 'ladder' && player) {
+    if (obs.type.startsWith('ladder') && player) {
       const intersects =
         boxY.x + boxY.width > obsBox.x &&
         boxY.x < obsBox.x + obsBox.width &&
