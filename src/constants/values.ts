@@ -38,6 +38,13 @@ export const ICON_STYLES =
   "        h-lg:w-10 h-lg:h-10\n" +
   "        h-xl:w-12 h-xl:h-12"
 
+export const H1_STYLES =
+  "h-xs:text-4xl h-xs:mt-3\n" +
+  "h-sm:text-5xl h-sm:mt-2\n" +
+  "h-md:text-6xl h-md:mt-2\n" +
+  "h-lg:text-7xl h-lg:mt-1\n" +
+  "h-xl:text-8xl h-xl:mt-1"
+
 export const TOTAL_SLOTS = 13;
 
 export const MUSIC_COUNT = 4;

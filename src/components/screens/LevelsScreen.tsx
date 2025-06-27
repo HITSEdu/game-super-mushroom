@@ -9,6 +9,7 @@ import Button from "../buttons/Button.tsx";
 import {useEffect, useState} from "react";
 import {motion, AnimatePresence} from 'framer-motion';
 import {sounds} from "../../game/utils/sound.ts";
+import {H1_STYLES} from "../../constants/values.ts";
 
 const LevelsScreen = () => {
   const {t} = useTranslation('translations');
@@ -69,7 +70,7 @@ const LevelsScreen = () => {
         initial={{opacity: 0, y: -30}}
         animate={{opacity: 1, y: 0}}
         transition={{duration: 0.6}}
-        className="text-center font-bold text-fg text-6xl mb-4"
+        className={`${H1_STYLES}text-center font-bold text-fg mask-b-from-0 mb-3`}
       >
         {t('jumpInto')}
       </motion.h1>
@@ -77,7 +78,7 @@ const LevelsScreen = () => {
       <motion.img
         src="/icons/icon-192x192.png"
         alt="Portal"
-        className="h-[60dvh] z-10 my-4 cursor-pointer transition-all"
+        className="h-[60dvh] h-mobile:h-[50dvh] z-10 my-4 h-mobile:my-2 cursor-pointer transition-all"
         initial={{scale: 1, opacity: 0, x: -30}}
         animate={{scale: 1, opacity: 1, x: 0}}
         transition={{duration: 1, ease: "easeInOut"}}
@@ -91,7 +92,12 @@ const LevelsScreen = () => {
       />
 
       <motion.div
-        className="text-3xl z-10 mb-6"
+        className="h-xs:text-lg
+                            h-sm:text-lg
+                            h-md:text-xl
+                            h-lg:text-2xl
+                            h-xl:text-2xl
+        text-3xl z-10 mb-6 h-mobile:mb-2"
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{delay: 0.5}}
