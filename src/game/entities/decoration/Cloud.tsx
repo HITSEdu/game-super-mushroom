@@ -1,8 +1,8 @@
-import { Sprite, Texture } from "pixi.js";
-import { extend, useTick } from "@pixi/react";
-import { useRef } from "react";
+import {Sprite, Texture} from "pixi.js";
+import {extend, useTick} from "@pixi/react";
+import {useRef} from "react";
 
-extend({ Sprite });
+extend({Sprite});
 
 interface CloudProps {
   x: number;
@@ -14,7 +14,15 @@ interface CloudProps {
   boundsWidth: number;
 }
 
-const Cloud = ({ x, y, texture, width, height, speed, boundsWidth }: CloudProps) => {
+const Cloud = ({
+                 x,
+                 y,
+                 texture,
+                 width,
+                 height,
+                 speed,
+                 boundsWidth
+               }: CloudProps) => {
   const sprite = useRef<Sprite>(null!);
 
   useTick(() => {
@@ -34,7 +42,7 @@ const Cloud = ({ x, y, texture, width, height, speed, boundsWidth }: CloudProps)
       width={width}
       height={height}
       eventMode="static"
-      zIndex={3}
+      zIndex={0}
     />
   );
 };

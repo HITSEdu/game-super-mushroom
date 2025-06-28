@@ -3,7 +3,7 @@
   "texture": "player",
   "source": "src/assets/player/player_2.png", 
   "speed": 2,
-  "jumpPower": 18,
+  "jumpPower": 15,
   "size": {
     "width": 24,
     "height": 48

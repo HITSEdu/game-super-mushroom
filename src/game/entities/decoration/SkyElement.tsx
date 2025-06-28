@@ -18,7 +18,7 @@ const SkyElement = ({x, y, texture}: {
       width={TILE_SIZE * 5}
       height={TILE_SIZE * 5}
       eventMode={'static'}
-      zIndex={1}
+      zIndex={0}
     />
   );
 }
