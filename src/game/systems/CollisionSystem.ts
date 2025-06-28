@@ -142,7 +142,7 @@ export const handleObstacleCollision = (
   }
 
   const boxX = {
-    x: newX,
+    x: position.x,
     y: newY,
     width: playerWidth,
     height: playerHeight,

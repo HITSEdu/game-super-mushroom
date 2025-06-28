@@ -136,5 +136,18 @@
     "killedToast": "You killed the monster!"
   },
   "jumpInto": "Jump into SZNS",
-  "timeJump": "Press [F] to Time Jump"
+  "timeJump": "Press [F] to Time Jump",
+  "synopsis": {
+    "name": "Synopsis",
+    "understood": "Understood",
+    "text": "A disturbance has occurred in the depths of the Chronosphere: as a result of an unsuccessful experiment by a time traveler, Myrial space has been destabilized. You need to eliminate all the anomalies and correct the distortion of space. Good luck!"
+  },
+  "tutorial": {
+    "title": "Tutorial",
+    "page1": "Use A and D to move left and right.\nPress Space to jump.\nUse W and S to move up and down when possible.",
+    "page2": "Press E to interact with objects: doors, boxes, fountains, spirits, and more.",
+    "page3": "Press F to interact with living beings — monsters, dogs, etc.\nSome may respond differently.",
+    "page4": "You can skip dialogues by pressing Enter.\nYour inventory is located at the bottom of the screen — click on items to use them or read their descriptions.\nSome items contain important information.",
+    "understood": "Got it"
+  }
 }

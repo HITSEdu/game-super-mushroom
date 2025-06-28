@@ -4,13 +4,14 @@ import MemoryModal from "../components/modals/MemoryModal.tsx";
 import MusicModal from "../components/modals/MusicModal.tsx";
 import ButterflyModal from "../components/modals/ButterflyModal.tsx";
 import PortalModal from "../components/modals/PortalModal.tsx";
+import TutorialModal from "../components/modals/TutorialModal.tsx";
 
 export const items: IItem[] = [
   {
     id: 1,
     source: 'assets/items/memory.png',
     amount: 0,
-    action: () => useModalStore.getState().open(<MemoryModal />),
+    action: () => useModalStore.getState().open(<TutorialModal />),
     height: 2
   },
   {

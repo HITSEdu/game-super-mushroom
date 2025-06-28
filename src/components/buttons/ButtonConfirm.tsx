@@ -11,17 +11,18 @@ const ButtonConfirm = () => {
   const {t} = useTranslation('translations')
   const {reset: resetMenu} = useMenuStore()
 
-  const changeGlobalState = useGlobalStore((state) => state.change)
   const resetLevelsState = useLevelsStore((state) => state.resetProgress)
   const {change: playerChange} = usePlayerStore();
   const {reset: resetInventory} = useInventoryStore();
   const {resetMiniGames} = useMiniGameStore();
+  const {setStoryShown, change: changeGlobalState} = useGlobalStore();
 
   return (
     <Button
       title={t('confirm')}
       onClick={() => {
         resetLevelsState();
+        setStoryShown(false);
         resetMenu();
         resetInventory();
         playerChange();

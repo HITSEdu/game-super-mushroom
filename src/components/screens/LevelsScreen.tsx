@@ -8,54 +8,53 @@ import ButtonBack from "../buttons/ButtonBack.tsx";
 import Button from "../buttons/Button.tsx";
 import {useEffect, useState} from "react";
 import {motion, AnimatePresence} from 'framer-motion';
-import {sounds} from "../../game/utils/sound.ts";
 import {H1_STYLES} from "../../constants/values.ts";
+import StoryIntro from "../ui/StoryIntro.tsx";
 
 const BASE_URL = import.meta.env.BASE_URL;
 
 const LevelsScreen = () => {
   const {t} = useTranslation('translations');
   const {textureString: playerTexture, change: changePlayer} = usePlayerStore();
-  const changeGlobalState = useGlobalStore((state) => state.change);
+  const {
+    storyShown,
+    setStoryShown,
+    change: changeGlobalState,
+  } = useGlobalStore();
+
   const startLevel = useGameSessionStore((state) => state.startLevel);
   const levels = useLevelsStore((state) => state.levels);
 
   const [isJumping, setIsJumping] = useState(false);
+  const [showStory, setShowStory] = useState(false);
 
   const startJump = () => {
     const firstLevel = Object.values(levels).find(l => l.unlocked);
     if (!firstLevel) return;
 
     setIsJumping(true);
-    // sounds['portal'].play();
-
-    sounds['portal'].rate(1);
-    let rate = 1.0;
-    const slowdown = setInterval(() => {
-      rate -= 0.05;
-      if (rate <= 0.3) {
-        clearInterval(slowdown);
-      } else {
-        sounds['portal'].rate(rate);
-      }
-    }, 100);
 
     setTimeout(() => {
-      startLevel(firstLevel.id);
-      changeGlobalState('playing');
-    }, 3000);
+      if (storyShown) {
+        startLevel(firstLevel.id);
+        changeGlobalState('playing');
+      } else {
+        setShowStory(true);
+      }
+    }, 2000);
   };
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.key.toLowerCase() === 'а' || e.key.toLowerCase() === 'f') && !isJumping) {
+      if ((e.key.toLowerCase() === 'а' || e.key.toLowerCase() === 'f') && !isJumping && !showStory) {
         startJump();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [levels, isJumping]);
+  }, [isJumping, showStory, levels]);
+
 
   if (!playerTexture) {
     return (
@@ -108,7 +107,7 @@ const LevelsScreen = () => {
       </motion.div>
 
       <motion.div
-        className="flex gap-4 z-10 mb-2"
+        className="relative flex-center gap-4 z-10 mb-2 w-full"
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{delay: 0.7}}
@@ -121,6 +120,17 @@ const LevelsScreen = () => {
           title={t("changePlayer")}
           onClick={() => changePlayer()}
         />
+        {storyShown &&
+          <div className='absolute right-4'>
+            <Button
+              title={t('synopsis.name')}
+              onClick={() => {
+                setStoryShown(false);
+                setShowStory(prev => !prev);
+              }}
+            />
+          </div>
+        }
       </motion.div>
 
       <AnimatePresence>
@@ -158,6 +168,18 @@ const LevelsScreen = () => {
           </>
         )}
       </AnimatePresence>
+      {showStory && (
+        <StoryIntro
+          onClose={() => {
+            const firstLevel = Object.values(levels).find(l => l.unlocked);
+            if (firstLevel) {
+              setStoryShown(true);
+              startLevel(firstLevel.id);
+              changeGlobalState('playing');
+            }
+          }}
+        />
+      )}
     </div>
   );
 };
