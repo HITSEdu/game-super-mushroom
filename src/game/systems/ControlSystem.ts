@@ -1,4 +1,3 @@
-// ControlSystem.ts
 import {usePlayerStore} from '../../store/PlayerStore.ts';
 import {enemies} from '../entities/enemy/enemies.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
@@ -80,7 +79,7 @@ export function initControlSystem() {
     if (session.status === 'playing') {
       const isVertical = player.onLadder || level.isMiniGame;
 
-      if (!player.stacked) {
+      if (!player.stacked.x) {
         if (keys.left && !keys.right) player.come('left');
         else if (keys.right && !keys.left) player.come('right');
         else player.setVelocity('x', 0);

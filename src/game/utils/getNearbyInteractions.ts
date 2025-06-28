@@ -19,6 +19,15 @@ import {isNearEnough} from "../systems/CollisionSystem.ts";
 import i18next from "i18next";
 import {enemies} from "../entities/enemy/enemies.ts";
 
+const notInteractive = (type: string) => {
+  const types = ['arrow', 'trap'];
+  for (const it of types) {
+    if (type.startsWith(it)) return true;
+  }
+
+  return false;
+}
+
 export function getNearbyInteractions(
   playerX: number,
   playerY: number,
@@ -53,14 +62,17 @@ export function getNearbyInteractions(
         key: "use",
         title: "useTheObstacle",
         action: miniGame.deliverItem,
+        holdable: true,
+        holdDuration: 750
       });
     }
   }
 
   for (const enemy of enemies) {
-    if (enemy.state === 'dead') continue;
+    if (enemy.state === 'dead' || notInteractive(enemy.type)) continue;
 
-    const isNear = isNearEnoughWrapper(enemy.position.x, enemy.position.y, enemy.size.width, enemy.size.height, 52);
+    const isNear = enemy.isAngry ? isNearEnoughWrapper(enemy.position.x, enemy.position.y, enemy.size.width, enemy.size.height, 52) :
+      isNearEnoughWrapper(enemy.position.x, enemy.position.y, enemy.size.width, enemy.size.height, 24);
     if (!isNear) continue;
 
     interactions.push({
@@ -117,6 +129,7 @@ export function getNearbyInteractions(
         key: "use",
         title: "useTheObstacle",
         action: globalObstacles[obs.type],
+        holdable: obs.type === 'bag' || obs.type === 'shelf',
       });
     }
   }
@@ -165,6 +178,7 @@ export function getNearbyInteractions(
           ),
         }));
       },
+      holdable: item.type.startsWith('flower'),
     });
   }
 

@@ -107,7 +107,19 @@
     "noItem": "Please collect the item first: {{itemName}}",
     "takeBox": "You picked up a box. Deliver it to the zone.",
     "allBoxesDelivered": "All boxes delivered!",
-    "allFlowersDelivered": "All Flowers collected!"
+    "allFlowersDelivered": "All Flowers collected!",
+    "title": {
+      "spring": "Spring title",
+      "summer": "Summer title",
+      "autumn": "Autumn title",
+      "winter": "Winter title"
+    },
+    "description": {
+      "spring": "Spring desc",
+      "summer": "Summer desc",
+      "autumn": "Autumn desc",
+      "winter": "Winter desc"
+    }
   },
   "success": "Success!",
   "titles": {

@@ -65,7 +65,8 @@ export interface IEnemy {
   position: PointData;
   speed: number;
   patrolArea: [number, number];
-  direction: 'left' | 'right';
+  directionAxis: 'x' | 'y';
+  direction: 'left' | 'right' | 'up' | 'down';
   size: ObjectSize;
   type: string;
   update: () => void;
@@ -99,4 +100,15 @@ export interface MiniGameConfig {
   itemName: string;
   deliverTo?: string;
   description: string;
+  action?: () => void;
 }
+
+export interface EnemySpawnConfig {
+  x: number;
+  y: number;
+  axis: 'x' | 'y';
+  type?: string;
+  speed?: number;
+  size?: ObjectSize;
+  isAngry?: boolean;
+};

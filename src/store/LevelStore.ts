@@ -4,13 +4,18 @@ import {loadLevel} from '../game/utils/loader.ts';
 import {v4 as uuidv4} from 'uuid';
 import {
   DEFAULT_END_POSITION,
-  DEFAULT_START_POSITION
+  DEFAULT_ENEMY_MINI_GAME_SIZE,
+  DEFAULT_PLAYER_MINI_GAME_SIZE,
+  DEFAULT_PLAYER_SIZE,
+  DEFAULT_START_POSITION,
+  GAME_HEIGHT,
+  GAME_WIDTH, TILE_SIZE
 } from "../constants/values.ts";
 import {
   createEnemy,
   enemies as activeEnemies
 } from "../game/entities/enemy/enemies.ts";
-import type {ObjectSize} from "../constants/interfaces.ts";
+import type {EnemySpawnConfig, ObjectSize} from "../constants/interfaces.ts";
 import {type IEnemy} from '../constants/interfaces.ts'
 import type {SeasonType} from "../constants/types.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
@@ -75,6 +80,8 @@ interface LevelState {
   gravity: number;
   isLoaded: boolean;
 
+  spawnEnemies: (spawns: EnemySpawnConfig[]) => void;
+  removeEnemies: () => void;
   load: (id: string, season?: SeasonType) => Promise<void>;
   reset: () => void;
 }
@@ -97,7 +104,14 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
     const data = await loadLevel(id, currentSeason);
 
-    set({isMiniGame: Number(id) > 4});
+    if (Number(id) > 4) {
+      set({isMiniGame: true});
+      usePlayerStore.setState({size: DEFAULT_PLAYER_MINI_GAME_SIZE})
+    } else {
+      set({isMiniGame: false});
+      usePlayerStore.setState({size: DEFAULT_PLAYER_SIZE})
+    }
+
     useGameSessionStore.setState({currentLevelID: id});
 
     activeEnemies.length = 0;
@@ -175,6 +189,40 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       enemies: activeEnemies,
       isLoaded: true
     });
+  },
+
+  spawnEnemies: (spawns: EnemySpawnConfig[]) => {
+    const size = DEFAULT_ENEMY_MINI_GAME_SIZE;
+    const defaultSpeed = 2;
+
+    const patrolArea = {
+      x: [0, GAME_WIDTH - TILE_SIZE],
+      y: [0, GAME_HEIGHT - TILE_SIZE],
+    } as const;
+
+    for (const spawn of spawns) {
+      const [start, end] = patrolArea[spawn.axis];
+
+      createEnemy(
+        uuidv4(),
+        spawn.x,
+        spawn.y,
+        start,
+        end,
+        spawn.speed ?? defaultSpeed,
+        spawn.type ?? "arrow",
+        spawn.size ?? size,
+        spawn.isAngry ?? true,
+        spawn.axis
+      );
+    }
+
+    set({enemies: [...activeEnemies]});
+  },
+
+  removeEnemies: () => {
+    activeEnemies.length = 0;
+    set({enemies: []});
   },
 
   reset: () => {

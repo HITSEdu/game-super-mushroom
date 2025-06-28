@@ -6,6 +6,7 @@ import type {CollisionDirection} from '../../constants/types.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {getNearbyInteractions} from "../utils/getNearbyInteractions.ts";
 import {useMiniGameStore} from "../../store/MiniGameStore.ts";
+import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 export const isNearEnough = (
   ax: number,
@@ -78,6 +79,11 @@ export const handlePlayerEnemyCollision = () => {
     const direction = getCollisionDirection(playerBox, enemyBox);
     if (direction !== null) {
       useGameSessionStore.getState().lose();
+
+      if (useLevelStore.getState().isMiniGame) {
+        useInventoryStore.getState().removeMiniGameItems();
+        useMiniGameStore.setState({carriedItem: null});
+      }
     }
   }
 }
@@ -96,7 +102,8 @@ export const handleObstacleCollision = (
   size: ObjectSize,
   velocityX: number,
   velocityY: number,
-  player?: boolean
+  player?: boolean,
+  hollow?: boolean,
 ) => {
   const {obstacles, gravity, items, spirits} = useLevelStore.getState();
 
@@ -104,8 +111,8 @@ export const handleObstacleCollision = (
   const playerHeight = size.height;
 
   let newVelocityX = velocityX;
-
   let newVelocityY = velocityY;
+
   if (Math.abs(newVelocityY) < 0.1) {
     newVelocityY = 0;
   }
@@ -114,17 +121,29 @@ export const handleObstacleCollision = (
   let newY = position.y + newVelocityY;
 
   let onGround = false;
-  let stacked = false;
+  const stacked = {x: false, y: false};
 
-  const nearInteractive = getNearbyInteractions(
+  const nearInteractive = player ? getNearbyInteractions(
     newX, newY, playerWidth, playerHeight, obstacles, items, spirits
-  );
+  ) : null;
 
   let isOnLadder = false;
 
+  if (hollow) {
+    return {
+      position: {x: newX, y: newY},
+      velocityX: newVelocityX,
+      velocityY: newVelocityY,
+      onGround,
+      stacked,
+      nearInteractive,
+      onLadder: isOnLadder,
+    };
+  }
+
   const boxX = {
     x: newX,
-    y: position.y,
+    y: newY,
     width: playerWidth,
     height: playerHeight,
   };
@@ -148,11 +167,11 @@ export const handleObstacleCollision = (
     if (direction === 'left') {
       newX = obs.x - playerWidth;
       newVelocityX = 0;
-      stacked = true;
+      stacked.x = true;
     } else if (direction === 'right') {
       newX = obs.x + obs.width;
       newVelocityX = 0;
-      stacked = true;
+      stacked.x = true;
     }
   }
 
@@ -193,9 +212,11 @@ export const handleObstacleCollision = (
       newY = obs.y - playerHeight;
       newVelocityY = 0;
       onGround = true;
+      stacked.y = true;
     } else if (direction === 'bottom') {
       newY = obs.y + obs.height;
       newVelocityY = 0;
+      stacked.y = true;
     }
   }
 
@@ -222,6 +243,7 @@ export const handleObstacleCollision = (
         onGround = true;
         newVelocityY = 0;
         newY = obs.y - playerHeight;
+        stacked.y = true;
         break;
       }
     }

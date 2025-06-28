@@ -23,7 +23,7 @@ interface PlayerStore {
   jumpPower: number;
   onGround: boolean;
   size: ObjectSize;
-  stacked: boolean;
+  stacked: { x: boolean; y: boolean; };
   season: SeasonType;
   onLadder: boolean;
   id: number;
@@ -61,7 +61,7 @@ export const usePlayerStore = create<PlayerStore>()(
       speed: 10,
       jumpPower: 20,
       onGround: true,
-      stacked: false,
+      stacked: {x: false, y: false},
       season: 'underworld',
       id: 1,
 
@@ -74,7 +74,7 @@ export const usePlayerStore = create<PlayerStore>()(
           nearInteractive: [],
           onLadder: false,
           onGround: true,
-          stacked: false,
+          stacked: {x: false, y: false},
           texture,
           textureString,
           size,
@@ -114,7 +114,7 @@ export const usePlayerStore = create<PlayerStore>()(
         velocityY: 0,
         velocityX: 0,
         onGround: true,
-        stacked: false,
+        stacked: {x: false, y: false},
         season: 'underworld',
         id: 1,
       }),

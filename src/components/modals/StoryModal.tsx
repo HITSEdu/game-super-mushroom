@@ -1,4 +1,4 @@
-import {useState, type ReactNode} from "react";
+import {useState, type ReactNode, useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {useModalStore} from "../../store/ModalStore";
 
@@ -42,6 +42,19 @@ const StoryModal = ({
   };
 
   const currentPage = pages[page];
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        if (page < pages.length - 1) {
+          handleNext();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [page, pages.length]);
 
   return (
     <div

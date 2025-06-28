@@ -5,7 +5,16 @@ import {useToastStore} from "../../../store/ToastStore.ts";
 
 export const enemies: IEnemy[] = [];
 
-export const createEnemy = (id: string, x: number, y: number, patrolStart: number, patrolEnd: number, speed: number, type: string, size: ObjectSize, isAngry: boolean): IEnemy => {
+const isHollow = (type: string) => {
+  const hollowTypes = ['arrow', "underworld_spirit"];
+  for (const it of hollowTypes) {
+    if (type.startsWith(it)) return true;
+  }
+
+  return false;
+}
+
+export const createEnemy = (id: string, x: number, y: number, patrolStart: number, patrolEnd: number, speed: number, type: string, size: ObjectSize, isAngry: boolean, directionAxis: 'x' | 'y' = 'x'): IEnemy => {
   const enemy: IEnemy = {
     state: "alive",
     size: size,
@@ -13,7 +22,8 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
     position: {x: x, y: y},
     speed: speed,
     patrolArea: [patrolStart, patrolEnd],
-    direction: 'right',
+    directionAxis,
+    direction: directionAxis === 'x' ? 'right' : 'down',
     type: type,
     onGround: true,
     velocityY: 0,
@@ -22,26 +32,47 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
     update() {
       if (this.state === 'dead') return;
 
-      const result = handleObstacleCollision(this.position, this.size, this.velocityX, this.velocityY);
+      const result = handleObstacleCollision(this.position, this.size, this.velocityX, this.velocityY, false, isHollow(this.type));
       this.position = result.position;
       this.velocityY = result.velocityY;
       this.velocityX = result.velocityX;
       this.onGround = result.onGround;
 
-      if (this.direction === 'right') {
-        if (this.position.x < this.patrolArea[1] && !result.stacked) {
-          this.velocityX = this.speed;
+      if (this.directionAxis === 'x') {
+        if (this.direction === 'right') {
+          if (this.position.x < this.patrolArea[1] && !result.stacked.x) {
+            this.velocityX = this.speed;
+          } else {
+            this.direction = 'left';
+          }
         } else {
-          this.direction = 'left';
+          if (this.position.x > this.patrolArea[0] && !result.stacked.x) {
+            this.velocityX = -this.speed;
+          } else {
+            this.direction = 'right';
+          }
         }
+        this.velocityY = 0;
       } else {
-        if (this.position.x > this.patrolArea[0] && !result.stacked) {
-          this.velocityX = -this.speed;
+        if (this.direction === 'down') {
+          if (this.position.y < this.patrolArea[1] && !result.stacked.y) {
+            this.velocityY = this.speed;
+          } else {
+            this.direction = 'up';
+            this.position.y -= 1;
+          }
         } else {
-          this.direction = 'right';
+          if (this.position.y > this.patrolArea[0] && !result.stacked.y) {
+            this.velocityY = -this.speed;
+          } else {
+            this.direction = 'down';
+            this.position.y += 1;
+          }
         }
+        this.velocityX = 0;
       }
     },
+
     kill() {
       this.state = 'dead';
       this.velocityX = 0;

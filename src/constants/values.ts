@@ -2,8 +2,10 @@ import type {ObjectSize} from "./interfaces.ts";
 import type {PointData} from "pixi.js";
 import type {SeasonType} from "./types.ts";
 
-export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 22, height: 48}
+export const DEFAULT_PLAYER_SIZE: ObjectSize = {width: 24, height: 48}
 export const DEFAULT_PLAYER_MINI_GAME_SIZE: ObjectSize = {width: 22, height: 22}
+
+export const DEFAULT_ENEMY_MINI_GAME_SIZE: ObjectSize = {width: 24, height: 24}
 
 export const UNDERWORLD_SPAWN = {
   x: 24,

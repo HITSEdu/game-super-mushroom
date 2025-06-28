@@ -107,7 +107,19 @@
     "noItem": "Сначала соберите предмет: {{itemName}}",
     "takeBox": "Вы взяли коробку. Отнесите её в зону.",
     "allBoxesDelivered": "Все коробки доставлены!",
-    "allFlowersDelivered": "Все цветы собраны!"
+    "allFlowersDelivered": "Все цветы собраны!",
+    "title": {
+      "spring": "Spring заголовок",
+      "summer": "Summer заголовок",
+      "autumn": "Autumn заголовок",
+      "winter": "Winter заголовок"
+    },
+    "description": {
+      "spring": "Spring описание",
+      "summer": "Summer описание",
+      "autumn": "Autumn описание",
+      "winter": "Winter описание"
+    }
   },
   "success": "Успешно!",
   "titles": {

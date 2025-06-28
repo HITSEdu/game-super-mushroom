@@ -67,8 +67,9 @@ export const useMiniGameStore = create<MiniGameState>()(
 
       takeBoxFromShelf: () => {
         const state = get();
-        const config = MINI_GAMES[state.currentMiniGame!];
-        if (!state.currentMiniGame || config.id !== 'autumn') return;
+        if (!state.currentMiniGame) return;
+        const config = MINI_GAMES[state.currentMiniGame];
+        if (config.id !== 'autumn') return;
 
         if (!state.canInteract) {
           useToastStore.getState().show(i18next.t('translations:miniGame.allBoxesDelivered'));
@@ -87,6 +88,17 @@ export const useMiniGameStore = create<MiniGameState>()(
         set({
           carriedItem: config.itemId,
         });
+
+        const {deliveryZones, activeDeliveryZoneIndex} = get();
+        const zone = deliveryZones[activeDeliveryZoneIndex];
+        if (!zone) return;
+
+        useLevelStore.getState().spawnEnemies([
+          {x: zone.x - 10, y: 24 + 16, axis: 'y', type: 'arrow', speed: 4},
+          {x: zone.x + 10, y: 24 + 16, axis: 'y', type: 'arrow', speed: 4},
+          {x: 24 + 16, y: zone.y - 10, axis: 'x', type: 'arrow', speed: 4},
+          {x: 24 + 16, y: zone.y + 10, axis: 'x', type: 'arrow', speed: 4},
+        ]);
       },
 
       markCompleted: (id) =>
@@ -115,6 +127,7 @@ export const useMiniGameStore = create<MiniGameState>()(
 
             useLevelStore.getState().load(config.level, config.id).then(() => {
               usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
+              if (config.action) config.action();
             });
 
             set({currentMiniGame: id});
@@ -159,6 +172,7 @@ export const useMiniGameStore = create<MiniGameState>()(
           );
 
           if (id === 'autumn') {
+            useLevelStore.getState().removeEnemies();
             if (nextCount < config.goal) {
               get().nextDeliveryZone();
             }

@@ -108,7 +108,7 @@ const LevelsScreen = () => {
       </motion.div>
 
       <motion.div
-        className="flex gap-4 z-10"
+        className="flex gap-4 z-10 mb-2"
         initial={{opacity: 0}}
         animate={{opacity: 1}}
         transition={{delay: 0.7}}
@@ -127,7 +127,6 @@ const LevelsScreen = () => {
         {isJumping && (
           <>
             <motion.div
-              // className="absolute inset-0 z-20 bg-gradient-to-br from-cyan-400 via-indigo-600 to-purple-800"
               className="absolute inset-0 z-20 bg-black"
               initial={{opacity: 0}}
               animate={{opacity: 1}}
