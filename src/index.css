@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: Pixel Digivolve;
-    src: url("src/assets/fonts/pixel_digivolve.otf");
+    src: url("/assets/fonts/pixel_digivolve.otf");
 }
 
 @theme {

@@ -1,5 +1,5 @@
 import {create} from 'zustand'
-import {manifest} from "../assets/manifest.ts";
+import {manifest} from "../../public/assets/manifest.ts";
 import {Assets} from "pixi.js";
 
 interface AssetsStore {

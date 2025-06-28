@@ -3,13 +3,13 @@ export const manifest = {
     {
       name: 'bat',
       assets: [
-        {alias: 'bat', src: 'src/assets/creatures/enemy/bat.png'},
+        {alias: 'bat', src: 'assets/creatures/enemy/bat.png'},
       ],
     },
     {
       name: 'slug',
       assets: [
-        {alias: 'slug', src: 'src/assets/creatures/enemy/slug.png'},
+        {alias: 'slug', src: 'assets/creatures/enemy/slug.png'},
       ],
     },
     {
@@ -17,7 +17,7 @@ export const manifest = {
       assets: [
         {
           alias: 'underworld_spirit',
-          src: 'src/assets/creatures/enemy/underworld_spirit.png'
+          src: 'assets/creatures/enemy/underworld_spirit.png'
         },
       ],
     },
@@ -25,164 +25,164 @@ export const manifest = {
     {
       name: 'dog_autumn',
       assets: [
-        {alias: 'dog_autumn', src: 'src/assets/creatures/dog/dog_autumn.png'},
+        {alias: 'dog_autumn', src: 'assets/creatures/dog/dog_autumn.png'},
       ],
     },
     {
       name: 'dog_winter',
       assets: [
-        {alias: 'dog_winter', src: 'src/assets/creatures/dog/dog_winter.png'},
+        {alias: 'dog_winter', src: 'assets/creatures/dog/dog_winter.png'},
       ],
     },
     {
       name: 'dog_summer',
       assets: [
-        {alias: 'dog_summer', src: 'src/assets/creatures/dog/dog_summer.png'},
+        {alias: 'dog_summer', src: 'assets/creatures/dog/dog_summer.png'},
       ],
     },
     {
       name: 'dog_spring',
       assets: [
-        {alias: 'dog_spring', src: 'src/assets/creatures/dog/dog_spring.png'},
+        {alias: 'dog_spring', src: 'assets/creatures/dog/dog_spring.png'},
       ],
     },
 
     {
       name: 'flower1',
       assets: [
-        {alias: 'flower1', src: 'src/assets/obstacles/flowers/flower1.png'},
+        {alias: 'flower1', src: 'assets/obstacles/flowers/flower1.png'},
       ],
     },
     {
       name: 'flower2',
       assets: [
-        {alias: 'flower2', src: 'src/assets/obstacles/flowers/flower2.png'},
+        {alias: 'flower2', src: 'assets/obstacles/flowers/flower2.png'},
       ],
     },
     {
       name: 'flower3',
       assets: [
-        {alias: 'flower3', src: 'src/assets/obstacles/flowers/flower3.png'},
+        {alias: 'flower3', src: 'assets/obstacles/flowers/flower3.png'},
       ],
     },
     {
       name: 'flower4',
       assets: [
-        {alias: 'flower4', src: 'src/assets/obstacles/flowers/flower4.png'},
+        {alias: 'flower4', src: 'assets/obstacles/flowers/flower4.png'},
       ],
     },
     {
       name: 'flower5',
       assets: [
-        {alias: 'flower5', src: 'src/assets/obstacles/flowers/flower5.png'},
+        {alias: 'flower5', src: 'assets/obstacles/flowers/flower5.png'},
       ],
     },
     {
       name: 'flower6',
       assets: [
-        {alias: 'flower6', src: 'src/assets/obstacles/flowers/flower6.png'},
+        {alias: 'flower6', src: 'assets/obstacles/flowers/flower6.png'},
       ],
     },
     {
       name: 'flower7',
       assets: [
-        {alias: 'flower7', src: 'src/assets/obstacles/flowers/flower7.png'},
+        {alias: 'flower7', src: 'assets/obstacles/flowers/flower7.png'},
       ],
     },
     {
       name: 'flower8',
       assets: [
-        {alias: 'flower8', src: 'src/assets/obstacles/flowers/flower8.png'},
+        {alias: 'flower8', src: 'assets/obstacles/flowers/flower8.png'},
       ],
     },
     {
       name: 'flower9',
       assets: [
-        {alias: 'flower9', src: 'src/assets/obstacles/flowers/flower9.png'},
+        {alias: 'flower9', src: 'assets/obstacles/flowers/flower9.png'},
       ],
     },
     {
       name: 'flower10',
       assets: [
-        {alias: 'flower10', src: 'src/assets/obstacles/flowers/flower10.png'},
+        {alias: 'flower10', src: 'assets/obstacles/flowers/flower10.png'},
       ],
     },
     {
       name: 'flower11',
       assets: [
-        {alias: 'flower11', src: 'src/assets/obstacles/flowers/flower11.png'},
+        {alias: 'flower11', src: 'assets/obstacles/flowers/flower11.png'},
       ],
     },
     {
       name: 'flower12',
       assets: [
-        {alias: 'flower12', src: 'src/assets/obstacles/flowers/flower12.png'},
+        {alias: 'flower12', src: 'assets/obstacles/flowers/flower12.png'},
       ],
     },
 
     {
       name: 'bag',
       assets: [
-        {alias: 'bag', src: 'src/assets/obstacles/bag.png'},
+        {alias: 'bag', src: 'assets/obstacles/bag.png'},
       ],
     },
 
     {
       name: 'shelf',
       assets: [
-        {alias: 'shelf', src: 'src/assets/obstacles/shelf.png'},
+        {alias: 'shelf', src: 'assets/obstacles/shelf.png'},
       ],
     },
 
     {
       name: 'box1',
       assets: [
-        {alias: 'box1', src: 'src/assets/obstacles/boxes/box1.png'},
+        {alias: 'box1', src: 'assets/obstacles/boxes/box1.png'},
       ],
     },
 
     {
       name: 'box2',
       assets: [
-        {alias: 'box2', src: 'src/assets/obstacles/boxes/box2.png'},
+        {alias: 'box2', src: 'assets/obstacles/boxes/box2.png'},
       ],
     },
 
     {
       name: 'box_zone',
       assets: [
-        {alias: 'box_zone', src: 'src/assets/obstacles/boxes/box_zone.png'},
+        {alias: 'box_zone', src: 'assets/obstacles/boxes/box_zone.png'},
       ],
     },
 
     {
       name: 'item_winter',
       assets: [
-        {alias: 'item_winter', src: 'src/assets/items/item_winter.png'},
+        {alias: 'item_winter', src: 'assets/items/item_winter.png'},
       ],
     },
     {
       name: 'item_spring',
       assets: [
-        {alias: 'item_spring', src: 'src/assets/items/item_spring.png'},
+        {alias: 'item_spring', src: 'assets/items/item_spring.png'},
       ],
     },
     {
       name: 'item_summer',
       assets: [
-        {alias: 'item_summer', src: 'src/assets/items/item_summer.png'},
+        {alias: 'item_summer', src: 'assets/items/item_summer.png'},
       ],
     },
     {
       name: 'item_autumn',
       assets: [
-        {alias: 'item_autumn', src: 'src/assets/items/item_autumn.png'},
+        {alias: 'item_autumn', src: 'assets/items/item_autumn.png'},
       ],
     },
     {
       name: 'portal',
       assets: [
-        {alias: 'portal', src: 'src/assets/items/portal.png'},
+        {alias: 'portal', src: 'assets/items/portal.png'},
       ],
     },
     {
@@ -190,7 +190,7 @@ export const manifest = {
       assets: [
         {
           alias: 'door_underworld',
-          src: 'src/assets/obstacles/door/door_underworld.png'
+          src: 'assets/obstacles/door/door_underworld.png'
         },
       ],
     },
@@ -199,7 +199,7 @@ export const manifest = {
       assets: [
         {
           alias: 'door_winter',
-          src: 'src/assets/obstacles/door/door_winter.png'
+          src: 'assets/obstacles/door/door_winter.png'
         },
       ],
     },
@@ -208,7 +208,7 @@ export const manifest = {
       assets: [
         {
           alias: 'door_summer',
-          src: 'src/assets/obstacles/door/door_summer.png'
+          src: 'assets/obstacles/door/door_summer.png'
         },
       ],
     },
@@ -217,7 +217,7 @@ export const manifest = {
       assets: [
         {
           alias: 'door_spring',
-          src: 'src/assets/obstacles/door/door_spring.png'
+          src: 'assets/obstacles/door/door_spring.png'
         },
       ],
     },
@@ -226,7 +226,7 @@ export const manifest = {
       assets: [
         {
           alias: 'door_autumn',
-          src: 'src/assets/obstacles/door/door_autumn.png'
+          src: 'assets/obstacles/door/door_autumn.png'
         },
       ],
     },
@@ -235,7 +235,7 @@ export const manifest = {
       assets: [
         {
           alias: 'ladder_underworld',
-          src: 'src/assets/obstacles/ladder/ladder_underworld.png'
+          src: 'assets/obstacles/ladder/ladder_underworld.png'
         },
       ],
     },
@@ -244,7 +244,7 @@ export const manifest = {
       assets: [
         {
           alias: 'ladder_winter',
-          src: 'src/assets/obstacles/ladder/ladder_winter.png'
+          src: 'assets/obstacles/ladder/ladder_winter.png'
         },
       ],
     },
@@ -253,7 +253,7 @@ export const manifest = {
       assets: [
         {
           alias: 'ladder_summer',
-          src: 'src/assets/obstacles/ladder/ladder_summer.png'
+          src: 'assets/obstacles/ladder/ladder_summer.png'
         },
       ],
     },
@@ -262,7 +262,7 @@ export const manifest = {
       assets: [
         {
           alias: 'ladder_spring',
-          src: 'src/assets/obstacles/ladder/ladder_spring.png'
+          src: 'assets/obstacles/ladder/ladder_spring.png'
         },
       ],
     },
@@ -271,7 +271,7 @@ export const manifest = {
       assets: [
         {
           alias: 'ladder_autumn',
-          src: 'src/assets/obstacles/ladder/ladder_autumn.png'
+          src: 'assets/obstacles/ladder/ladder_autumn.png'
         },
       ],
     },
@@ -280,7 +280,7 @@ export const manifest = {
       assets: [
         {
           alias: 'trap',
-          src: 'src/assets/obstacles/trap.png'
+          src: 'assets/obstacles/trap.png'
         },
       ],
     },
@@ -289,7 +289,7 @@ export const manifest = {
       assets: [
         {
           alias: 'fountain',
-          src: 'src/assets/obstacles/fountain.png'
+          src: 'assets/obstacles/fountain.png'
         },
       ],
     },
@@ -299,7 +299,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_underworld',
-          src: 'src/assets/player/spritesheet/player_underworld.png'
+          src: 'assets/player/spritesheet/player_underworld.png'
         },
       ],
     },
@@ -309,7 +309,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_1_winter',
-          src: 'src/assets/player/spritesheet/player_1_winter.png'
+          src: 'assets/player/spritesheet/player_1_winter.png'
         },
       ],
     },
@@ -318,7 +318,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_1_summer',
-          src: 'src/assets/player/spritesheet/player_1_summer.png'
+          src: 'assets/player/spritesheet/player_1_summer.png'
         },
       ],
     },
@@ -327,7 +327,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_1_spring',
-          src: 'src/assets/player/spritesheet/player_1_spring.png'
+          src: 'assets/player/spritesheet/player_1_spring.png'
         },
       ],
     },
@@ -336,7 +336,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_1_autumn',
-          src: 'src/assets/player/spritesheet/player_1_autumn.png'
+          src: 'assets/player/spritesheet/player_1_autumn.png'
         },
       ],
     },
@@ -346,7 +346,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_2_winter',
-          src: 'src/assets/player/spritesheet/player_2_winter.png'
+          src: 'assets/player/spritesheet/player_2_winter.png'
         },
       ],
     },
@@ -355,7 +355,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_2_summer',
-          src: 'src/assets/player/spritesheet/player_2_summer.png'
+          src: 'assets/player/spritesheet/player_2_summer.png'
         },
       ],
     },
@@ -364,7 +364,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_2_spring',
-          src: 'src/assets/player/spritesheet/player_2_spring.png'
+          src: 'assets/player/spritesheet/player_2_spring.png'
         },
       ],
     },
@@ -373,7 +373,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_2_autumn',
-          src: 'src/assets/player/spritesheet/player_2_autumn.png'
+          src: 'assets/player/spritesheet/player_2_autumn.png'
         },
       ],
     },
@@ -383,7 +383,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_3_winter',
-          src: 'src/assets/player/spritesheet/player_3_winter.png'
+          src: 'assets/player/spritesheet/player_3_winter.png'
         },
       ],
     },
@@ -392,7 +392,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_3_summer',
-          src: 'src/assets/player/spritesheet/player_3_summer.png'
+          src: 'assets/player/spritesheet/player_3_summer.png'
         },
       ],
     },
@@ -401,7 +401,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_3_spring',
-          src: 'src/assets/player/spritesheet/player_3_spring.png'
+          src: 'assets/player/spritesheet/player_3_spring.png'
         },
       ],
     },
@@ -410,7 +410,7 @@ export const manifest = {
       assets: [
         {
           alias: 'player_3_autumn',
-          src: 'src/assets/player/spritesheet/player_3_autumn.png'
+          src: 'assets/player/spritesheet/player_3_autumn.png'
         },
       ],
     },
@@ -419,7 +419,7 @@ export const manifest = {
       assets: [
         {
           alias: 'spirit_laurus',
-          src: 'src/assets/spirit/spirit_laurus.png'
+          src: 'assets/spirit/spirit_laurus.png'
         },
       ],
     },
@@ -428,7 +428,7 @@ export const manifest = {
       assets: [
         {
           alias: 'spirit_mira',
-          src: 'src/assets/spirit/spirit_mira.png'
+          src: 'assets/spirit/spirit_mira.png'
         },
       ],
     },
@@ -437,7 +437,7 @@ export const manifest = {
       assets: [
         {
           alias: 'spirit_onyx',
-          src: 'src/assets/spirit/spirit_onyx.png'
+          src: 'assets/spirit/spirit_onyx.png'
         },
       ],
     },
@@ -446,7 +446,7 @@ export const manifest = {
       assets: [
         {
           alias: 'spirit_swifty',
-          src: 'src/assets/spirit/spirit_swifty.png'
+          src: 'assets/spirit/spirit_swifty.png'
         },
       ],
     },
@@ -455,7 +455,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_underworld',
-          src: 'src/assets/obstacles/platform/default/platform_underworld.png'
+          src: 'assets/obstacles/platform/default/platform_underworld.png'
         },
       ],
     },
@@ -464,7 +464,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_winter',
-          src: 'src/assets/obstacles/platform/default/platform_winter.png'
+          src: 'assets/obstacles/platform/default/platform_winter.png'
         },
       ],
     },
@@ -473,7 +473,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_summer',
-          src: 'src/assets/obstacles/platform/default/platform_summer.png'
+          src: 'assets/obstacles/platform/default/platform_summer.png'
         },
       ],
     },
@@ -482,7 +482,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_spring',
-          src: 'src/assets/obstacles/platform/default/platform_spring.png'
+          src: 'assets/obstacles/platform/default/platform_spring.png'
         },
       ],
     },
@@ -491,7 +491,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_autumn',
-          src: 'src/assets/obstacles/platform/default/platform_autumn.png'
+          src: 'assets/obstacles/platform/default/platform_autumn.png'
         },
       ],
     },
@@ -500,7 +500,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_winter_games',
-          src: 'src/assets/obstacles/platform/games/platform_winter.png'
+          src: 'assets/obstacles/platform/games/platform_winter.png'
         },
       ],
     },
@@ -509,7 +509,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_summer_games',
-          src: 'src/assets/obstacles/platform/games/platform_summer.png'
+          src: 'assets/obstacles/platform/games/platform_summer.png'
         },
       ],
     },
@@ -518,7 +518,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_spring_games',
-          src: 'src/assets/obstacles/platform/games/platform_spring.png'
+          src: 'assets/obstacles/platform/games/platform_spring.png'
         },
       ],
     },
@@ -527,7 +527,7 @@ export const manifest = {
       assets: [
         {
           alias: 'platform_autumn_games',
-          src: 'src/assets/obstacles/platform/games/platform_autumn.png'
+          src: 'assets/obstacles/platform/games/platform_autumn.png'
         },
       ],
     },
@@ -536,7 +536,7 @@ export const manifest = {
       assets: [
         {
           alias: 'glitch1',
-          src: 'src/assets/clouds/glitch/glitch1.png'
+          src: 'assets/clouds/glitch/glitch1.png'
         },
       ],
     },
@@ -545,7 +545,7 @@ export const manifest = {
       assets: [
         {
           alias: 'glitch2',
-          src: 'src/assets/clouds/glitch/glitch2.png'
+          src: 'assets/clouds/glitch/glitch2.png'
         },
       ],
     },
@@ -554,7 +554,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud1',
-          src: 'src/assets/clouds/cloud1.png'
+          src: 'assets/clouds/cloud1.png'
         },
       ],
     },
@@ -563,7 +563,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud2',
-          src: 'src/assets/clouds/cloud2.png'
+          src: 'assets/clouds/cloud2.png'
         },
       ],
     },
@@ -572,7 +572,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud3',
-          src: 'src/assets/clouds/cloud3.png'
+          src: 'assets/clouds/cloud3.png'
         },
       ],
     },
@@ -581,7 +581,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud4',
-          src: 'src/assets/clouds/cloud4.png'
+          src: 'assets/clouds/cloud4.png'
         },
       ],
     },
@@ -590,7 +590,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud5',
-          src: 'src/assets/clouds/cloud5.png'
+          src: 'assets/clouds/cloud5.png'
         },
       ],
     },
@@ -599,7 +599,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud6',
-          src: 'src/assets/clouds/cloud6.png'
+          src: 'assets/clouds/cloud6.png'
         },
       ],
     },
@@ -608,7 +608,7 @@ export const manifest = {
       assets: [
         {
           alias: 'cloud7',
-          src: 'src/assets/clouds/cloud7.png'
+          src: 'assets/clouds/cloud7.png'
         },
       ],
     },
@@ -617,7 +617,7 @@ export const manifest = {
       assets: [
         {
           alias: 'snow',
-          src: 'src/assets/effects/snow.png'
+          src: 'assets/effects/snow.png'
         },
       ],
     },
@@ -626,7 +626,7 @@ export const manifest = {
       assets: [
         {
           alias: 'rain',
-          src: 'src/assets/effects/rain.png'
+          src: 'assets/effects/rain.png'
         },
       ],
     },
@@ -635,7 +635,7 @@ export const manifest = {
       assets: [
         {
           alias: 'fire',
-          src: 'src/assets/fire/fire.png'
+          src: 'assets/fire/fire.png'
         },
       ],
     },
@@ -644,7 +644,7 @@ export const manifest = {
       assets: [
         {
           alias: 'fire_underworld',
-          src: 'src/assets/fire/fire_underworld.png'
+          src: 'assets/fire/fire_underworld.png'
         },
       ],
     },
@@ -653,7 +653,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree1winter',
-          src: 'src/assets/obstacles/trees/tree1winter.png'
+          src: 'assets/obstacles/trees/tree1winter.png'
         },
       ],
     },
@@ -662,7 +662,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree2winter',
-          src: 'src/assets/obstacles/trees/tree2winter.png'
+          src: 'assets/obstacles/trees/tree2winter.png'
         },
       ],
     },
@@ -671,7 +671,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree3winter',
-          src: 'src/assets/obstacles/trees/tree3winter.png'
+          src: 'assets/obstacles/trees/tree3winter.png'
         },
       ],
     },
@@ -680,7 +680,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree1summer',
-          src: 'src/assets/obstacles/trees/tree1summer.png'
+          src: 'assets/obstacles/trees/tree1summer.png'
         },
       ],
     },
@@ -689,7 +689,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree2summer',
-          src: 'src/assets/obstacles/trees/tree2summer.png'
+          src: 'assets/obstacles/trees/tree2summer.png'
         },
       ],
     },
@@ -698,7 +698,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree3summer',
-          src: 'src/assets/obstacles/trees/tree3summer.png'
+          src: 'assets/obstacles/trees/tree3summer.png'
         },
       ],
     },
@@ -707,7 +707,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree1spring',
-          src: 'src/assets/obstacles/trees/tree1spring.png'
+          src: 'assets/obstacles/trees/tree1spring.png'
         },
       ],
     },
@@ -716,7 +716,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree2spring',
-          src: 'src/assets/obstacles/trees/tree2spring.png'
+          src: 'assets/obstacles/trees/tree2spring.png'
         },
       ],
     },
@@ -725,7 +725,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree3spring',
-          src: 'src/assets/obstacles/trees/tree3spring.png'
+          src: 'assets/obstacles/trees/tree3spring.png'
         },
       ],
     },
@@ -734,7 +734,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree1autumn',
-          src: 'src/assets/obstacles/trees/tree1autumn.png'
+          src: 'assets/obstacles/trees/tree1autumn.png'
         },
       ],
     },
@@ -743,7 +743,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree2autumn',
-          src: 'src/assets/obstacles/trees/tree2autumn.png'
+          src: 'assets/obstacles/trees/tree2autumn.png'
         },
       ],
     },
@@ -752,7 +752,7 @@ export const manifest = {
       assets: [
         {
           alias: 'tree3autumn',
-          src: 'src/assets/obstacles/trees/tree3autumn.png'
+          src: 'assets/obstacles/trees/tree3autumn.png'
         },
       ],
     },
@@ -761,7 +761,7 @@ export const manifest = {
       assets: [
         {
           alias: 'moon',
-          src: 'src/assets/obstacles/decoration/moon.png'
+          src: 'assets/obstacles/decoration/moon.png'
         },
       ],
     },
@@ -770,7 +770,7 @@ export const manifest = {
       assets: [
         {
           alias: 'sun',
-          src: 'src/assets/obstacles/decoration/sun.png'
+          src: 'assets/obstacles/decoration/sun.png'
         },
       ],
     },

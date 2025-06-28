@@ -11,6 +11,8 @@ import {motion, AnimatePresence} from 'framer-motion';
 import {sounds} from "../../game/utils/sound.ts";
 import {H1_STYLES} from "../../constants/values.ts";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const LevelsScreen = () => {
   const {t} = useTranslation('translations');
   const {textureString: playerTexture, change: changePlayer} = usePlayerStore();
@@ -76,7 +78,7 @@ const LevelsScreen = () => {
       </motion.h1>
 
       <motion.img
-        src="/icons/icon-192x192.png"
+        src={`${BASE_URL}/icons/icon-192x192.png`}
         alt="Portal"
         className="h-[60dvh] h-mobile:h-[50dvh] z-10 my-4 h-mobile:my-2 cursor-pointer transition-all"
         initial={{scale: 1, opacity: 0, x: -30}}

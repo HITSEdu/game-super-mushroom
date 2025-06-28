@@ -65,7 +65,7 @@ export default defineConfig({
       },
       workbox: {
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,mp3}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         globIgnores: [
           '**/node_modules/**/*',
           '**/dev-dist/**/*',
