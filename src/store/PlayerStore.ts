@@ -159,7 +159,7 @@ export const usePlayerStore = create<PlayerStore>()(
 
         get().setPosition(result.position);
         set({
-          nearInteractive: result.nearInteractive,
+          nearInteractive: result.nearInteractive ?? [],
           velocityX: result.velocityX,
           velocityY: result.velocityY,
           onGround: result.onGround,
