@@ -16,8 +16,6 @@ const FountainModal = () => {
     {content: t("fountain.line1")},
     {content: t("fountain.line2")},
     {content: t("fountain.line3")},
-    {content: t("fountain.line4")},
-    {content: t("fountain.line5")},
   ];
 
   const alreadyHasPortalPages = [

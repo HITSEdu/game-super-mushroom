@@ -23,6 +23,7 @@ export interface IObstacle {
 export interface ICharacter {
   id: number,
   season: SeasonType,
+  description: string,
   name: string,
   src: string,
   speed: number,

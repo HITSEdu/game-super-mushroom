@@ -32,6 +32,7 @@ const SelectorCharacter = () => {
                         season: "underworld" as SeasonType,
                         size: item.size,
                         name: item.name,
+                        description: item.description,
                         texture: await Assets.load(item.spriteUnderworld),
                         textureString: item.spriteUnderworld,
                         src: item.source,
@@ -57,7 +58,8 @@ const SelectorCharacter = () => {
 
     const handleChoose = () => {
         const curPlayer = players[selectedIndex];
-        init(curPlayer.name, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size, curPlayer.season, curPlayer.id);
+        console.log(curPlayer)
+        init(curPlayer.name, curPlayer.description, curPlayer.texture, curPlayer.textureString, curPlayer.speed, curPlayer.jumpPower, curPlayer.size, curPlayer.season, curPlayer.id);
     }
 
     const handleDragEnd = (event: MouseEvent, info: { offset: { x: number } }) => {

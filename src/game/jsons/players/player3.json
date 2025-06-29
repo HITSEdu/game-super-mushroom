@@ -4,6 +4,7 @@
   "source": "assets/player/player_3.png",
   "speed": 2,
   "jumpPower": 15,
+  "description": "При исследовании парадоксальных эффектов Loki перестарался с временными петлями и спровоцировал хаос в потоке времени.",
   "size": {
     "width": 24,
     "height": 48

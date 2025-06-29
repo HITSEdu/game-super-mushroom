@@ -92,8 +92,6 @@
     "line1": "You’ve discovered an ancient fountain. Its waters are filled with the magic of a forgotten world.",
     "line2": "During your last journey, you disrupted the temporal balance.",
     "line3": "Now the future has changed. Glitches and anomalies have appeared.",
-    "line4": "The fountain asks you to collect butterfly spirits from each season to restore harmony.",
-    "line5": "You receive a Portal that allows you to travel between seasons.",
     "repeat": "You already have the Portal. Return once you’ve gathered the butterflies.",
     "understood": "Understood",
     "final1": "You returned to the fountain with all four butterflies.",
@@ -149,5 +147,8 @@
     "page3": "Press F to interact with living beings — monsters, dogs, etc.\nSome may respond differently.",
     "page4": "You can skip dialogues by pressing Enter.\nYour inventory is located at the bottom of the screen — click on items to use them or read their descriptions.\nSome items contain important information.",
     "understood": "Got it"
-  }
+  },
+  "NovaDescription": "While trying to accelerate the chrono-engine, Nova accidentally tore the fabric of time, unleashing anomalies.",
+  "NeoDescription": "Neo misaligned his timepiece with the Chronosphere, causing a ripple that collapsed and unraveled Mirial’s space.",
+  "LokiDescription": "While studying paradoxical effects, Loki went too far with time loops and triggered chaos in the timeflow."
 }
