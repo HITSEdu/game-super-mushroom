@@ -774,5 +774,14 @@ export const manifest = {
         },
       ],
     },
+    {
+      name: 'arrow',
+      assets: [
+        {
+          alias: 'arrow',
+          src: 'assets/traps/arrow.png'
+        },
+      ],
+    },
   ]
 };

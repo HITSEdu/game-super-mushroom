@@ -14,8 +14,10 @@ const CharacterCard = (character: ICharacter) => {
             <img src={character.src} alt={character.name}
                  className="w-28 h-28 h-sm:w-24 h-sm:h-24 h-xs:w-20 h-xs:h-20 m-2 object-contain"/>
             <h2 className="h-xs:text-md h-sm:text-lg h-md:text-xl h-lg:text-2xl h-xl:text-3xl font-bold">{character.name}</h2>
-            <p>{t("speed")}: {character.speed}</p>
-            <p>{t("jump")}: {character.jumpPower}</p>
+            <p className="font-normal text-xs h-sm:text-sm h-md:text-base text-center text-grey opacity-70 max-w-[32rem] mx-auto">
+                {t(`${character.name}Description`)}
+                {/* {character.description} */}
+            </p>
         </div>
     );
 };

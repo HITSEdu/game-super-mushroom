@@ -85,6 +85,7 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(effect);
         }
 
+        await Assets.loadBundle('arrow');
         await Assets.loadBundle('fire');
         await Assets.loadBundle('fire_underworld');
 

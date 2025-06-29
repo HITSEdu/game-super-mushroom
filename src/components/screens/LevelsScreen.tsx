@@ -77,7 +77,7 @@ const LevelsScreen = () => {
       </motion.h1>
 
       <motion.img
-        src={`${BASE_URL}/icons/icon-192x192.png`}
+        src={`${BASE_URL}/assets/portal.png`}
         alt="Portal"
         className="h-[60dvh] h-mobile:h-[50dvh] z-10 my-4 h-mobile:my-2 cursor-pointer transition-all"
         initial={{scale: 1, opacity: 0, x: -30}}

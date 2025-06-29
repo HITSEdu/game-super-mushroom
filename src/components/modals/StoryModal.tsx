@@ -65,9 +65,6 @@ const StoryModal = ({
         backgroundPosition: 'center',
       }}
     >
-      {currentPage.title && (
-        <h2 className="text-xl font-bold mb-4">{currentPage.title}</h2>
-      )}
 
       {currentPage.image && (
         <img
