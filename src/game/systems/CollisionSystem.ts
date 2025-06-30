@@ -89,7 +89,7 @@ export const handlePlayerEnemyCollision = () => {
 }
 
 const hasntCollisions = (type: string) => {
-  const types = ['fountain', 'tree', 'grass', 'fire', 'flower', 'snowman']
+  const types = ['fountain', 'tree', 'grass', 'fire', 'flower', 'snowman', 'tablet']
   for (const it of types) {
     if (type.startsWith(it)) return true;
   }

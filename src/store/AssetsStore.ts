@@ -14,7 +14,7 @@ export const useAssetsStore = create<AssetsStore>()(
       if (get().isInitialized) return;
 
       try {
-        await Assets.init({ manifest });
+        await Assets.init({manifest});
 
         const playerSeasons = ['winter', 'summer', 'autumn', 'spring'];
         for (let i = 1; i <= 3; i++) {
@@ -41,8 +41,7 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(`platform_${season}`);
         }
 
-        const platformGamesSeasons = playerSeasons;
-        for (const season of platformGamesSeasons) {
+        for (const season of playerSeasons) {
           await Assets.loadBundle(`platform_${season}_games`);
         }
 
@@ -75,6 +74,7 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('box1');
         await Assets.loadBundle('box2');
         await Assets.loadBundle('box_zone');
+        await Assets.loadBundle('tablet');
 
         for (let i = 1; i <= 7; i++) {
           await Assets.loadBundle(`cloud${i}`);

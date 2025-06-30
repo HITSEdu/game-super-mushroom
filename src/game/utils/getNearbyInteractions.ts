@@ -28,6 +28,13 @@ const notInteractive = (type: string) => {
   return false;
 }
 
+type ObstacleKey = keyof typeof globalObstacles;
+
+const isObstacleKey = (key: string): key is ObstacleKey => {
+  return key in globalObstacles;
+}
+
+
 export function getNearbyInteractions(
   playerX: number,
   playerY: number,
@@ -100,6 +107,7 @@ export function getNearbyInteractions(
     const isAllowedType =
       obs.type.startsWith('door') ||
       obs.type === 'fountain' ||
+      obs.type === 'tablet' ||
       ((obs.type === 'bag' || obs.type === 'shelf') && miniGame.currentMiniGame);
 
     if (!isAllowedType) continue;
@@ -120,7 +128,7 @@ export function getNearbyInteractions(
         title: "enterTheDoor",
         action: () => useGameSessionStore.getState().enterDoor(side),
       });
-    } else if (obs.type === 'fountain' || obs.type === 'bag' || obs.type === 'shelf') {
+    } else if (isObstacleKey(obs.type)) {
       interactions.push({
         id,
         visible: true,

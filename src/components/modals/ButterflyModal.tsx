@@ -5,7 +5,7 @@ interface ModalProps {
   title: string;
 }
 
-const MemoryModal = ({title}: ModalProps) => {
+const ButterflyModal = ({title}: ModalProps) => {
   const {close} = useModalStore();
   const {t} = useTranslation('translations');
 
@@ -24,4 +24,4 @@ const MemoryModal = ({title}: ModalProps) => {
   );
 }
 
-export default MemoryModal;
+export default ButterflyModal;

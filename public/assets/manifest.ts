@@ -48,6 +48,13 @@ export const manifest = {
     },
 
     {
+      name: 'tablet',
+      assets: [
+        {alias: 'tablet', src: 'assets/obstacles/tablet.png'},
+      ],
+    },
+
+    {
       name: 'flower1',
       assets: [
         {alias: 'flower1', src: 'assets/obstacles/flowers/flower1.png'},
