@@ -14,7 +14,6 @@ import type {Direction, SeasonType} from '../constants/types.ts';
 
 interface PlayerStore {
   name: string;
-  description: string,
   texture: Texture | null;
   textureString: string | null;
   position: PointData;
@@ -31,7 +30,6 @@ interface PlayerStore {
   nearInteractive: IInteraction[];
 
   setName: (name: string) => void;
-  setDescription: (description: string) => void,
   setPosition: (position: { x: number; y: number }) => void;
   setTexture: (texture: Texture) => void;
   setOnGround: (newState: boolean) => void;
@@ -44,7 +42,7 @@ interface PlayerStore {
   come: (direction: Direction) => void;
   tick: () => void;
 
-  init: (name: string, description: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
+  init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
   change: () => void;
 }
 
@@ -52,7 +50,6 @@ export const usePlayerStore = create<PlayerStore>()(
   persist(
     (set, get) => ({
       name: '',
-      description: '',
       texture: null,
       textureString: null,
       size: DEFAULT_PLAYER_SIZE,
@@ -68,10 +65,9 @@ export const usePlayerStore = create<PlayerStore>()(
       season: 'underworld',
       id: 1,
 
-      init: (name, description, texture, textureString, speed, jumpPower, size, season, id) => {
+      init: (name, texture, textureString, speed, jumpPower, size, season, id) => {
         set({
           name,
-          description,
           position: DEFAULT_START_POSITION,
           velocityX: 0,
           velocityY: 0,
@@ -122,7 +118,6 @@ export const usePlayerStore = create<PlayerStore>()(
         season: 'underworld',
         id: 1,
       }),
-      setDescription: (description) => set({description}),
       setOnLadder: (val: boolean) => set({onLadder: val}),
       jump: () => {
         const {onGround, jumpPower} = get();
@@ -176,7 +171,6 @@ export const usePlayerStore = create<PlayerStore>()(
       name: 'playerStore',
       partialize: (state) => ({
         name: state.name,
-        description: state.description,
         size: state.size,
         textureString: state.textureString,
         velocityY: state.velocityY,

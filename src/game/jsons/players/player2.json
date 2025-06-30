@@ -4,7 +4,6 @@
   "source": "assets/player/player_2.png",
   "speed": 2,
   "jumpPower": 15,
-  "description": "Во время попытки ускорить хроно‑двигатель Nova случайно разорвал ткань времени, выпустив аномалии.",
   "size": {
     "width": 24,
     "height": 48

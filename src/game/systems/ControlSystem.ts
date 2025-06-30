@@ -35,6 +35,8 @@ export function press(action: keyof typeof keys) {
   const inter = player.nearInteractive.find(i => i.key === action);
   if (inter?.holdable && inter.key === action) {
     useInteractionHoldStore.getState().startHold(inter.id);
+  } else if (action === 'use' || action === 'interact') {
+    delete holdStart[action];
   }
 }
 
@@ -43,7 +45,11 @@ export function release(action: keyof typeof keys) {
   pressedOnce[action] = false;
   delete holdStart[action];
 
-  useInteractionHoldStore.getState().cancelHold();
+  const currentHoldId = useInteractionHoldStore.getState().interactionId;
+  const inter = usePlayerStore.getState().nearInteractive.find(i => i.key === action);
+  if (inter && inter.id === currentHoldId) {
+    useInteractionHoldStore.getState().cancelHold();
+  }
 }
 
 function onKeyDown(e: KeyboardEvent) {
@@ -54,6 +60,16 @@ function onKeyDown(e: KeyboardEvent) {
 function onKeyUp(e: KeyboardEvent) {
   const act = keyMap[e.key];
   if (act) release(act);
+}
+
+const cancelInteraction = () => {
+  const hold = useInteractionHoldStore.getState();
+
+  if (hold.interactionId && !usePlayerStore.getState().nearInteractive.some(i => i.id === hold.interactionId)) {
+    useInteractionHoldStore.getState().cancelHold();
+    if (keys['interact']) release('interact');
+    if (keys['use']) release('use');
+  }
 }
 
 export function initControlSystem() {
@@ -69,12 +85,8 @@ export function initControlSystem() {
     const player = usePlayerStore.getState();
     const session = useGameSessionStore.getState();
     const level = useLevelStore.getState();
-    const hold = useInteractionHoldStore.getState();
 
-    if (hold.interactionId && !player.nearInteractive.some(i => i.id === hold.interactionId)) {
-      useInteractionHoldStore.getState().cancelHold();
-      if (keys['interact']) release('interact');
-    }
+    cancelInteraction();
 
     if (session.status === 'playing') {
       const isVertical = player.onLadder || level.isMiniGame;
@@ -97,7 +109,9 @@ export function initControlSystem() {
 
       for (const inter of player.nearInteractive) {
         const key = inter.key;
-        if (!keys[key]) continue;
+        if (!keys[key]) {
+          continue;
+        }
 
         const nowMs = performance.now();
         if (inter.holdable) {
@@ -143,5 +157,9 @@ export function cleanupControlSystem() {
   window.removeEventListener('keydown', onKeyDown);
   window.removeEventListener('keyup', onKeyUp);
   if (frame) cancelAnimationFrame(frame);
-  for (const k in keys) keys[k] = false;
+  for (const k in keys) {
+    keys[k] = false;
+    delete holdStart[k];
+    pressedOnce[k] = false;
+  }
 }
