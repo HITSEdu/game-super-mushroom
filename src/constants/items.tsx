@@ -1,6 +1,5 @@
 import type {IItem} from "./interfaces.ts";
 import {useModalStore} from "../store/ModalStore.ts";
-import MemoryModal from "../components/modals/MemoryModal.tsx";
 import MusicModal from "../components/modals/MusicModal.tsx";
 import ButterflyModal from "../components/modals/ButterflyModal.tsx";
 import PortalModal from "../components/modals/PortalModal.tsx";

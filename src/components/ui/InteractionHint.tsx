@@ -3,7 +3,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import {useTranslation} from "react-i18next";
 import {press, release} from "../../game/systems/ControlSystem.ts";
 import {useInteractionHoldStore} from "../../store/InteractionHoldStore.ts";
-import HoldCircle from "./HoldCircle.tsx";
+import HoldProgress from "./HoldProgress.tsx";
 
 const SIZE = 40;
 
@@ -18,30 +18,26 @@ const InteractionHint = ({offsetX, offsetY, scale}: Props) => {
   const {interactionId} = useInteractionHoldStore();
   const {t} = useTranslation("translations");
 
+  const stop = (key: string) => release(key as "use" | "interact");
+  const start = (key: string) => {
+    press(key as "use" | "interact");
+  }
+
   return (
     <AnimatePresence>
       {interactions.filter(i => i.visible).map(inter => {
         const screenX = offsetX + (inter.x + 0.5) * scale.x;
         const screenY = offsetY + inter.y * scale.y - 10;
 
-        let timeout: number | undefined;
-
-        const stop = () => release(inter.key as "use" | "interact");
-        const start = () => {
-          press(inter.key as "use" | "interact");
-          clearTimeout(timeout);
-          timeout = setTimeout(stop, 1200);
-        }
-
         return (
           <div key={inter.id}>
             <motion.div
-              onMouseDown={start}
-              onMouseUp={stop}
-              onMouseLeave={stop}
-              onTouchStart={start}
-              onTouchEnd={stop}
-              onTouchCancel={stop}
+              onMouseDown={() => start(inter.key)}
+              onMouseUp={() => stop(inter.key)}
+              onMouseLeave={() => stop(inter.key)}
+              onTouchStart={() => start(inter.key)}
+              onTouchEnd={() => stop(inter.key)}
+              onTouchCancel={() => stop(inter.key)}
               initial={{opacity: 0, scale: 0.9, y: -10}}
               animate={{opacity: 1, scale: 1, y: 0}}
               exit={{opacity: 0, scale: 0.9, y: -10}}
@@ -65,10 +61,10 @@ const InteractionHint = ({offsetX, offsetY, scale}: Props) => {
             </motion.div>
 
             {interactionId === inter.id && inter.holdable && (
-              <HoldCircle
+              <HoldProgress
                 x={screenX - SIZE / 2}
                 y={screenY - SIZE / 2}
-              />
+              ></HoldProgress>
             )}
           </div>
         );
