@@ -42,7 +42,7 @@ export const useAssetsStore = create<AssetsStore>()(
         }
 
         for (const season of playerSeasons) {
-          await Assets.loadBundle(`platform_${season}_games`);
+          await Assets.loadBundle(`platform_games_${season}`);
         }
 
         for (const season of [...playerSeasons, 'underworld']) {
@@ -56,7 +56,7 @@ export const useAssetsStore = create<AssetsStore>()(
           }
         }
 
-        const misc = ['trap', 'fountain', 'portal'];
+        const misc = ['trap1', 'fountain', 'portal'];
         for (const object of misc) {
           await Assets.loadBundle(object);
         }
@@ -73,8 +73,13 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.loadBundle('shelf');
         await Assets.loadBundle('box1');
         await Assets.loadBundle('box2');
+        await Assets.loadBundle('box3');
         await Assets.loadBundle('box_zone');
         await Assets.loadBundle('tablet');
+
+
+        await Assets.loadBundle('water');
+        await Assets.loadBundle('ice');
 
         for (let i = 1; i <= 7; i++) {
           await Assets.loadBundle(`cloud${i}`);

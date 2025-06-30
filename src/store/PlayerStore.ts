@@ -89,7 +89,7 @@ export const usePlayerStore = create<PlayerStore>()(
       setName: (name) => set({name}),
       setPosition: (position) => {
         const clampedX = Math.min(GAME_WIDTH - TILE_SIZE, Math.max(0, position.x));
-        const clampedY = Math.min(GAME_HEIGHT - TILE_SIZE * 3, Math.max(0, position.y));
+        const clampedY = Math.min(GAME_HEIGHT - TILE_SIZE, Math.max(0, position.y));
 
         set({position: {x: clampedX, y: clampedY}});
       },

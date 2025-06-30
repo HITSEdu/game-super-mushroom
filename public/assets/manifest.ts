@@ -140,21 +140,24 @@ export const manifest = {
         {alias: 'shelf', src: 'assets/obstacles/shelf.png'},
       ],
     },
-
     {
       name: 'box1',
       assets: [
         {alias: 'box1', src: 'assets/obstacles/boxes/box1.png'},
       ],
     },
-
     {
       name: 'box2',
       assets: [
         {alias: 'box2', src: 'assets/obstacles/boxes/box2.png'},
       ],
     },
-
+    {
+      name: 'box3',
+      assets: [
+        {alias: 'box3', src: 'assets/obstacles/boxes/box3.png'},
+      ],
+    },
     {
       name: 'box_zone',
       assets: [
@@ -283,11 +286,11 @@ export const manifest = {
       ],
     },
     {
-      name: 'trap',
+      name: 'trap1',
       assets: [
         {
-          alias: 'trap',
-          src: 'assets/obstacles/trap.png'
+          alias: 'trap1',
+          src: 'assets/obstacles/traps/trap1.png'
         },
       ],
     },
@@ -503,37 +506,37 @@ export const manifest = {
       ],
     },
     {
-      name: 'platform_winter_games',
+      name: 'platform_games_winter',
       assets: [
         {
-          alias: 'platform_winter_games',
+          alias: 'platform_games_winter',
           src: 'assets/obstacles/platform/games/platform_winter.png'
         },
       ],
     },
     {
-      name: 'platform_summer_games',
+      name: 'platform_games_summer',
       assets: [
         {
-          alias: 'platform_summer_games',
+          alias: 'platform_games_summer',
           src: 'assets/obstacles/platform/games/platform_summer.png'
         },
       ],
     },
     {
-      name: 'platform_spring_games',
+      name: 'platform_games_spring',
       assets: [
         {
-          alias: 'platform_spring_games',
+          alias: 'platform_games_spring',
           src: 'assets/obstacles/platform/games/platform_spring.png'
         },
       ],
     },
     {
-      name: 'platform_autumn_games',
+      name: 'platform_games_autumn',
       assets: [
         {
-          alias: 'platform_autumn_games',
+          alias: 'platform_games_autumn',
           src: 'assets/obstacles/platform/games/platform_autumn.png'
         },
       ],
@@ -787,6 +790,24 @@ export const manifest = {
         {
           alias: 'arrow',
           src: 'assets/traps/arrow.png'
+        },
+      ],
+    },
+    {
+      name: 'ice',
+      assets: [
+        {
+          alias: 'ice',
+          src: 'assets/obstacles/platform/ice.png'
+        },
+      ],
+    },
+    {
+      name: 'water',
+      assets: [
+        {
+          alias: 'water',
+          src: 'assets/obstacles/platform/water.png'
         },
       ],
     },

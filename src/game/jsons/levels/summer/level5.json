@@ -372,7 +372,7 @@
       "y": 120,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 984,
@@ -393,7 +393,7 @@
       "y": 144,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 984,
@@ -414,7 +414,7 @@
       "y": 168,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 984,
@@ -435,7 +435,7 @@
       "y": 192,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 672,
@@ -463,42 +463,42 @@
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 144,
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 168,
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 192,
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 216,
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 240,
       "y": 216,
       "width": 24,
       "height": 24,
-      "type": "trap"
+      "type": "trap1"
     },
     {
       "x": 984,

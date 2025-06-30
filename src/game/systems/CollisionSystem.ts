@@ -204,7 +204,7 @@ export const handleObstacleCollision = (
     const direction = getCollisionDirection(boxY, obsBox);
     if (!direction) continue;
 
-    if (obs.type === 'trap' && player) useGameSessionStore.getState().lose();
+    if (obs.type === 'trap1' && player) useGameSessionStore.getState().lose();
 
     if (obs.type === 'portal' && player) useMiniGameStore.getState().finishMiniGame();
 
