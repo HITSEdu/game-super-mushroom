@@ -7,7 +7,7 @@ const MemoryModal = () => {
 
   return (
     <div className="flex flex-col gap-3 items-center text-sm">
-      <p>Очень глубокое описание предмета...</p>
+      <p>{t("memory")}</p>
       <button
         onClick={() => close()}
         className="px-3 py-2 rounded bg-gray-700 text-white hover:bg-gray-800 col-span-2 text-sm"

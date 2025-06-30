@@ -1,4 +1,4 @@
-import {Application, type ApplicationRef, extend} from '@pixi/react';
+import {Application, type ApplicationRef, extend } from '@pixi/react';
 import {Container, Sprite, Graphics, Texture, Assets} from 'pixi.js';
 import {useEffect, useRef} from "react";
 import {usePlayerStore} from "../store/PlayerStore.ts";
@@ -24,6 +24,7 @@ import Tree from './entities/decoration/Tree.tsx';
 import Cloud from './entities/decoration/Cloud.tsx';
 import MovingSkyElement from "./entities/decoration/MovingSkyElement.tsx";
 import SkyOverlay from "./entities/decoration/SkyOverlay.tsx";
+import { TILE_SIZE } from '../constants/values.ts';
 
 extend({
   Container,
@@ -88,6 +89,22 @@ const GameScene = () => {
 
   const getTextureSafe = (alias: string): Texture => {
     return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
+  }
+
+  const miniGamePlatforms = []
+  for (let row = 0; row < 42; row += 1) {
+    for (let col = 0; col < 24; col += 1) {
+      const tileTexture = (playerSeason !== 'underworld') ? playerSeason : 'autumn'
+      // TODO("Оставить просто playerSeason")
+      miniGamePlatforms.push(
+        <Obstacle
+          x={row * TILE_SIZE}
+          y={col * TILE_SIZE}
+          size={{ width: TILE_SIZE, height: TILE_SIZE }}
+          texture={getTextureSafe(`platform_games_${tileTexture}`)}
+        />
+      )
+    }
   }
 
   const rainTiles = [];
@@ -156,6 +173,7 @@ const GameScene = () => {
         >
           {playerSeason === 'autumn' && currentMiniGame !== 'autumn' && rainTiles}
           {playerSeason === 'winter' && currentMiniGame !== 'winter' && snowTiles}
+          {currentMiniGame !== null && miniGamePlatforms}
 
           {!currentMiniGame && playerSeason !== 'underworld' && (
             <>
@@ -184,7 +202,6 @@ const GameScene = () => {
               texture={getTextureSafe(c.textureAlias)}
             />
           ))}
-
           {playerTexture && gameStatus !== 'lost' &&
             <Player
               x={playerPosition.x}
@@ -258,6 +275,7 @@ const GameScene = () => {
               size={{width: 24, height: 24}}
             />
           )}
+
         </pixiContainer>
       </Application>
       <InteractionHint

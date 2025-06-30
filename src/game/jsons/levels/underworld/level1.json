@@ -13,7 +13,7 @@
     {
       "x": 456,
       "y": 432,
-      "width": 24,
+      "width": 48,
       "height": 48,
       "type": "fountain"
     },
@@ -1665,15 +1665,28 @@
   ],
   "enemies": [
     {
-      "x": 500,
-      "y": 430,
+      "x": 504,
+      "y": 432,
       "type": "underworld_spirit",
-      "speed": 2,
-      "range": 300,
+      "speed": 1,
+      "range": 288,
       "size": {
         "width": 24,
         "height": 48
       }
+    }
+  ],
+  "spirits": [
+    {
+      "id": 4,
+      "x": 456,
+      "y": 240,
+      "type": "spirit_laurus",
+      "size": {
+        "width": 24,
+        "height": 48
+      },
+      "visible": true
     }
   ],
   "items": []

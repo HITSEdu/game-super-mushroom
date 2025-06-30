@@ -8,6 +8,12 @@ export const sounds: Record<string, Howl> = {
   portal: new Howl({
     src: ['assets/sounds/portal.mp3']
   }),
+  music0: new Howl({
+    src: ['assets/sounds/music0.mp3'],
+    onend: () => {
+      useMusicPlayerStore.getState().changeMusic();
+    }
+  }),
   music1: new Howl({
     src: ['assets/sounds/music1.mp3'],
     onend: () => {
