@@ -21,8 +21,9 @@ import {Snow} from './effects/Snow.tsx';
 import {Rain} from './effects/Rain.tsx';
 import {Fire} from './effects/Fire.tsx';
 import Tree from './entities/decoration/Tree.tsx';
-import SkyElement from './entities/decoration/SkyElement.tsx';
 import Cloud from './entities/decoration/Cloud.tsx';
+import MovingSkyElement from "./entities/decoration/MovingSkyElement.tsx";
+import SkyOverlay from "./entities/decoration/SkyOverlay.tsx";
 
 extend({
   Container,
@@ -134,6 +135,9 @@ const GameScene = () => {
 
   if (!isLoaded) return null;
 
+  const containerWidth = containerRef.current?.clientWidth ?? window.innerWidth;
+  const containerHeight = containerRef.current?.clientHeight ?? window.innerHeight;
+
   return (
     <div
       ref={containerRef}
@@ -152,6 +156,21 @@ const GameScene = () => {
         >
           {playerSeason === 'autumn' && currentMiniGame !== 'autumn' && rainTiles}
           {playerSeason === 'winter' && currentMiniGame !== 'winter' && snowTiles}
+
+          {!currentMiniGame && playerSeason !== 'underworld' && (
+            <>
+              <MovingSkyElement
+                sunTexture={getTextureSafe('sun')}
+                moonTexture={getTextureSafe('moon')}
+                containerWidth={containerWidth}
+                containerHeight={containerHeight}
+              />
+              <SkyOverlay
+                containerWidth={containerWidth}
+                containerHeight={containerHeight}
+              />
+            </>
+          )}
 
           {!currentMiniGame && playerSeason !== 'underworld' && clouds.current.map((c) => (
             <Cloud
@@ -214,14 +233,6 @@ const GameScene = () => {
           ))}
 
           {levelDecorations.filter(e => e.visible).map((d) => {
-            if (d.type === "moon" || d.type === "sun") return (
-              <SkyElement
-                key={`${d.x}-${d.y}-${d.type}`}
-                x={d.x}
-                y={d.y}
-                texture={getTextureSafe(d.type)}
-              />
-            )
             if (d.type.startsWith("fire")) return (
               <Fire
                 key={`${d.x}-${d.y}-${d.type}`}
