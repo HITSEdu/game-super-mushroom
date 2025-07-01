@@ -1,4 +1,4 @@
-import {Application, type ApplicationRef, extend } from '@pixi/react';
+import {Application, type ApplicationRef, extend} from '@pixi/react';
 import {Container, Sprite, Graphics, Texture, Assets} from 'pixi.js';
 import {useEffect, useRef} from "react";
 import {usePlayerStore} from "../store/PlayerStore.ts";
@@ -24,7 +24,7 @@ import Tree from './entities/decoration/Tree.tsx';
 import Cloud from './entities/decoration/Cloud.tsx';
 import MovingSkyElement from "./entities/decoration/MovingSkyElement.tsx";
 import SkyOverlay from "./entities/decoration/SkyOverlay.tsx";
-import { TILE_SIZE } from '../constants/values.ts';
+import {TILE_SIZE} from '../constants/values.ts';
 
 extend({
   Container,
@@ -98,9 +98,10 @@ const GameScene = () => {
       // TODO("Оставить просто playerSeason")
       miniGamePlatforms.push(
         <Obstacle
+          key={`${row}-${col}`}
           x={row * TILE_SIZE}
           y={col * TILE_SIZE}
-          size={{ width: TILE_SIZE, height: TILE_SIZE }}
+          size={{width: TILE_SIZE, height: TILE_SIZE}}
           texture={getTextureSafe(`platform_games_${tileTexture}`)}
         />
       )
@@ -173,7 +174,7 @@ const GameScene = () => {
         >
           {playerSeason === 'autumn' && currentMiniGame !== 'autumn' && rainTiles}
           {playerSeason === 'winter' && currentMiniGame !== 'winter' && snowTiles}
-          {currentMiniGame !== null && miniGamePlatforms}
+          {currentMiniGame && miniGamePlatforms}
 
           {!currentMiniGame && playerSeason !== 'underworld' && (
             <>

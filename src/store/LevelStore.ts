@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {Point} from 'pixi.js';
+import {Point, type PointData} from 'pixi.js';
 import {loadLevel} from '../game/utils/loader.ts';
 import {v4 as uuidv4} from 'uuid';
 import {
@@ -21,6 +21,7 @@ import type {SeasonType} from "../constants/types.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
+import {clamp} from "../game/utils/clamp.ts";
 
 export interface ObstacleData {
   x: number;
@@ -80,7 +81,7 @@ interface LevelState {
   gravity: number;
   isLoaded: boolean;
 
-  spawnEnemies: (spawns: EnemySpawnConfig[]) => void;
+  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData) => void;
   removeEnemies: () => void;
   load: (id: string, season?: SeasonType) => Promise<void>;
   reset: () => void;
@@ -191,13 +192,18 @@ export const useLevelStore = create<LevelState>((set, get) => ({
     });
   },
 
-  spawnEnemies: (spawns: EnemySpawnConfig[]) => {
+  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData) => {
     const size = DEFAULT_ENEMY_MINI_GAME_SIZE;
     const defaultSpeed = 2;
 
+    const clampedData = target ? {
+      x: [clamp(target.x - 150, 0, GAME_WIDTH - TILE_SIZE), clamp(target.x + 150, 0, GAME_WIDTH - TILE_SIZE)],
+      y: [clamp(target.y - 150, 0, GAME_HEIGHT - TILE_SIZE), clamp(target.y + 150, 0, GAME_HEIGHT - TILE_SIZE)],
+    } : {};
+
     const patrolArea = {
-      x: [0, GAME_WIDTH - TILE_SIZE],
-      y: [0, GAME_HEIGHT - TILE_SIZE],
+      x: clampedData.x ? clampedData.x : [0, GAME_WIDTH - TILE_SIZE],
+      y: clampedData.y ? clampedData.y : [0, GAME_HEIGHT - TILE_SIZE],
     } as const;
 
     for (const spawn of spawns) {
@@ -210,7 +216,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
         start,
         end,
         spawn.speed ?? defaultSpeed,
-        spawn.type ?? "arrow",
+        spawn.type ?? "trap2",
         spawn.size ?? size,
         spawn.isAngry ?? true,
         spawn.axis

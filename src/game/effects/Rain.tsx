@@ -1,31 +1,31 @@
-import { extend } from "@pixi/react";
-import { Assets, Sprite as PixiSprite } from "pixi.js";
-import { TILE_SIZE } from "../../constants/values";
-import { useAnimation } from "../../hooks/useAnimation";
+import {extend} from "@pixi/react";
+import {Assets, Sprite as PixiSprite} from "pixi.js";
+import {TILE_SIZE} from "../../constants/values";
+import {useAnimation} from "../../hooks/useAnimation";
 
-extend({ Sprite: PixiSprite });
+extend({Sprite: PixiSprite});
 
 interface RainProps {
   x: number;
   y: number;
 }
 
-export const Rain = ({ x, y }: RainProps) => {
+export const Rain = ({x, y}: RainProps) => {
 
-    const texture = Assets.get("rain")
+  const texture = Assets.get("rain")
 
-    const frameWidth = TILE_SIZE * 8
-    const frameHeight = TILE_SIZE * 8
-    const frameCount = 16
-    const animationSpeed = 4
+  const frameWidth = TILE_SIZE * 8
+  const frameHeight = TILE_SIZE * 8
+  const frameCount = 16
+  const animationSpeed = 4
 
-    const currentTexture = useAnimation({
-        texture,
-        frameWidth,
-        frameHeight,
-        frameCount,
-        animationSpeed
-    });
+  const currentTexture = useAnimation({
+    texture,
+    frameWidth,
+    frameHeight,
+    frameCount,
+    animationSpeed
+  });
 
   return (
     <pixiSprite

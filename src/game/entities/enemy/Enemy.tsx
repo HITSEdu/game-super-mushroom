@@ -21,5 +21,5 @@ export const Enemy = (
       height={size.height}
       eventMode={'static'}
       zIndex={10}
-    />;
+    />
 };

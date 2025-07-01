@@ -150,5 +150,9 @@
   },
   "NovaDescription": "While trying to accelerate the chrono-engine, Nova accidentally tore the fabric of time, unleashing anomalies.",
   "NeoDescription": "Neo misaligned his timepiece with the Chronosphere, causing a ripple that collapsed and unraveled Mirial’s space.",
-  "LokiDescription": "While studying paradoxical effects, Loki went too far with time loops and triggered chaos in the timeflow."
+  "LokiDescription": "While studying paradoxical effects, Loki went too far with time loops and triggered chaos in the timeflow.",
+  "lose": {
+    "title": "You died!",
+    "page1": "You died!"
+  }
 }

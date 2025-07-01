@@ -1,6 +1,7 @@
 import {type RefObject, useEffect, useState} from "react";
 import {GAME_HEIGHT, GAME_WIDTH} from "../constants/values.ts";
 import {usePlayerStore} from "../store/PlayerStore.ts";
+import {clamp} from "../game/utils/clamp.ts";
 
 export function useContainerSize(ref: RefObject<HTMLDivElement | null>, isLoaded: boolean) {
   const [size, setSize] = useState({width: 0, height: 0});
@@ -37,8 +38,6 @@ export function useContainerSize(ref: RefObject<HTMLDivElement | null>, isLoaded
 
   let offsetX = viewWidth / 2 - playerPosition.x * scale.x - playerWidth / 2;
   let offsetY = viewHeight / 2 - playerPosition.y * scale.y - playerHeight / 2;
-
-  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
   const minOffsetX = viewWidth - levelWidth;
   const minOffsetY = viewHeight - levelHeight;

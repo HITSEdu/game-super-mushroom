@@ -8,6 +8,7 @@ import {usePlayerStore} from "./PlayerStore.ts";
 import {UNDERWORLD_SPAWN} from "../constants/values.ts";
 import i18next from "i18next";
 import {useToastStore} from "./ToastStore.ts";
+import {MODALS} from "../constants/modals.tsx";
 
 interface GameSessionState {
   currentLevelID: string | null
@@ -111,10 +112,10 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
       }
     );
 
+    MODALS['lose']();
+
     set((state) => ({
       currentAttempts: state.currentAttempts + 1,
-      curTime: 0,
-      stars: 0,
     }))
   },
 

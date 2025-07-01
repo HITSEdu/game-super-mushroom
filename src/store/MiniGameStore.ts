@@ -94,11 +94,11 @@ export const useMiniGameStore = create<MiniGameState>()(
         if (!zone) return;
 
         useLevelStore.getState().spawnEnemies([
-          {x: zone.x - 10, y: 24 + 16, axis: 'y', type: 'arrow', speed: 4},
-          {x: zone.x + 10, y: 24 + 16, axis: 'y', type: 'arrow', speed: 4},
-          {x: 24 + 16, y: zone.y - 10, axis: 'x', type: 'arrow', speed: 4},
-          {x: 24 + 16, y: zone.y + 10, axis: 'x', type: 'arrow', speed: 4},
-        ]);
+          {x: zone.x - 10, y: 24 + 16, axis: 'y', type: 'trap2', speed: 4},
+          {x: zone.x + 10, y: 24 + 16, axis: 'y', type: 'trap2', speed: 4},
+          {x: 24 + 16, y: zone.y - 10, axis: 'x', type: 'trap2', speed: 4},
+          {x: 24 + 16, y: zone.y + 10, axis: 'x', type: 'trap2', speed: 4},
+        ], zone);
       },
 
       markCompleted: (id) =>

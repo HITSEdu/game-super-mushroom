@@ -286,15 +286,6 @@ export const manifest = {
       ],
     },
     {
-      name: 'trap1',
-      assets: [
-        {
-          alias: 'trap1',
-          src: 'assets/obstacles/traps/trap1.png'
-        },
-      ],
-    },
-    {
       name: 'fountain',
       assets: [
         {
@@ -785,11 +776,29 @@ export const manifest = {
       ],
     },
     {
-      name: 'arrow',
+      name: 'trap1',
       assets: [
         {
-          alias: 'arrow',
-          src: 'assets/traps/arrow.png'
+          alias: 'trap1',
+          src: 'assets/obstacles/traps/trap1.png'
+        },
+      ],
+    },
+    {
+      name: 'trap2',
+      assets: [
+        {
+          alias: 'trap2',
+          src: 'assets/obstacles/traps/trap2.png'
+        },
+      ],
+    },
+    {
+      name: 'trap3',
+      assets: [
+        {
+          alias: 'trap3',
+          src: 'assets/obstacles/traps/trap3.png'
         },
       ],
     },

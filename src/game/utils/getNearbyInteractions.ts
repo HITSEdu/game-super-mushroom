@@ -20,7 +20,7 @@ import i18next from "i18next";
 import {enemies} from "../entities/enemy/enemies.ts";
 
 const notInteractive = (type: string) => {
-  const types = ['arrow', 'trap'];
+  const types = ['trap'];
   for (const it of types) {
     if (type.startsWith(it)) return true;
   }

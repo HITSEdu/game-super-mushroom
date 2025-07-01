@@ -6,7 +6,7 @@ import {useToastStore} from "../../../store/ToastStore.ts";
 export const enemies: IEnemy[] = [];
 
 const isHollow = (type: string) => {
-  const hollowTypes = ['arrow', "underworld_spirit"];
+  const hollowTypes = ["underworld_spirit"];
   for (const it of hollowTypes) {
     if (type.startsWith(it)) return true;
   }

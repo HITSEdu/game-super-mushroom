@@ -56,7 +56,11 @@ export const useAssetsStore = create<AssetsStore>()(
           }
         }
 
-        const misc = ['trap1', 'fountain', 'portal'];
+        for (let i = 1; i <= 3; i++) {
+          await Assets.loadBundle(`trap${i}`);
+        }
+
+        const misc = ['fountain', 'portal'];
         for (const object of misc) {
           await Assets.loadBundle(object);
         }
@@ -90,7 +94,6 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(effect);
         }
 
-        await Assets.loadBundle('arrow');
         await Assets.loadBundle('fire');
         await Assets.loadBundle('fire_underworld');
 

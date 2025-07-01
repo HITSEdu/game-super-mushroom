@@ -45,6 +45,7 @@ const LevelsScreen = () => {
   };
 
   useEffect(() => {
+    if (!playerTexture) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.key.toLowerCase() === 'а' || e.key.toLowerCase() === 'f') && !isJumping && !showStory) {
         startJump();
@@ -53,7 +54,7 @@ const LevelsScreen = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isJumping, showStory, levels]);
+  }, [isJumping, showStory, levels, playerTexture]);
 
 
   if (!playerTexture) {
