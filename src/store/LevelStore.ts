@@ -22,6 +22,7 @@ import {usePlayerStore} from "./PlayerStore.ts";
 import {useGameSessionStore} from "./GameSessionStore.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
 import {clamp} from "../game/utils/clamp.ts";
+import {getTextureSafe} from "../game/utils/getTextureSafe.ts";
 
 export interface ObstacleData {
   x: number;
@@ -81,7 +82,7 @@ interface LevelState {
   gravity: number;
   isLoaded: boolean;
 
-  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData) => void;
+  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData, targetRange?: number) => void;
   removeEnemies: () => void;
   load: (id: string, season?: SeasonType) => Promise<void>;
   reset: () => void;
@@ -102,6 +103,8 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
   load: async (id: string, season?: SeasonType) => {
     const currentSeason = season ?? usePlayerStore.getState().season;
+    const currentPlayerTexture = usePlayerStore.getState().textureString
+    if (currentPlayerTexture) usePlayerStore.getState().setTexture(getTextureSafe(currentPlayerTexture));
 
     const data = await loadLevel(id, currentSeason);
 
@@ -192,13 +195,15 @@ export const useLevelStore = create<LevelState>((set, get) => ({
     });
   },
 
-  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData) => {
+  spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData, targetRange?: number) => {
     const size = DEFAULT_ENEMY_MINI_GAME_SIZE;
     const defaultSpeed = 2;
 
+    const range = targetRange ?? 200;
+
     const clampedData = target ? {
-      x: [clamp(target.x - 150, 0, GAME_WIDTH - TILE_SIZE), clamp(target.x + 150, 0, GAME_WIDTH - TILE_SIZE)],
-      y: [clamp(target.y - 150, 0, GAME_HEIGHT - TILE_SIZE), clamp(target.y + 150, 0, GAME_HEIGHT - TILE_SIZE)],
+      x: [clamp(target.x - range, 0, GAME_WIDTH - TILE_SIZE), clamp(target.x + range, 0, GAME_WIDTH - TILE_SIZE)],
+      y: [clamp(target.y - range, 0, GAME_HEIGHT - TILE_SIZE), clamp(target.y + range, 0, GAME_HEIGHT - TILE_SIZE)],
     } : {};
 
     const patrolArea = {

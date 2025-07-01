@@ -1,30 +1,26 @@
 import {Application, type ApplicationRef, extend} from '@pixi/react';
-import {Container, Sprite, Graphics, Texture, Assets} from 'pixi.js';
-import {useEffect, useRef} from "react";
+import {Container, Sprite, Graphics} from 'pixi.js';
+import {useEffect, useMemo, useRef} from "react";
 import {usePlayerStore} from "../store/PlayerStore.ts";
-import Obstacle from "./entities/obstacle/Obstacle.tsx";
-import {Enemy} from "./entities/enemy/Enemy.tsx";
 import {useLevelStore} from "../store/LevelStore.ts";
 import {
   initControlSystem,
   cleanupControlSystem
 } from "./systems/ControlSystem.ts";
 import {useGameSessionStore} from "../store/GameSessionStore.ts";
-import {Player} from "./entities/player/Player.tsx";
 import {useContainerSize} from "../hooks/useContainerSize.ts";
 import InteractionHint from "../components/ui/InteractionHint.tsx";
-import {Spirit} from './entities/spirit/Spirit.tsx';
-import Item from "./entities/item/Item.tsx";
 import {game_backgrounds} from "../constants/backgrounds.ts";
 import {useMiniGameStore} from "../store/MiniGameStore.ts";
-import {Snow} from './effects/Snow.tsx';
-import {Rain} from './effects/Rain.tsx';
-import {Fire} from './effects/Fire.tsx';
-import Tree from './entities/decoration/Tree.tsx';
-import Cloud from './entities/decoration/Cloud.tsx';
-import MovingSkyElement from "./entities/decoration/MovingSkyElement.tsx";
-import SkyOverlay from "./entities/decoration/SkyOverlay.tsx";
-import {TILE_SIZE} from '../constants/values.ts';
+import ObstaclesList from "./entities/obstacle/ObstaclesList.tsx";
+import ItemsList from "./entities/item/ItemsList.tsx";
+import SpiritsList from "./entities/spirit/SpiritsList.tsx";
+import EnemiesList from "./entities/enemy/EnemiesList.tsx";
+import DecorationsList from "./entities/decoration/DecorationsList.tsx";
+import PlayerWrapper from "./entities/player/PlayerWrapper.tsx";
+import MiniGameStage from "./stages/MiniGameStage.tsx";
+import WeatherEffect from "./effects/WeatherEffect.tsx";
+import SkyAndClouds from "./effects/SkyAndClouds .tsx";
 
 extend({
   Container,
@@ -33,33 +29,14 @@ extend({
 });
 
 const GameScene = () => {
-  const {
-    obstacles,
-    enemies: levelEnemies,
-    items: levelItems,
-    decorations: levelDecorations,
-    spirits: levelSpirits,
-    isLoaded,
-    load
-  } = useLevelStore();
+  const isLoaded = useLevelStore(state => state.isLoaded);
+  const load = useLevelStore(state => state.load);
 
-  const {
-    texture: playerTexture,
-    textureString: playerTextureString,
-    size: playerSize,
-    setTexture,
-    position: playerPosition,
-    season: playerSeason,
-  } = usePlayerStore();
+  const playerSeason = usePlayerStore(state => state.season);
 
-  const {currentLevelID, status: gameStatus} = useGameSessionStore();
+  const currentLevelID = useGameSessionStore(state => state.currentLevelID);
 
-  const {
-    carriedItem,
-    currentMiniGame,
-    deliveryZones,
-    activeDeliveryZoneIndex
-  } = useMiniGameStore();
+  const currentMiniGame = useMiniGameStore(state => state.currentMiniGame);
 
   const appRef = useRef<ApplicationRef>(null);
 
@@ -71,90 +48,29 @@ const GameScene = () => {
   }, [playerSeason]);
 
   useEffect(() => {
-    if (currentLevelID)
-      load(currentLevelID).then(() => {
-        if (playerTextureString)
-          Assets.load(playerTextureString)
-            .then(playerTex => {
-              setTexture(playerTex as Texture);
-            });
+    if (!currentLevelID) return;
 
-        initControlSystem();
-      });
+    const loadLevel = async () => {
+      await load(currentLevelID, playerSeason);
+      initControlSystem();
+    };
+
+    loadLevel();
 
     return () => {
       cleanupControlSystem();
     };
-  }, [currentLevelID, load, playerSeason, playerTextureString, setTexture]);
-
-  const getTextureSafe = (alias: string): Texture => {
-    return Assets.cache.has(alias) ? Assets.get(alias) : Texture.EMPTY;
-  }
-
-  const miniGamePlatforms = []
-  for (let row = 0; row < 42; row += 1) {
-    for (let col = 0; col < 24; col += 1) {
-      const tileTexture = (playerSeason !== 'underworld') ? playerSeason : 'autumn'
-      // TODO("Оставить просто playerSeason")
-      miniGamePlatforms.push(
-        <Obstacle
-          key={`${row}-${col}`}
-          x={row * TILE_SIZE}
-          y={col * TILE_SIZE}
-          size={{width: TILE_SIZE, height: TILE_SIZE}}
-          texture={getTextureSafe(`platform_games_${tileTexture}`)}
-        />
-      )
-    }
-  }
-
-  const rainTiles = [];
-  const snowTiles = []
-  for (let row = 0; row < 42; row += 8) {
-    for (let col = 0; col < 21 + 24; col += 8) {
-      rainTiles.push(
-        <Rain
-          key={`${row}-${col}`}
-          x={col * 24}
-          y={row * 24}
-        />
-      );
-      snowTiles.push(
-        <Snow
-          key={`${row}-${col}`}
-          x={col * 24}
-          y={row * 24}
-        />
-      );
-    }
-  }
-
-  const clouds = useRef<Array<{
-    id: string;
-    x: number;
-    y: number;
-    speed: number;
-    textureAlias: string;
-  }>>([]);
-
-  useEffect(() => {
-    if (!isLoaded) return;
-    clouds.current = Array.from({length: 5}).map((_, i) => ({
-      id: `cloud-${i}`,
-      x: Math.random() * window.innerWidth,
-      y: 50 + Math.random() * 100,
-      speed: 0.2,
-      textureAlias: `cloud${1 + Math.floor(Math.random() * 7)}`,
-    }));
-  }, [isLoaded]);
+  }, [currentLevelID, playerSeason, load]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const {offsetX, offsetY, scale} = useContainerSize(containerRef, isLoaded);
 
-  if (!isLoaded) return null;
+  const containerSize = useMemo(() => ({
+    width: containerRef.current?.clientWidth ?? window.innerWidth,
+    height: containerRef.current?.clientHeight ?? window.innerHeight
+  }), []);
 
-  const containerWidth = containerRef.current?.clientWidth ?? window.innerWidth;
-  const containerHeight = containerRef.current?.clientHeight ?? window.innerHeight;
+  if (!isLoaded) return null;
 
   return (
     <div
@@ -172,110 +88,25 @@ const GameScene = () => {
           scale={scale}
           sortableChildren={true}
         >
-          {playerSeason === 'autumn' && currentMiniGame !== 'autumn' && rainTiles}
-          {playerSeason === 'winter' && currentMiniGame !== 'winter' && snowTiles}
-          {currentMiniGame && miniGamePlatforms}
-
-          {!currentMiniGame && playerSeason !== 'underworld' && (
+          {!currentMiniGame && playerSeason !== 'underworld' &&
             <>
-              <MovingSkyElement
-                sunTexture={getTextureSafe('sun')}
-                moonTexture={getTextureSafe('moon')}
-                containerWidth={containerWidth}
-                containerHeight={containerHeight}
-              />
-              <SkyOverlay
-                containerWidth={containerWidth}
-                containerHeight={containerHeight}
+              <WeatherEffect season={playerSeason} />
+              <SkyAndClouds
+                containerWidth={containerSize.width}
+                containerHeight={containerSize.height}
+                isLoaded={isLoaded}
               />
             </>
-          )}
+          }
 
-          {!currentMiniGame && playerSeason !== 'underworld' && clouds.current.map((c) => (
-            <Cloud
-              key={c.id}
-              x={c.x}
-              y={c.y}
-              width={128}
-              height={64}
-              speed={c.speed}
-              boundsWidth={window.innerWidth}
-              texture={getTextureSafe(c.textureAlias)}
-            />
-          ))}
-          {playerTexture && gameStatus !== 'lost' &&
-            <Player
-              x={playerPosition.x}
-              y={playerPosition.y}
-              texture={playerTexture}
-              size={playerSize}
-            />}
+          {currentMiniGame && <MiniGameStage />}
 
-          {levelEnemies.filter(e => e.state !== 'dead').map((enemy) => (
-            <Enemy
-              key={enemy.id}
-              x={enemy.position.x}
-              y={enemy.position.y}
-              texture={getTextureSafe(enemy.type)}
-              size={enemy.size}
-            />
-          ))}
-          {obstacles.filter(e => e.visible).map((obs, i) => (
-            <Obstacle
-              key={`${i}-${obs.type}`}
-              x={obs.x}
-              y={obs.y}
-              size={{width: obs.width, height: obs.height}}
-              texture={getTextureSafe(obs.type)}
-            />
-          ))}
-
-          {levelItems.filter(e => e.visible).map((item) => (
-            <Item
-              key={`${item.id}-${item.x}-${item.y}`}
-              x={item.x}
-              y={item.y}
-              size={item.size}
-              texture={getTextureSafe(`${item.type}`)}
-            />
-          ))}
-
-          {levelSpirits.filter(e => e.visible).map((spirit) => (
-            <Spirit
-              key={spirit.id}
-              x={spirit.x}
-              y={spirit.y}
-              size={spirit.size}
-              texture={getTextureSafe(`${spirit.type}`)}
-            />
-          ))}
-
-          {levelDecorations.filter(e => e.visible).map((d) => {
-            if (d.type.startsWith("fire")) return (
-              <Fire
-                key={`${d.x}-${d.y}-${d.type}`}
-                x={d.x}
-                y={d.y}
-              />
-            )
-            if (d.type.startsWith("tree")) return (
-              <Tree
-                key={`${d.x}-${d.y}-${d.type}`}
-                x={d.x}
-                y={d.y}
-                texture={getTextureSafe(d.type)}
-              />
-            )
-          })}
-
-          {carriedItem === 8 && currentMiniGame === 'autumn' && deliveryZones.length > 0 && (
-            <Item
-              x={deliveryZones[activeDeliveryZoneIndex]?.x}
-              y={deliveryZones[activeDeliveryZoneIndex]?.y}
-              texture={getTextureSafe('box_zone')}
-              size={{width: 24, height: 24}}
-            />
-          )}
+          <PlayerWrapper />
+          <EnemiesList />
+          <ObstaclesList />
+          <ItemsList />
+          <SpiritsList />
+          <DecorationsList />
 
         </pixiContainer>
       </Application>

@@ -111,4 +111,16 @@ export interface EnemySpawnConfig {
   speed?: number;
   size?: ObjectSize;
   isAngry?: boolean;
-};
+}
+
+export interface IReady {
+  ready: boolean;
+}
+
+export interface ICloud {
+  id: string;
+  x: number;
+  y: number;
+  speed: number;
+  textureString: string;
+}

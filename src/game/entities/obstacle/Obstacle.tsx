@@ -10,6 +10,7 @@ const Obstacle = ({x, y, texture, size}: {
   texture: Texture,
   size: ObjectSize
 }) => {
+
   return (
     texture &&
     <pixiSprite

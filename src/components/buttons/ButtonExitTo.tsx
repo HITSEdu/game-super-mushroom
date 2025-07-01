@@ -5,6 +5,7 @@ import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {useGlobalStore} from "../../store/GlobalStore.ts";
 import {useBackgroundStore} from "../../store/BackgroundStore.tsx";
 import {useInventoryStore} from "../../store/InventoryStore.ts";
+import {useMiniGameStore} from "../../store/MiniGameStore.ts";
 
 interface IProps {
   title: string;
@@ -30,6 +31,7 @@ const ButtonExitTo = ({title, newState}: IProps) => {
         reset();
         resetBackground();
         useInventoryStore.getState().removeMiniGameItems();
+        useMiniGameStore.getState().clearCurrentMiniGame();
       }}
     />
   );

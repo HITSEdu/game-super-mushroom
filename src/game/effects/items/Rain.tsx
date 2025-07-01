@@ -1,7 +1,7 @@
 import {extend} from "@pixi/react";
 import {Assets, Sprite as PixiSprite} from "pixi.js";
-import {TILE_SIZE} from "../../constants/values";
-import {useAnimation} from "../../hooks/useAnimation";
+import {TILE_SIZE} from "../../../constants/values.ts";
+import {useAnimation} from "../../../hooks/useAnimation.ts";
 
 extend({Sprite: PixiSprite});
 

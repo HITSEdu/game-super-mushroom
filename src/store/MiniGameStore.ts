@@ -30,6 +30,7 @@ interface MiniGameState {
 
   markCompleted: (id: string) => void;
   startMiniGame: (id: string) => void;
+  clearCurrentMiniGame: () => void;
   deliverItem: () => void;
   finishMiniGame: () => void;
   isCompleted: (id: string) => boolean;
@@ -134,6 +135,17 @@ export const useMiniGameStore = create<MiniGameState>()(
           }
         },
 
+      clearCurrentMiniGame: () => {
+        set({
+          currentMiniGame: null,
+          collected: 0,
+          carriedItem: null,
+          canInteract: true,
+          deliveryZones: [],
+          activeDeliveryZoneIndex: 0,
+        });
+      },
+
       deliverItem:
         () => {
           const id = get().currentMiniGame;
@@ -232,6 +244,9 @@ export const useMiniGameStore = create<MiniGameState>()(
     }),
     {
       name: 'mini-game-store',
+      partialize: (state) => ({
+        completed: state.completed,
+      }),
     }
   )
 );

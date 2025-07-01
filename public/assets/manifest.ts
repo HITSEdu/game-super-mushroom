@@ -361,7 +361,7 @@ export const manifest = {
       ],
     },
     {
-      name: 'player_1_spring',
+      name: 'player_2_spring',
       assets: [
         {
           alias: 'player_2_spring',
