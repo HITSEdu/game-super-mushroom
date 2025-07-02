@@ -5,7 +5,6 @@ import {memo} from "react";
 
 const ObstaclesList = memo(() => {
   const obstacles = useLevelStore(state => state.obstacles);
-
   return (
     obstacles.filter(e => e.visible).map((obs, i) => (
       <Obstacle
