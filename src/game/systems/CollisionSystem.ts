@@ -6,7 +6,6 @@ import type {CollisionDirection} from '../../constants/types.ts';
 import {useGameSessionStore} from "../../store/GameSessionStore.ts";
 import {getNearbyInteractions} from "../utils/getNearbyInteractions.ts";
 import {useMiniGameStore} from "../../store/MiniGameStore.ts";
-import {useInventoryStore} from "../../store/InventoryStore.ts";
 
 export const isNearEnough = (
   ax: number,
@@ -27,6 +26,14 @@ export const isNearEnough = (
   );
 }
 
+const intersects = (
+  a: { x: number, y: number, width: number, height: number },
+  b: { x: number, y: number, width: number, height: number }
+) =>
+  a.x < b.x + b.width &&
+  a.x + a.width > b.x &&
+  a.y < b.y + b.height &&
+  a.y + a.height > b.y;
 
 export const getCollisionDirection = (
   a: { x: number; y: number; width: number; height: number },
@@ -79,17 +86,21 @@ export const handlePlayerEnemyCollision = () => {
     const direction = getCollisionDirection(playerBox, enemyBox);
     if (direction !== null) {
       useGameSessionStore.getState().lose();
-
-      if (useLevelStore.getState().isMiniGame) {
-        useInventoryStore.getState().removeMiniGameItems();
-        useMiniGameStore.setState({carriedItem: null});
-      }
     }
   }
 }
 
 const hasntCollisions = (type: string) => {
-  const types = ['fountain', 'tree', 'grass', 'fire', 'flower', 'snowman', 'tablet']
+  const types = ['fountain', 'tree', 'grass', 'flower', 'snowman', 'tablet'];
+  for (const it of types) {
+    if (type.startsWith(it)) return true;
+  }
+
+  return false;
+}
+
+const deathCollisions = (type: string) => {
+  const types = ['trap', 'water', 'fire'];
   for (const it of types) {
     if (type.startsWith(it)) return true;
   }
@@ -155,7 +166,11 @@ export const handleObstacleCollision = (
     const direction = getCollisionDirection(boxX, obsBox);
     if (!direction) continue;
 
-    if (obs.type.startsWith('trap') && player) useGameSessionStore.getState().lose();
+    if (deathCollisions(obs.type) && player) {
+      if (intersects(boxX, obsBox)) {
+        useGameSessionStore.getState().lose();
+      }
+    }
 
     if (obs.type === 'portal' && player) useMiniGameStore.getState().finishMiniGame();
 
@@ -188,13 +203,8 @@ export const handleObstacleCollision = (
 
     if (obs.type.startsWith('ladder') && player) {
       if (!player) continue;
-      const intersects =
-        boxY.x + boxY.width > obsBox.x &&
-        boxY.x < obsBox.x + obsBox.width &&
-        boxY.y + boxY.height > obsBox.y &&
-        boxY.y < obsBox.y + obsBox.height;
 
-      if (intersects) {
+      if (intersects(boxY, obsBox)) {
         isOnLadder = true;
         onGround = false;
         continue;
@@ -204,7 +214,11 @@ export const handleObstacleCollision = (
     const direction = getCollisionDirection(boxY, obsBox);
     if (!direction) continue;
 
-    if (obs.type.startsWith('trap') && player) useGameSessionStore.getState().lose();
+    if (deathCollisions(obs.type) && player) {
+      if (intersects(boxX, obsBox)) {
+        useGameSessionStore.getState().lose();
+      }
+    }
 
     if (obs.type === 'portal' && player) useMiniGameStore.getState().finishMiniGame();
 

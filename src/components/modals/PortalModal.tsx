@@ -3,11 +3,32 @@ import {useModalStore} from "../../store/ModalStore.ts";
 import type {SeasonType} from "../../constants/types.ts";
 import {useTranslation} from "react-i18next";
 import {SEASONS} from "../../constants/values.ts";
+import {useMiniGameStore} from "../../store/MiniGameStore.ts";
+import StoryModal from "./StoryModal.tsx";
 
 const PortalModal = () => {
   const setSeason = usePlayerStore((s) => s.setSeason);
   const close = useModalStore((s) => s.close);
-  const { t } = useTranslation('translations');
+  const {t} = useTranslation('translations');
+
+  const currentMiniGame = useMiniGameStore(state => state.currentMiniGame);
+
+  const PortalPages = [
+    {
+      title: t('portal.title'),
+      content: t('portal.page1'),
+    },
+  ];
+
+  if (currentMiniGame) {
+    return (
+      <StoryModal
+        pages={PortalPages}
+        onComplete={close}
+        primaryLabel="understood"
+      />
+    );
+  }
 
   const handleSelect = (season: SeasonType) => {
     setSeason(season);
@@ -18,7 +39,7 @@ const PortalModal = () => {
     <div className="relative flex flex-col gap-3 items-center text-sm p-4">
       <h2 className="text-white text-lg font-bold">{t('selectLocation')}</h2>
       <div className="grid grid-cols-2 gap-2 w-full">
-        {SEASONS.map(({ key, label, background }) => (
+        {SEASONS.map(({key, label, background}) => (
           <button
             key={key}
             onClick={() => handleSelect(key)}

@@ -9,6 +9,8 @@ import {UNDERWORLD_SPAWN} from "../constants/values.ts";
 import i18next from "i18next";
 import {useToastStore} from "./ToastStore.ts";
 import {MODALS} from "../constants/modals.tsx";
+import {useMiniGameStore} from "./MiniGameStore.ts";
+import {useInventoryStore} from "./InventoryStore.ts";
 
 interface GameSessionState {
   currentLevelID: string | null
@@ -109,6 +111,22 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
 
     if (curLevel) reloadLevel(curLevel).then(() => {
         usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
+        const currentMiniGame = useMiniGameStore.getState().currentMiniGame;
+        if (currentMiniGame) {
+          useInventoryStore.getState().removeMiniGameItems();
+          useMiniGameStore.setState({carriedItem: null});
+        }
+
+        if (currentMiniGame === 'spring') {
+          useMiniGameStore.setState({
+            collected: 0,
+            canInteract: true,
+          });
+
+          const remaining = useLevelStore.getState().items.filter(item => item.type !== 'flower');
+          useLevelStore.setState({items: remaining});
+          useMiniGameStore.getState().generateFlowerZones();
+        }
       }
     );
 

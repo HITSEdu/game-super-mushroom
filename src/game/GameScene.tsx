@@ -48,19 +48,22 @@ const GameScene = () => {
   }, [playerSeason]);
 
   useEffect(() => {
-    if (!currentLevelID) return;
-
-    const loadLevel = async () => {
-      await load(currentLevelID, playerSeason);
+    const initializeControls = () => {
       initControlSystem();
     };
 
-    loadLevel();
+    initializeControls();
 
     return () => {
       cleanupControlSystem();
     };
-  }, [currentLevelID, playerSeason, load]);
+  }, []);
+
+  useEffect(() => {
+    if (!currentLevelID || currentMiniGame) return;
+    load(currentLevelID);
+
+  }, [currentLevelID, playerSeason, load, currentMiniGame]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const {offsetX, offsetY, scale} = useContainerSize(containerRef, isLoaded);

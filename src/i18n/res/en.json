@@ -154,5 +154,9 @@
   "lose": {
     "title": "You died!",
     "page1": "You died!"
+  },
+  "portal": {
+    "title": "Time Portal",
+    "page1": "The portal remains closed until fate allows. Complete the trial, and the path will open once more."
   }
 }

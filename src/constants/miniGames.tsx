@@ -6,12 +6,12 @@ export const MINI_GAMES: Record<string, MiniGameConfig> = {
   spring: {
     id: 'spring',
     level: '5',
-    goal: 10,
+    goal: 5,
     itemId: 2,
     butterflyId: 4,
     itemName: 'flower',
-    deliverTo: 'basket',
-    description: 'Collect and deliver 10 flowers.',
+    deliverTo: 'bag',
+    description: 'Collect and deliver 5 flowers.',
     action: () => useModalStore.getState().open(
       <MiniGameModal season={'spring'} />)
   },

@@ -2,11 +2,12 @@ import type {IEnemy, ObjectSize} from "../../../constants/interfaces.ts";
 import {handleObstacleCollision} from "../../systems/CollisionSystem.ts";
 import i18next from "i18next";
 import {useToastStore} from "../../../store/ToastStore.ts";
+import {usePlayerStore} from "../../../store/PlayerStore.ts";
 
 export const enemies: IEnemy[] = [];
 
 const isHollow = (type: string) => {
-  const hollowTypes = ["underworld_spirit"];
+  const hollowTypes = ["underworld_spirit", "trap2"];
   for (const it of hollowTypes) {
     if (type.startsWith(it)) return true;
   }
@@ -32,45 +33,81 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
     update() {
       if (this.state === 'dead') return;
 
-      const result = handleObstacleCollision(this.position, this.size, this.velocityX, this.velocityY, false, isHollow(this.type));
+      const chasing = this.type.includes('#chasing');
+
+      if (chasing) {
+        const playerPos = usePlayerStore.getState().position;
+
+        const dx = playerPos.x - this.position.x;
+        const dy = playerPos.y - this.position.y;
+
+        const dist = Math.hypot(dx, dy);
+        if (dist === 0) {
+          this.velocityX = 0;
+          this.velocityY = 0;
+          return;
+        }
+
+        const vx = (dx / dist) * this.speed;
+        const vy = (dy / dist) * this.speed;
+
+        this.velocityX = vx;
+        this.velocityY = vy;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+          this.direction = dx > 0 ? 'right' : 'left';
+        } else {
+          this.direction = dy > 0 ? 'down' : 'up';
+        }
+      } else {
+        if (this.directionAxis === 'x') {
+          if (this.direction === 'right') {
+            if (this.position.x < this.patrolArea[1]) {
+              this.velocityX = this.speed;
+            } else {
+              this.direction = 'left';
+            }
+          } else {
+            if (this.position.x > this.patrolArea[0]) {
+              this.velocityX = -this.speed;
+            } else {
+              this.direction = 'right';
+            }
+          }
+          this.velocityY = 0;
+        } else {
+          if (this.direction === 'down') {
+            if (this.position.y < this.patrolArea[1]) {
+              this.velocityY = this.speed;
+            } else {
+              this.direction = 'up';
+              this.position.y -= 1;
+            }
+          } else {
+            if (this.position.y > this.patrolArea[0]) {
+              this.velocityY = -this.speed;
+            } else {
+              this.direction = 'down';
+              this.position.y += 1;
+            }
+          }
+          this.velocityX = 0;
+        }
+      }
+
+      const result = handleObstacleCollision(
+        this.position,
+        this.size,
+        this.velocityX,
+        this.velocityY,
+        false,
+        isHollow(this.type)
+      );
+
       this.position = result.position;
       this.velocityY = result.velocityY;
       this.velocityX = result.velocityX;
       this.onGround = result.onGround;
-
-      if (this.directionAxis === 'x') {
-        if (this.direction === 'right') {
-          if (this.position.x < this.patrolArea[1] && !result.stacked.x) {
-            this.velocityX = this.speed;
-          } else {
-            this.direction = 'left';
-          }
-        } else {
-          if (this.position.x > this.patrolArea[0] && !result.stacked.x) {
-            this.velocityX = -this.speed;
-          } else {
-            this.direction = 'right';
-          }
-        }
-        this.velocityY = 0;
-      } else {
-        if (this.direction === 'down') {
-          if (this.position.y < this.patrolArea[1] && !result.stacked.y) {
-            this.velocityY = this.speed;
-          } else {
-            this.direction = 'up';
-            this.position.y -= 1;
-          }
-        } else {
-          if (this.position.y > this.patrolArea[0] && !result.stacked.y) {
-            this.velocityY = -this.speed;
-          } else {
-            this.direction = 'down';
-            this.position.y += 1;
-          }
-        }
-        this.velocityX = 0;
-      }
     },
 
     kill() {

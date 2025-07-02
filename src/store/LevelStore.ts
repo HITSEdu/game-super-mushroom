@@ -1,5 +1,5 @@
 import {create} from 'zustand';
-import {Point, type PointData} from 'pixi.js';
+import type {PointData} from 'pixi.js';
 import {loadLevel} from '../game/utils/loader.ts';
 import {v4 as uuidv4} from 'uuid';
 import {
@@ -70,8 +70,8 @@ export interface SpiritData {
 }
 
 interface LevelState {
-  playerStart: Point;
-  playerEnd: Point;
+  playerStart: PointData;
+  playerEnd: PointData;
   levelType: SeasonType;
   obstacles: ObstacleData[];
   enemies: IEnemy[];
@@ -89,8 +89,8 @@ interface LevelState {
 }
 
 export const useLevelStore = create<LevelState>((set, get) => ({
-  playerStart: new Point(DEFAULT_START_POSITION.x, DEFAULT_START_POSITION.y),
-  playerEnd: new Point(DEFAULT_END_POSITION.x, DEFAULT_END_POSITION.y),
+  playerStart: {x: DEFAULT_START_POSITION.x, y: DEFAULT_START_POSITION.y},
+  playerEnd: {x: DEFAULT_END_POSITION.x, y: DEFAULT_END_POSITION.y},
   levelType: 'underworld',
   gravity: 1.5,
   items: [],
@@ -141,12 +141,12 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       if (item.type === 'flower') {
         return {
           ...item,
-          type: item.type + `${Math.ceil(Math.random() * 4)}`
+          type: item.type + `${Math.ceil(Math.random() * 12)}`
         };
       } else if (item.type === 'box') {
         return {
           ...item,
-          type: item.type + `${Math.ceil(Math.random() * 2)}`
+          type: item.type + `${Math.ceil(Math.random() * 3)}`
         };
       }
       return {
@@ -183,8 +183,8 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
     set({
       levelType: data.levelType,
-      playerStart: new Point(data.playerStart.x, data.playerStart.y),
-      playerEnd: new Point(data.playerEnd.x, data.playerEnd.y),
+      playerStart: {x: data.playerStart.x, y: data.playerStart.y},
+      playerEnd: {x: data.playerEnd.x, y: data.playerEnd.y},
       gravity: data.gravity,
       items: newItems,
       decorations: newDecorations,
@@ -240,8 +240,8 @@ export const useLevelStore = create<LevelState>((set, get) => ({
     activeEnemies.length = 0;
 
     set({
-      playerStart: new Point(get().playerStart.x, get().playerStart.y),
-      playerEnd: new Point(get().playerEnd.x, get().playerEnd.y),
+      playerStart: {x: get().playerStart.x, y: get().playerStart.y},
+      playerEnd: {x: get().playerEnd.x, y: get().playerEnd.y},
       obstacles: [],
       spirits: [],
       items: [],

@@ -1,6 +1,6 @@
 {
   "gravity": 0,
-  "levelType": "autumn",
+  "levelType": "spring",
   "playerStart": {
     "x": 48,
     "y": 450
@@ -11,20 +11,39 @@
   },
   "obstacles": [
     {
-      "x": 960,
-      "y": 456,
+      "x": 144,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 856,
+      "y": 452,
       "width": 48,
       "height": 48,
-      "type": "shelf"
+      "type": "bag"
     }
   ],
-  "enemies": [],
+  "enemies": [
+    {
+      "x": 300,
+      "y": 300,
+      "type": "trap2#chasing",
+      "speed": 1.32,
+      "range": 288,
+      "size": {
+        "width": 24,
+        "height": 24
+      }
+    }
+  ],
   "items": [
     {
-      "id": 10,
-      "x": 600,
+      "id": 4,
+      "x": 300,
       "y": 250,
-      "type": "item_autumn",
+      "type": "item_spring",
       "size": {
         "width": 24,
         "height": 24

@@ -76,7 +76,7 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(`cloud${i}`);
         }
 
-        const effects = ['snow', 'rain'];
+        const effects = ['snow', 'rain', 'fog'];
         for (const effect of effects) {
           await Assets.loadBundle(effect);
         }

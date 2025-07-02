@@ -6,7 +6,7 @@ extend({TilingSprite});
 
 
 const MiniGamePlatform = ({texture}: { texture: Texture }) => {
-
+  
   return (
     <pixiTilingSprite
       texture={texture}

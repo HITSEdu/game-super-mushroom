@@ -11,8 +11,9 @@ const EnemiesList = () => {
         key={enemy.id}
         x={enemy.position.x}
         y={enemy.position.y}
-        texture={getTextureSafe(enemy.type)}
+        texture={getTextureSafe(enemy.type.split('#')[0])}
         size={enemy.size}
+        type={enemy.type}
       />
     ))
   );

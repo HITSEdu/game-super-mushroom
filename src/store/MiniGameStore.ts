@@ -38,6 +38,7 @@ interface MiniGameState {
   takeBoxFromShelf: () => void;
 
   generateDeliveryZones: () => void;
+  generateFlowerZones: () => void;
   nextDeliveryZone: () => void;
 }
 
@@ -59,6 +60,31 @@ export const useMiniGameStore = create<MiniGameState>()(
         const zones = generateRandomDeliveryZones();
         set({deliveryZones: zones, activeDeliveryZoneIndex: 0});
       },
+
+      generateFlowerZones: () => {
+        const state = get();
+        if (!state.currentMiniGame) return;
+        const config = MINI_GAMES[state.currentMiniGame];
+        if (config.id !== 'spring') return;
+
+        const zones = generateRandomDeliveryZones();
+
+        const flowers = zones.map((zone) => ({
+          id: config.itemId,
+          x: zone.x,
+          y: zone.y,
+          type: config.itemName + `${Math.ceil(Math.random() * 12)}`,
+          size: {width: 24, height: 24},
+          visible: true,
+        }));
+
+        useLevelStore.setState((state) => ({
+          items: [...state.items, ...flowers]
+        }));
+
+        set({deliveryZones: zones, activeDeliveryZoneIndex: 0});
+      },
+
 
       nextDeliveryZone: () => {
         set((state) => ({
@@ -95,10 +121,10 @@ export const useMiniGameStore = create<MiniGameState>()(
         if (!zone) return;
 
         useLevelStore.getState().spawnEnemies([
-          {x: zone.x - 10, y: 24 + 16, axis: 'y', type: 'trap2', speed: 4},
-          {x: zone.x + 10, y: 24 + 16, axis: 'y', type: 'trap2', speed: 4},
-          {x: 24 + 16, y: zone.y - 10, axis: 'x', type: 'trap2', speed: 4},
-          {x: 24 + 16, y: zone.y + 10, axis: 'x', type: 'trap2', speed: 4},
+          {x: zone.x - 12, y: zone.y, axis: 'y', type: 'trap2', speed: 4},
+          {x: zone.x + 12, y: zone.y, axis: 'y', type: 'trap2', speed: 4},
+          {x: zone.x, y: zone.y - 12, axis: 'x', type: 'trap2', speed: 4},
+          {x: zone.x, y: zone.y + 12, axis: 'x', type: 'trap2', speed: 4},
         ], zone);
       },
 
@@ -129,6 +155,9 @@ export const useMiniGameStore = create<MiniGameState>()(
             useLevelStore.getState().load(config.level, config.id).then(() => {
               usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
               if (config.action) config.action();
+              if (id === 'spring') {
+                get().generateFlowerZones();
+              }
             });
 
             set({currentMiniGame: id});
@@ -192,6 +221,7 @@ export const useMiniGameStore = create<MiniGameState>()(
 
           if (nextCount >= config.goal) {
             set({canInteract: false});
+            useLevelStore.getState().removeEnemies();
             useLevelStore.setState((state) => ({
               items: state.items.map(item =>
                 item.id === config.butterflyId

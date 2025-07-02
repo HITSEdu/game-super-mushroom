@@ -605,6 +605,15 @@ export const manifest = {
       ],
     },
     {
+      name: 'fog',
+      assets: [
+        {
+          alias: 'fog',
+          src: 'assets/effects/fog.png'
+        },
+      ],
+    },
+    {
       name: 'rain',
       assets: [
         {

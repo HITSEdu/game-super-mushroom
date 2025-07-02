@@ -13,30 +13,24 @@
     {
       "x": 144,
       "y": 144,
-      "size": {
-        "width": 24,
-        "height": 24
-      },
+      "width": 24,
+      "height": 24,
       "type": "water_games",
       "visible": true
     },
     {
       "x": 144,
-      "y": 100,
-      "size": {
-        "width": 24,
-        "height": 24
-      },
+      "y": 96,
+      "width": 24,
+      "height": 24,
       "type": "water",
       "visible": true
     },
     {
-      "x": 90,
+      "x": 300,
       "y": 90,
-      "size": {
-        "width": 96,
-        "height": 96
-      },
+      "width": 96,
+      "height": 96,
       "type": "rock1",
       "visible": true
     },
