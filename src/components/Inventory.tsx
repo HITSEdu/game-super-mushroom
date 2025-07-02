@@ -4,6 +4,7 @@ import {TOTAL_SLOTS} from "../constants/values.ts";
 
 const Inventory = () => {
   const items = useInventoryStore(state => state.items);
+  const doAction = useInventoryStore(state => state.doAction);
 
   const slots = Array(TOTAL_SLOTS).fill(null);
   items.forEach(item => {
@@ -21,7 +22,7 @@ const Inventory = () => {
             id={item.id}
             source={item.source}
             amount={item.amount}
-            action={item.action}
+            action={() => doAction(item.id)}
             height={item.height}
           />
         ) : (

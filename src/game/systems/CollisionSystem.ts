@@ -113,10 +113,17 @@ export const handleObstacleCollision = (
   size: ObjectSize,
   velocityX: number,
   velocityY: number,
+  dt: number,
   player?: boolean,
   hollow?: boolean,
 ) => {
-  const {obstacles, gravity, items, spirits} = useLevelStore.getState();
+  const {
+    obstacles,
+    gravity,
+    items,
+    spirits,
+    isMiniGame
+  } = useLevelStore.getState();
 
   const playerWidth = size.width;
   const playerHeight = size.height;
@@ -128,8 +135,10 @@ export const handleObstacleCollision = (
     newVelocityY = 0;
   }
 
-  let newX = position.x + newVelocityX;
-  let newY = position.y + newVelocityY;
+  const seconds = dt / 1000 * (isMiniGame ? 1.3 : 1);
+
+  let newX = position.x + newVelocityX * seconds;
+  let newY = position.y + newVelocityY * seconds;
 
   let onGround = false;
   const stacked = {x: false, y: false};
@@ -264,7 +273,7 @@ export const handleObstacleCollision = (
   }
 
   if (!onGround) {
-    newVelocityY += gravity;
+    newVelocityY += gravity * seconds;
   }
 
   return {

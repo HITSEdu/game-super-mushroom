@@ -1,5 +1,5 @@
 {
-  "gravity": 1.5,
+  "gravity": 1500,
   "levelType": "underworld",
   "playerStart": {
     "x": 48,
@@ -1668,7 +1668,7 @@
       "x": 504,
       "y": 432,
       "type": "underworld_spirit",
-      "speed": 1,
+      "speed": 50,
       "range": 288,
       "size": {
         "width": 24,
@@ -1677,28 +1677,6 @@
     }
   ],
   "spirits": [
-    {
-      "id": 4,
-      "x": 456,
-      "y": 240,
-      "type": "spirit_laurus",
-      "size": {
-        "width": 24,
-        "height": 48
-      },
-      "visible": true
-    },
-    {
-      "id": 2,
-      "x": 360,
-      "y": 240,
-      "type": "spirit_swifty",
-      "size": {
-        "width": 24,
-        "height": 48
-      },
-      "visible": true
-    }
   ],
   "items": []
 }

@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 import {persist} from "zustand/middleware";
 import type {IItem} from "../constants/interfaces.ts";
-import {initItems, items} from "../constants/items.tsx";
+import {initItems, items as globalItems} from "../constants/items.tsx";
 import {useToastStore} from "./ToastStore.ts";
 import i18next from "i18next";
 
@@ -35,7 +35,9 @@ export const useInventoryStore = create<InventoryState>()(
 
       doAction: (id) => {
         const item = get().getItem(id);
-        if (item?.action) item.action();
+        if (item) {
+          globalItems.find((it) => it.id === item.id)?.action();
+        }
       },
 
       removeItem: (id) => {
@@ -54,7 +56,7 @@ export const useInventoryStore = create<InventoryState>()(
         const message = i18next.t('translations:items.pickedUp', {itemName});
 
         useToastStore.getState().show(message);
-        const newItem = items.find(item => item.id === id);
+        const newItem = globalItems.find(item => item.id === id);
         if (newItem) {
           set((state) => {
             const existingItem = state.items.find(item => item.id === newItem.id);

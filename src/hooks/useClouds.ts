@@ -8,7 +8,7 @@ export const useClouds = (isLoaded: boolean) => {
       id: `cloud-${i}`,
       x: Math.random() * window.innerWidth,
       y: 50 + Math.random() * 100,
-      speed: 0.2,
+      speed: 4,
       textureString: `cloud${1 + Math.floor(Math.random() * 7)}`,
     }));
   }, [isLoaded]);

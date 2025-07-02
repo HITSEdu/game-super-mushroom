@@ -40,7 +40,7 @@ interface PlayerStore {
   jump: () => void;
   setOnLadder: (val: boolean) => void,
   come: (direction: Direction) => void;
-  tick: () => void;
+  tick: (dt: number) => void;
 
   init: (name: string, texture: Texture, textureString: string, speed: number, jumpPower: number, size: ObjectSize, season: SeasonType, id: number) => void;
   change: () => void;
@@ -58,8 +58,8 @@ export const usePlayerStore = create<PlayerStore>()(
       velocityY: 0,
       velocityX: 0,
       onLadder: false,
-      speed: 10,
-      jumpPower: 20,
+      speed: 96,
+      jumpPower: 480,
       onGround: true,
       stacked: {x: false, y: false},
       season: 'underworld',
@@ -144,7 +144,7 @@ export const usePlayerStore = create<PlayerStore>()(
         }
       },
 
-      tick: () => {
+      tick: (dt: number) => {
         handlePlayerEnemyCollision();
 
         const result = handleObstacleCollision(
@@ -152,6 +152,7 @@ export const usePlayerStore = create<PlayerStore>()(
           get().size,
           get().velocityX,
           get().velocityY,
+          dt,
           true,
         );
 

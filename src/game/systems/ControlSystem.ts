@@ -142,9 +142,9 @@ export function initControlSystem() {
         }
       }
 
-      session.tick(dt);
-      player.tick();
-      enemies.forEach(e => e.update());
+      useGameSessionStore.getState().tick(dt);
+      usePlayerStore.getState().tick(dt);
+      enemies.forEach(e => e.update(dt));
     }
 
     frame = requestAnimationFrame(loop);

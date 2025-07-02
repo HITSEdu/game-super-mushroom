@@ -1,5 +1,5 @@
 {
-  "gravity": 1.5,
+  "gravity": 1500,
   "levelType": "spring",
   "playerStart": {
     "x": 48,

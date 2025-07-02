@@ -2,7 +2,7 @@
   "gravity": 0,
   "levelType": "spring",
   "playerStart": {
-    "x": 48,
+    "x": 920,
     "y": 450
   },
   "playerEnd": {
@@ -18,8 +18,8 @@
       "type": "water_games"
     },
     {
-      "x": 856,
-      "y": 452,
+      "x": 960,
+      "y": 456,
       "width": 48,
       "height": 48,
       "type": "bag"
@@ -30,7 +30,7 @@
       "x": 300,
       "y": 300,
       "type": "trap2#chasing",
-      "speed": 1.32,
+      "speed": 66,
       "range": 288,
       "size": {
         "width": 24,

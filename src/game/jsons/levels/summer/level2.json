@@ -1,5 +1,5 @@
 {
-  "gravity": 1.5,
+  "gravity": 1500,
   "levelType": "summer",
   "playerStart": {
     "x": 48,

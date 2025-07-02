@@ -121,10 +121,10 @@ export const useMiniGameStore = create<MiniGameState>()(
         if (!zone) return;
 
         useLevelStore.getState().spawnEnemies([
-          {x: zone.x - 12, y: zone.y, axis: 'y', type: 'trap2', speed: 4},
-          {x: zone.x + 12, y: zone.y, axis: 'y', type: 'trap2', speed: 4},
-          {x: zone.x, y: zone.y - 12, axis: 'x', type: 'trap2', speed: 4},
-          {x: zone.x, y: zone.y + 12, axis: 'x', type: 'trap2', speed: 4},
+          {x: zone.x - 12, y: zone.y, axis: 'y', type: 'trap2', speed: 180},
+          {x: zone.x + 12, y: zone.y, axis: 'y', type: 'trap2', speed: 180},
+          {x: zone.x, y: zone.y - 12, axis: 'x', type: 'trap2', speed: 180},
+          {x: zone.x, y: zone.y + 12, axis: 'x', type: 'trap2', speed: 180},
         ], zone);
       },
 
@@ -247,6 +247,8 @@ export const useMiniGameStore = create<MiniGameState>()(
               activeDeliveryZoneIndex: 0,
             });
           }
+
+          useGameSessionStore.setState({currentLevelID: get().lastLevel});
 
           useLevelStore.getState().load(get().lastLevel).then(() => {
             usePlayerStore.setState({size: DEFAULT_PLAYER_SIZE});

@@ -29,28 +29,20 @@ const MovingSkyElement = ({
   const amplitude = containerHeight * 0.08;
 
   function calcPosition(progress: number) {
-    const x = progress * (containerWidth + 2 * SPRITE_WIDTH) - SPRITE_WIDTH;
+    const x = progress * (containerWidth + 3 * SPRITE_WIDTH) - SPRITE_WIDTH;
     const y = skyHeight + Math.sin(progress * Math.PI) * -amplitude;
     return {x, y};
   }
 
-  if (cycleTime < PHASE_LENGTH) {
-    const sunT = cycleTime / PHASE_LENGTH;
-    const {x, y} = calcPosition(sunT);
-    return <SkyElement
-      x={x}
-      y={y}
-      texture={sunTexture}
-    />;
-  } else {
-    const moonT = (cycleTime - PHASE_LENGTH) / PHASE_LENGTH;
-    const {x, y} = calcPosition(moonT);
-    return <SkyElement
-      x={x}
-      y={y}
-      texture={moonTexture}
-    />;
-  }
+  const sunProgress = cycleTime / TOTAL_CYCLE_MS;
+  const moonProgress = (cycleTime + PHASE_LENGTH) % TOTAL_CYCLE_MS / TOTAL_CYCLE_MS;
+
+  return (
+    <>
+      <SkyElement {...calcPosition(sunProgress)} texture={sunTexture} />
+      <SkyElement {...calcPosition(moonProgress)} texture={moonTexture} />
+    </>
+  );
 };
 
 export default MovingSkyElement;

@@ -2,11 +2,11 @@
   "gravity": 0,
   "levelType": "autumn",
   "playerStart": {
-    "x": 48,
+    "x": 920,
     "y": 450
   },
   "playerEnd": {
-    "x": 936,
+    "x": 300,
     "y": 408
   },
   "obstacles": [

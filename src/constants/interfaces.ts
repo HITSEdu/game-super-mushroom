@@ -69,7 +69,7 @@ export interface IEnemy {
   direction: 'left' | 'right' | 'up' | 'down';
   size: ObjectSize;
   type: string;
-  update: () => void;
+  update: (dt: number) => void;
   kill: () => void;
   pet: () => void;
   state: 'alive' | 'dead';

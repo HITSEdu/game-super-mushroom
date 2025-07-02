@@ -25,9 +25,9 @@ const Cloud = ({
                }: CloudProps) => {
   const sprite = useRef<Sprite>(null!);
 
-  useTick(() => {
+  useTick((ticker) => {
     if (!sprite.current) return;
-    sprite.current.x += speed;
+    sprite.current.x += speed * (ticker.deltaMS / 1000);
     if (sprite.current.x > boundsWidth) {
       sprite.current.x = -width;
     }

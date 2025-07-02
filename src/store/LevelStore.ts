@@ -23,6 +23,7 @@ import {useGameSessionStore} from "./GameSessionStore.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
 import {clamp} from "../game/utils/clamp.ts";
 import {getTextureSafe} from "../game/utils/getTextureSafe.ts";
+import {useMiniGameStore} from "./MiniGameStore.ts";
 
 export interface ObstacleData {
   x: number;
@@ -92,7 +93,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
   playerStart: {x: DEFAULT_START_POSITION.x, y: DEFAULT_START_POSITION.y},
   playerEnd: {x: DEFAULT_END_POSITION.x, y: DEFAULT_END_POSITION.y},
   levelType: 'underworld',
-  gravity: 1.5,
+  gravity: 1500,
   items: [],
   decorations: [],
   spirits: [],
@@ -151,7 +152,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
       }
       return {
         ...item,
-        visible: !useInventoryStore.getState().getItem(item.id) && item.visible,
+        visible: !useInventoryStore.getState().getItem(item.id) && !useMiniGameStore.getState().canInteract,
       }
     });
 
@@ -197,7 +198,7 @@ export const useLevelStore = create<LevelState>((set, get) => ({
 
   spawnEnemies: (spawns: EnemySpawnConfig[], target?: PointData, targetRange?: number) => {
     const size = DEFAULT_ENEMY_MINI_GAME_SIZE;
-    const defaultSpeed = 2;
+    const defaultSpeed = 96;
 
     const range = targetRange ?? 200;
 

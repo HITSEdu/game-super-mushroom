@@ -30,14 +30,12 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
     velocityY: 0,
     velocityX: 0,
     isAngry,
-    update() {
+    update(dt: number) {
       if (this.state === 'dead') return;
 
       const chasing = this.type.includes('#chasing');
-
       if (chasing) {
         const playerPos = usePlayerStore.getState().position;
-
         const dx = playerPos.x - this.position.x;
         const dy = playerPos.y - this.position.y;
 
@@ -48,11 +46,8 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
           return;
         }
 
-        const vx = (dx / dist) * this.speed;
-        const vy = (dy / dist) * this.speed;
-
-        this.velocityX = vx;
-        this.velocityY = vy;
+        this.velocityX = (dx / dist) * this.speed;
+        this.velocityY = (dy / dist) * this.speed;
 
         if (Math.abs(dx) > Math.abs(dy)) {
           this.direction = dx > 0 ? 'right' : 'left';
@@ -96,10 +91,11 @@ export const createEnemy = (id: string, x: number, y: number, patrolStart: numbe
       }
 
       const result = handleObstacleCollision(
-        this.position,
+        {x: this.position.x, y: this.position.y},
         this.size,
         this.velocityX,
         this.velocityY,
+        dt,
         false,
         isHollow(this.type)
       );

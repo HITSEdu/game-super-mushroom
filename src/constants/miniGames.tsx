@@ -29,12 +29,12 @@ export const MINI_GAMES: Record<string, MiniGameConfig> = {
   autumn: {
     id: 'autumn',
     level: '5',
-    goal: 10,
+    goal: 5,
     itemId: 8,
     butterflyId: 10,
     itemName: 'box',
     deliverTo: 'highlightZone',
-    description: 'Deliver 10 boxes to the highlighted areas.',
+    description: 'Deliver 5 boxes to the highlighted areas.',
     action: () => useModalStore.getState().open(
       <MiniGameModal season={'autumn'} />)
   },

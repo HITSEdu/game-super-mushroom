@@ -2,8 +2,8 @@
   "name": "Nova",
   "texture": "player",
   "source": "assets/player/player_2.png",
-  "speed": 2,
-  "jumpPower": 15,
+  "speed": 96,
+  "jumpPower": 480,
   "size": {
     "width": 24,
     "height": 48
