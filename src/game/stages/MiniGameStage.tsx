@@ -12,11 +12,10 @@ const MiniGameStage = () => {
   } = useMiniGameStore();
 
   const miniGameTexture = getTextureSafe(`platform_games_${currentMiniGame}`);
-
   return (
     <>
       <MiniGamePlatform texture={miniGameTexture} />
-      {carriedItem === 8 && currentMiniGame === 'autumn' && deliveryZones.length > 0 && (
+      {carriedItem === 8 && deliveryZones.length > 0 && (
         <Item
           x={deliveryZones[activeDeliveryZoneIndex]?.x}
           y={deliveryZones[activeDeliveryZoneIndex]?.y}

@@ -17,50 +17,44 @@ export const useAssetsStore = create<AssetsStore>()(
         await Assets.init({manifest});
 
         const playerSeasons = ['winter', 'summer', 'autumn', 'spring'];
+        await Assets.loadBundle('player_underworld');
         for (let i = 1; i <= 3; i++) {
           for (const season of playerSeasons) {
             await Assets.loadBundle(`player_${i}_${season}`);
           }
         }
-        await Assets.loadBundle('player_underworld');
 
         const spirits = ['laurus', 'mira', 'onyx', 'swifty'];
         for (const spirit of spirits) {
           await Assets.loadBundle(`spirit_${spirit}`);
         }
 
-        await Assets.loadBundle('enemy');
-
-        const items = ['winter', 'spring', 'summer', 'autumn'];
-        for (const item of items) {
-          await Assets.loadBundle(`item_${item}`);
-        }
-
-        const platforms = [...playerSeasons, 'underworld'];
-        for (const season of platforms) {
-          await Assets.loadBundle(`platform_${season}`);
-        }
-
         for (const season of playerSeasons) {
+          await Assets.loadBundle(`item_${season}`);
+          await Assets.loadBundle(`dog_${season}`);
           await Assets.loadBundle(`platform_games_${season}`);
+          await Assets.loadBundle(`jewel_${season}`);
         }
 
         for (const season of [...playerSeasons, 'underworld']) {
           await Assets.loadBundle(`door_${season}`);
           await Assets.loadBundle(`ladder_${season}`);
+          await Assets.loadBundle(`platform_${season}`);
         }
 
         for (let i = 1; i <= 3; i++) {
-          for (const s of items) {
+          for (const s of playerSeasons) {
             await Assets.loadBundle(`tree${i}${s}`);
           }
         }
 
         for (let i = 1; i <= 3; i++) {
           await Assets.loadBundle(`trap${i}`);
+          await Assets.loadBundle(`box${i}`);
+          await Assets.loadBundle(`rock${i}`);
         }
 
-        const misc = ['fountain', 'portal'];
+        const misc = ['fountain', 'portal', 'fire', 'sun', 'moon', 'snowman'];
         for (const object of misc) {
           await Assets.loadBundle(object);
         }
@@ -69,19 +63,12 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(`flower${i}`);
         }
 
-        for (let i = 1; i <= 2; i++) {
-          await Assets.loadBundle(`glitch${i}`);
-        }
-
         await Assets.loadBundle('bag');
         await Assets.loadBundle('shelf');
-        await Assets.loadBundle('box1');
-        await Assets.loadBundle('box2');
-        await Assets.loadBundle('box3');
         await Assets.loadBundle('box_zone');
         await Assets.loadBundle('tablet');
 
-
+        await Assets.loadBundle('water_games');
         await Assets.loadBundle('water');
         await Assets.loadBundle('ice');
 
@@ -94,19 +81,10 @@ export const useAssetsStore = create<AssetsStore>()(
           await Assets.loadBundle(effect);
         }
 
-        await Assets.loadBundle('fire');
-        await Assets.loadBundle('fire_underworld');
-
-        await Assets.loadBundle('sun');
-        await Assets.loadBundle('moon');
-        await Assets.loadBundle('slug');
-        await Assets.loadBundle('bat');
-        await Assets.loadBundle('underworld_spirit');
-
-        await Assets.loadBundle('dog_winter');
-        await Assets.loadBundle('dog_spring');
-        await Assets.loadBundle('dog_summer');
-        await Assets.loadBundle('dog_autumn');
+        const enemy = ['slug', 'bat', 'underworld_spirit']
+        for (const e of enemy) {
+          await Assets.loadBundle(e);
+        }
 
         set({isInitialized: true});
       } catch (error) {
