@@ -533,24 +533,6 @@ export const manifest = {
       ],
     },
     {
-      name: 'glitch1',
-      assets: [
-        {
-          alias: 'glitch1',
-          src: 'assets/clouds/glitch/glitch1.png'
-        },
-      ],
-    },
-    {
-      name: 'glitch2',
-      assets: [
-        {
-          alias: 'glitch2',
-          src: 'assets/clouds/glitch/glitch2.png'
-        },
-      ],
-    },
-    {
       name: 'cloud1',
       assets: [
         {
@@ -623,6 +605,15 @@ export const manifest = {
       ],
     },
     {
+      name: 'fog',
+      assets: [
+        {
+          alias: 'fog',
+          src: 'assets/effects/fog.png'
+        },
+      ],
+    },
+    {
       name: 'rain',
       assets: [
         {
@@ -637,15 +628,6 @@ export const manifest = {
         {
           alias: 'fire',
           src: 'assets/fire/fire.png'
-        },
-      ],
-    },
-    {
-      name: 'fire_underworld',
-      assets: [
-        {
-          alias: 'fire_underworld',
-          src: 'assets/fire/fire_underworld.png'
         },
       ],
     },
@@ -817,6 +799,87 @@ export const manifest = {
         {
           alias: 'water',
           src: 'assets/obstacles/platform/water.png'
+        },
+      ],
+    },
+    {
+      name: 'water_games',
+      assets: [
+        {
+          alias: 'water_games',
+          src: 'assets/obstacles/platform/water_games.png'
+        },
+      ],
+    },
+    {
+      name: 'rock1',
+      assets: [
+        {
+          alias: 'rock1',
+          src: 'assets/obstacles/rock/rock1.png'
+        },
+      ],
+    },
+    {
+      name: 'rock2',
+      assets: [
+        {
+          alias: 'rock2',
+          src: 'assets/obstacles/rock/rock2.png'
+        },
+      ],
+    },
+    {
+      name: 'rock3',
+      assets: [
+        {
+          alias: 'rock3',
+          src: 'assets/obstacles/rock/rock3.png'
+        },
+      ],
+    },
+    {
+      name: 'snowman',
+      assets: [
+        {
+          alias: 'snowman',
+          src: 'assets/creatures/snowman.png'
+        },
+      ],
+    },
+    {
+      name: 'jewel_autumn',
+      assets: [
+        {
+          alias: 'jewel_autumn',
+          src: 'assets/jewels/jewel_autumn.png'
+        },
+      ],
+    },
+    {
+      name: 'jewel_summer',
+      assets: [
+        {
+          alias: 'jewel_summer',
+          src: 'assets/jewels/jewel_summer.png'
+        },
+      ],
+    },
+    {
+      name: 'jewel_winter',
+      assets: [
+        {
+          alias: 'jewel_winter',
+          src: 'assets/jewels/jewel_winter.png'
+        },
+      ],
+    },
+    {
+      name: 'jewel_spring',
+      assets: [
+        {
+          alias: 'jewel_spring',
+          src: 'assets/jewels/jewel_spring.png'
         },
       ],
     },

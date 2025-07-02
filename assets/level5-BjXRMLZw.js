@@ -1,0 +1,1 @@
+const a=0,t="winter",e={x:48,y:450},s={x:936,y:300},n=[],o=[],c=[],l={gravity:0,levelType:t,playerStart:e,playerEnd:s,obstacles:n,enemies:o,items:c};export{l as default,o as enemies,a as gravity,c as items,t as levelType,n as obstacles,s as playerEnd,e as playerStart};
