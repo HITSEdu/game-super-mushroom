@@ -13,29 +13,29 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // Group all React-related packages together
           if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'vendor-react'
+            if (
+              id.includes('react') ||
+              id.includes('react-dom') ||
+              id.includes('@pixi/react') ||
+              id.includes('framer-motion') ||
+              id.includes('lucide-react') ||
+              id.includes('zustand') ||
+              id.includes('use-sync-external-store')
+            ) {
+              return 'vendor-react-core'
+            }
             if (id.includes('pixi')) return 'vendor-pixi'
-            if (id.includes('framer-motion') || id.includes('lucide-react')) return 'vendor-ui'
             if (id.includes('howler')) return 'vendor-audio'
             if (id.includes('i18next')) return 'vendor-i18n'
-            if (id.includes('zustand')) return 'vendor-state'
             if (id.includes('uuid')) return 'vendor-utils'
-
             return 'vendor-others'
           }
 
-          if (id.includes('/store/')) {
-            return 'game-stores'
-          }
-
-          if (id.includes('/entities/')) {
-            return 'game-entities'
-          }
-
-          if (id.includes('/components/')) {
-            return 'game-components'
-          }
+          if (id.includes('/store/')) return 'game-stores'
+          if (id.includes('/entities/')) return 'game-entities'
+          if (id.includes('/components/')) return 'game-components'
         },
         chunkFileNames: 'assets/[name]-[hash].js'
       }
