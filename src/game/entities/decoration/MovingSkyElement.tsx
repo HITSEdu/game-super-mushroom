@@ -29,7 +29,7 @@ const MovingSkyElement = ({
   const amplitude = containerHeight * 0.08;
 
   function calcPosition(progress: number) {
-    const x = progress * (containerWidth + 3 * SPRITE_WIDTH) - SPRITE_WIDTH;
+    const x = progress * (containerWidth + 2 * SPRITE_WIDTH) - SPRITE_WIDTH;
     const y = skyHeight + Math.sin(progress * Math.PI) * -amplitude;
     return {x, y};
   }
