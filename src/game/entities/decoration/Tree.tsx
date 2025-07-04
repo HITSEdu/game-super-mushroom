@@ -15,8 +15,8 @@ const Tree = ({x, y, texture}: {
       x={x}
       y={y}
       texture={texture}
-      width={TILE_SIZE * 2}
-      height={TILE_SIZE * 2}
+      width={TILE_SIZE * 4}
+      height={TILE_SIZE * 4}
       eventMode={'static'}
       zIndex={1}
     />
