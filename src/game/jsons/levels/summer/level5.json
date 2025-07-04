@@ -2,8 +2,8 @@
   "gravity": 0,
   "levelType": "summer",
   "playerStart": {
-    "x": 48,
-    "y": 450
+    "x": 24,
+    "y": 480
   },
   "playerEnd": {
     "x": 936,

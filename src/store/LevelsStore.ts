@@ -13,7 +13,7 @@ interface LevelData {
 
 interface LevelsState {
   levels: Record<string, LevelData>
-  completeLevel: (id: string, time: number, stars: number, attempts: number) => void
+  completeLevel: (id: string, time: number, attempts: number) => void
   unlockLevel: (id: string) => void
   resetProgress: () => void
 }
@@ -24,7 +24,7 @@ export const useLevelsStore = create<LevelsState>()(
   persist(
     (set) => ({
       levels: JSON.parse(JSON.stringify(initLevels)),
-      completeLevel: (id: string, time: number, stars: number, attempts: number) =>
+      completeLevel: (id: string, time: number, attempts: number) =>
         set((state) => {
           const level = state.levels[id]
           const updatedLevel = {
@@ -32,7 +32,6 @@ export const useLevelsStore = create<LevelsState>()(
             attempts: attempts,
             completed: true,
             bestTime: level.bestTime ? Math.min(level.bestTime, time) : time,
-            stars: stars
           }
 
           const nextId = `${parseInt(id) + 1}`;

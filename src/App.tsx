@@ -9,6 +9,7 @@ import {LoaderIcon, RotateCwSquareIcon} from "lucide-react";
 import BaseScreen from "./components/screens/BaseScreen.tsx";
 import {useBackgroundStore} from "./store/BackgroundStore.tsx";
 import TitlesScreen from "./components/screens/TitlesScreen.tsx";
+import {sounds} from "./game/utils/sound.ts";
 
 const App = () => {
   const state = useGlobalStore(s => s.global)
@@ -27,6 +28,16 @@ const App = () => {
   useEffect(() => {
     initialize();
   }, [isInitialized, initialize]);
+
+  useEffect(() => {
+    const unlock = () => {
+      Howler.autoUnlock = true;
+      sounds.music0.play();
+      window.removeEventListener('click', unlock);
+    };
+
+    window.addEventListener('click', unlock, {once: true});
+  }, []);
 
   useEffect(() => {
     const checkOrientation = () => {

@@ -162,10 +162,10 @@ export const handleObstacleCollision = (
   }
 
   const boxX = {
-    x: position.x,
-    y: newY,
-    width: playerWidth,
-    height: playerHeight,
+    x: position.x + 2,
+    y: newY + 2,
+    width: playerWidth - 2,
+    height: playerHeight - 2,
   };
 
   for (const obs of obstacles) {
@@ -190,20 +190,26 @@ export const handleObstacleCollision = (
 
     if (direction === 'left') {
       newX = obs.x - playerWidth;
-      newVelocityX = 0;
+      if (!usePlayerStore.getState().onLadder) {
+        newVelocityX = 0;
+        newX = obs.x - playerWidth - 2;
+      }
       stacked.x = true;
     } else if (direction === 'right') {
       newX = obs.x + obs.width;
-      newVelocityX = 0;
+      if (!usePlayerStore.getState().onLadder) {
+        newVelocityX = 0;
+        newX = obs.x + obs.width + 2;
+      }
       stacked.x = true;
     }
   }
 
   const boxY = {
-    x: newX,
-    y: newY,
-    width: playerWidth,
-    height: playerHeight,
+    x: newX + 2,
+    y: newY + 2,
+    width: playerWidth - 2,
+    height: playerHeight - 2,
   };
 
   for (const obs of obstacles) {
@@ -245,9 +251,9 @@ export const handleObstacleCollision = (
 
   if (!onGround) {
     const footBox = {
-      x: newX + 1,
+      x: newX + 3,
       y: newY + playerHeight,
-      width: playerWidth - 2,
+      width: playerWidth - 4,
       height: 1,
     };
 
@@ -262,6 +268,8 @@ export const handleObstacleCollision = (
       };
 
       const direction = getCollisionDirection(footBox, obsBox);
+      if (deathCollisions(obs.type) && player && direction === 'top') useGameSessionStore.getState().lose();
+
       if (direction === 'top') {
         onGround = true;
         newVelocityY = 0;

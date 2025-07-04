@@ -15,6 +15,7 @@ import {useToastStore} from "./ToastStore.ts";
 import {
   generateRandomDeliveryZones
 } from "../game/utils/generateRandomDeliveryZones.ts";
+import {generateSummerMaze} from "../game/utils/mazeGenerator.ts";
 
 interface MiniGameState {
   completed: Record<string, boolean>;
@@ -152,11 +153,17 @@ export const useMiniGameStore = create<MiniGameState>()(
               get().generateDeliveryZones();
             }
 
+            if (id === 'summer') set({canInteract: false});
+
             useLevelStore.getState().load(config.level, config.id).then(() => {
               usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
+              useGameSessionStore.setState({entered: 'left'});
               if (config.action) config.action();
               if (id === 'spring') {
                 get().generateFlowerZones();
+              }
+              if (id === 'summer') {
+                generateSummerMaze();
               }
             });
 

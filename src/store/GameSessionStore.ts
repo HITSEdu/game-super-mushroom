@@ -2,7 +2,6 @@ import {create} from 'zustand'
 import type {GameStatus} from "../constants/types.ts";
 import {useLevelsStore} from "./LevelsStore.ts";
 import {useLevelStore} from "./LevelStore.ts";
-import {sounds} from "../game/utils/sound.ts";
 import {useMusicPlayerStore} from "./MusicPlayerStore.ts";
 import {usePlayerStore} from "./PlayerStore.ts";
 import {UNDERWORLD_SPAWN} from "../constants/values.ts";
@@ -11,20 +10,20 @@ import {useToastStore} from "./ToastStore.ts";
 import {MODALS} from "../constants/modals.tsx";
 import {useMiniGameStore} from "./MiniGameStore.ts";
 import {useInventoryStore} from "./InventoryStore.ts";
+import {generateSummerMaze} from "../game/utils/mazeGenerator.ts";
 
 interface GameSessionState {
   currentLevelID: string | null
   status: GameStatus
   currentAttempts: number
   curTime: number
-  stars: number
+  entered: 'right' | 'left'
 
   startLevel: (id: string) => void
   pause: () => void
   resume: () => void
   setStatus: (status: GameStatus) => void
 
-  getStar: () => void
   enterDoor: (side: 'left' | 'right') => void
   win: () => void
   lose: () => void
@@ -38,7 +37,7 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
   status: "paused",
   currentAttempts: 1,
   curTime: 0,
-  stars: 0,
+  entered: 'left',
 
   startLevel: (id: string) => {
     Howler.stop();
@@ -50,7 +49,7 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
       status: "playing",
       currentAttempts: 1,
       curTime: 0,
-      stars: 0,
+      entered: 'left',
     }))
   },
 
@@ -86,9 +85,11 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
       useToastStore.getState().show(message);
       usePlayerStore.getState().setPosition(side === 'right' ? useLevelStore.getState().playerStart : useLevelStore.getState().playerEnd);
     });
-    set({currentLevelID: nextID.toString()});
+    set({
+      currentLevelID: nextID.toString(),
+      entered: side === 'left' ? "right" : "left"
+    });
   },
-  getStar: () => set((state) => ({stars: state.stars + 1})),
 
   win: () => {
     const completeLevel = useLevelsStore.getState().completeLevel;
@@ -96,8 +97,7 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
 
     if (curLevel) {
       Howler.stop();
-      sounds.win.play();
-      completeLevel(curLevel, get().curTime, get().stars, get().currentAttempts)
+      completeLevel(curLevel, get().curTime, get().currentAttempts)
     }
 
     set(() => ({
@@ -110,11 +110,17 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
     const curLevel = get().currentLevelID;
 
     if (curLevel) reloadLevel(curLevel).then(() => {
-        usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);
+        const spawnPosition = get().entered === 'left' ? useLevelStore.getState().playerStart : useLevelStore.getState().playerEnd;
+        usePlayerStore.getState().setPosition(spawnPosition);
+
         const currentMiniGame = useMiniGameStore.getState().currentMiniGame;
         if (currentMiniGame) {
           useInventoryStore.getState().removeMiniGameItems();
           useMiniGameStore.setState({carriedItem: null});
+        }
+
+        if (currentMiniGame === 'summer') {
+          generateSummerMaze();
         }
 
         if (currentMiniGame === 'spring') {
@@ -145,7 +151,6 @@ export const useGameSessionStore = create<GameSessionState>()((set, get) => ({
       status: "paused",
       currentAttempts: 0,
       curTime: 0,
-      stars: 0,
     }))
   },
 

@@ -21,7 +21,7 @@ export const MINI_GAMES: Record<string, MiniGameConfig> = {
     goal: 1,
     itemId: 13,
     butterflyId: 9,
-    itemName: 'butterfly',
+    itemName: 'item_summer',
     description: 'Survive the maze and reach the butterfly.',
     action: () => useModalStore.getState().open(
       <MiniGameModal season={'summer'} />)
