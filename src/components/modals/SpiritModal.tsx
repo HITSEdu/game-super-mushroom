@@ -58,7 +58,6 @@ const SpiritModal = ({spiritId}: SpiritModalProps) => {
       onSecondary={!hasCompleted ? handleLeave : handleLeave}
       primaryLabel={!hasCompleted ? "help" : undefined}
       secondaryLabel="leave"
-      backgroundColor={background}
     />
   );
 };

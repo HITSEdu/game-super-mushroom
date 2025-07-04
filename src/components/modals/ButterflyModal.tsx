@@ -12,7 +12,7 @@ const ButterflyModal = ({title}: ModalProps) => {
   return (
     <div className="flex flex-col gap-3 items-center text-sm">
       <p>
-        <span className='bg-rose-300 p-1'>Это одна из 4 сезонных бабочек</span>, символизирующая {title}. Кажется, нужно найти остальных
+        Это одна из 4 сезонных бабочек, символизирующая {title}.
       </p>
       <button
         onClick={() => close()}

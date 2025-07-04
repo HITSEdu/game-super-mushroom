@@ -11,5 +11,17 @@
   },
   "obstacles": [],
   "enemies": [],
-  "items": []
+  "items": [
+    {
+      "id": 1,
+      "x": 312,
+      "y": 312,
+      "type": "item_winter",
+      "size": {
+        "width": 24,
+        "height": 24
+      },
+      "visible": false
+    }
+  ]
 }

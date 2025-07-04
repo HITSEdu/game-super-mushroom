@@ -11,14 +11,7 @@
   },
   "obstacles": [
     {
-      "x": 456,
-      "y": 432,
-      "width": 48,
-      "height": 48,
-      "type": "fountain"
-    },
-    {
-      "x": 250,
+      "x": 168,
       "y": 456,
       "width": 24,
       "height": 24,
@@ -1674,10 +1667,41 @@
         "width": 24,
         "height": 48
       }
+    },
+    {
+      "x": 216,
+      "y": 72,
+      "type": "bat",
+      "speed": 60,
+      "range": 144,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
+    },
+    {
+      "x": 72,
+      "y": 216,
+      "type": "slug",
+      "speed": 44,
+      "range": 96,
+      "size": {
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "x": 600,
+      "y": 240,
+      "type": "bat",
+      "speed": 60,
+      "range": 48,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
     }
   ],
-  "spirits": [
-  ],
-  "items": [
-  ]
+  "spirits": [],
+  "items": []
 }
