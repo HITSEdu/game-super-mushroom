@@ -154,6 +154,7 @@ export const useMiniGameStore = create<MiniGameState>()(
             }
 
             if (id === 'summer') set({canInteract: false});
+            if (id === 'winter') set({canInteract: false});
 
             useLevelStore.getState().load(config.level, config.id).then(() => {
               usePlayerStore.getState().setPosition(useLevelStore.getState().playerStart);

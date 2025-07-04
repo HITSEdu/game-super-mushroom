@@ -41,8 +41,8 @@
   "items": [
     {
       "id": 4,
-      "x": 300,
-      "y": 250,
+      "x": 312,
+      "y": 312,
       "type": "item_spring",
       "size": {
         "width": 24,

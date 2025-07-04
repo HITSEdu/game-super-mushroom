@@ -8,72 +8,68 @@
   "back": "Back",
   "next": "Next",
   "volume": "Volume",
-  "confirmNewGame": "Are u sure? The previous progress will be lost.",
+  "confirmNewGame": "Are you sure? Previous progress will be lost.",
   "cancel": "Cancel",
   "confirm": "Confirm",
-  "exitToLevels": "Back to the Portal",
-  "exitToMenu": "Back to menu",
-  "defaultPlayerName": "The nameless hero",
-  "winTitle": "Level complete!",
-  "nextLevel": "Next level",
-  "loading": "Loading...",
-  "changeOrientation": "Turn the screen horizontally",
-  "selectLevel": "Select a level",
+  "exitToLevels": "Back to Portal",
+  "exitToMenu": "Exit to Menu",
+  "defaultPlayerName": "Nameless Hero",
+  "winTitle": "Level Complete!",
+  "nextLevel": "Next Level",
+  "loading": "Loading…",
+  "changeOrientation": "Rotate your device to landscape",
+  "selectLevel": "Select Level",
   "level": "Level",
-  "changePlayer": "Change the character",
-  "selectPlayer": "Select a player",
+  "changePlayer": "Change Character",
+  "selectPlayer": "Choose Character",
   "select": "Select",
   "speed": "Speed",
   "jump": "Jump",
   "size": "Size",
   "name": "Name",
-  "currentlyPlaying": "Currently playing",
-  "musicIsDisabled": "Music is disabled",
-  "selectMusic": "Select Music",
-  "turnOff": "Turn off Music",
+  "currentlyPlaying": "Now Playing",
+  "musicIsDisabled": "Music Disabled",
+  "selectMusic": "Choose Music",
+  "turnOff": "Turn Off Music",
   "e": "E",
   "f": "F",
-  "enterTheDoor": "[E] to enter",
-  "pickupItem": "[E] to pick up",
-  "selectLocation": "Choose a location",
+  "enterTheDoor": "[E] — Enter",
+  "pickupItem": "[E] — Pick Up",
+  "selectLocation": "Select Location",
   "spring": "Spring",
   "summer": "Summer",
   "autumn": "Autumn",
   "winter": "Winter",
   "underworld": "Underworld",
-  "talkToSpirit": "[E] to talk",
-  "spiritGreeting": "{{name}}, the guardian spirit...",
+  "talkToSpirit": "[E] — Talk",
+  "spiritGreeting": "{{name}}",
   "spiritDialogue": {
     "onyx": {
-      "0": "I am Onyx, spirit of winter. My time has frozen...",
-      "1": "The world is trapped in eternal frost. Winds whisper of a broken balance.",
-      "2": "Have you come to change fate?",
-      "3": "Help me and find the frozen butterfly amidst the snow."
+      "0": "I am Onyx.",
+      "1": "A phase shift occurred because of you. This mist is condensed space.",
+      "2": "Find the butterfly and bring it to the fountain. Don’t get lost!"
     },
     "swifty": {
-      "0": "I am Swifty, spirit of spring. The streams no longer sing.",
-      "1": "Life hides, waiting for harmony to return.",
-      "2": "Only a traveler like you can restore the spring.",
-      "3": "Find the spring butterfly among the blooming flowers."
+      "0": "Hi, I’m Swifty!",
+      "1": "The flowers have bloomed and I need your help.",
+      "2": "Collect the flowers so I can weave a wreath."
     },
     "mira": {
-      "0": "I am Mira, spirit of summer. My days are endlessly scorching.",
-      "1": "The sun burns hotter than it should. Time has been disturbed.",
-      "2": "Will you bring hope?",
-      "3": "Help me and find the summer butterfly under the bright sun."
+      "0": "I am Mira, spirit of Summer.",
+      "1": "Because of temperature swings all the waters have dried up and debris washed ashore. Navigate the maze and avoid traps.",
+      "2": "Grab the butterfly and carry it to the fountain!"
     },
     "laurus": {
-      "0": "I am Laurus, spirit of autumn. Leaves fall silently like forgotten memories.",
-      "1": "A shadow of time has fallen on my forests.",
-      "2": "Do you hear the rustle of the past?",
-      "3": "Find the autumn butterfly among fallen leaves."
+      "0": "Hi, I’m Laurus, spirit of Autumn.",
+      "1": "The wind scattered the boxes, and now your task is to carefully carry each one to its designated spot.",
+      "2": "When all boxes are in place, you can take the autumn butterfly to the fountain!"
     }
   },
-  "alreadyHelped": "You have already helped this spirit. Thank you!",
   "help": "Help",
+  "alreadyHelped": "You’ve already helped me!",
   "leave": "Leave",
   "items": {
-    "pickedUp": "You've picked up {{itemName}}!",
+    "pickedUp": "You picked up {{itemName}}!",
     "names": {
       "13": "Portal",
       "2": "Flower",
@@ -84,81 +80,82 @@
       "10": "Autumn Butterfly"
     }
   },
-  "entered": "You've entered: room",
-  "useTheObstacle": "[E] to interact",
-
+  "entered": "You entered: room",
+  "useTheObstacle": "[E] — Interact",
   "fountain": {
-    "title": "Ancient Fountain",
-    "line1": "You’ve discovered an ancient fountain. Its waters are filled with the magic of a forgotten world.",
-    "line2": "During your last journey, you disrupted the temporal balance.",
-    "line3": "Now the future has changed. Glitches and anomalies have appeared.",
-    "repeat": "You already have the Portal. Return once you’ve gathered the butterflies.",
+    "title": "Sacred Fountain",
+    "line1": "After your journey into the Chronosphere, strange things began happening in Mirial. The inhabitants are frightened.",
+    "line2": "To restore the temporal balance, you must find the four spirits of time. They will tell you what to do.",
+    "line3": "I grant you the Portal. It will lead you to them.",
+    "repeat": "You have already received the Portal. Return when you have collected the butterflies.",
     "understood": "Understood",
-    "final1": "You returned to the fountain with all four butterflies.",
-    "final2": "They soar upward, uniting above the fountain.",
-    "final3": "Light fills the world, the broken time restored.",
-    "final4": "Thank you for playing!"
+    "final1": "You have gathered all the temporal butterflies. With their help I will eliminate the anomalies and restore the flow of time.",
+    "final2": "Now Mirial is safe, but be more careful in your travels!",
+    "final3": "Good luck!"
   },
-  "overload": "You can't drag more than one item!",
+  "understood": "Understood",
+  "overload": "You can’t carry more than one item at a time!",
   "miniGame": {
     "delivered": "Delivered: {{itemName}}. Remaining: {{remaining}}",
-    "noItem": "Please collect the item first: {{itemName}}",
-    "takeBox": "You picked up a box. Deliver it to the zone.",
+    "noItem": "First collect the item: {{itemName}}",
+    "takeBox": "You have taken a box — carry it to the zone.",
     "allBoxesDelivered": "All boxes delivered!",
-    "allFlowersDelivered": "All Flowers collected!",
+    "allFlowersDelivered": "All flowers collected!",
     "title": {
-      "spring": "Spring title",
-      "summer": "Summer title",
-      "autumn": "Autumn title",
-      "winter": "Winter title"
+      "spring": "Spring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "winter": "Winter"
     },
     "description": {
-      "spring": "Spring desc",
-      "summer": "Summer desc",
-      "autumn": "Autumn desc",
-      "winter": "Winter desc"
+      "spring": "You need to gather flowers in the field and bring them to the box. You can do it!\n\nBeware of the water!",
+      "summer": "Navigate the maze and grab the butterfly. It’s easy!",
+      "autumn": "Start by going to the shelf with boxes. Take a box and place it in the correct spot. Simple!",
+      "winter": "Find the butterfly in the thick fog. Look closely!"
     }
   },
   "success": "Success!",
   "titles": {
-    "thanks": "Thank you for playing!",
-    "message": "You’ve restored the balance of time and saved the world. See you again!",
-    "backToMenu": "Back to menu"
+    "thanks": "Thank You for Playing!",
+    "message": "You restored the temporal balance and saved Mirial!",
+    "backToMenu": "Back to Menu"
   },
   "enemy": {
-    "kill": "[F] to attack",
-    "pet": "[F] to pet",
+    "kill": "[F] — Attack",
+    "pet": "[F] — Pet",
     "angry": "angry creature",
     "dog": "dog",
-    "petToast": "You gently pet the {{name}}.",
+    "petToast": "You gently pet {{name}}.",
     "killedToast": "You killed the monster!"
   },
-  "jumpInto": "Jump into SZNS",
-  "timeJump": "Press [F] to Time Jump",
+  "jumpInto": "Dive into SZNS",
+  "timeJump": "Press [F] to enter the Chronosphere",
   "synopsis": {
     "name": "Synopsis",
     "understood": "Understood",
-    "text": "A disturbance has occurred in the depths of the Chronosphere: as a result of an unsuccessful experiment by a time traveler, Myrial space has been destabilized. You need to eliminate all the anomalies and correct the distortion of space. Good luck!"
+    "text": "A disturbance has occurred deep within the Chronosphere: a time travel experiment went wrong and destabilized Mirial’s space.\n\nYou must eliminate all anomalies and correct the distortion of space. Good luck!"
   },
   "tutorial": {
     "title": "Tutorial",
-    "page1": "Use A and D to move left and right.\nPress Space to jump.\nUse W and S to move up and down when possible.",
-    "page2": "Press E to interact with objects: doors, boxes, fountains, spirits, and more.",
-    "page3": "Press F to interact with living beings — monsters, dogs, etc.\nSome may respond differently.",
-    "page4": "You can skip dialogues by pressing Enter.\nYour inventory is located at the bottom of the screen — click on items to use them or read their descriptions.\nSome items contain important information.",
-    "understood": "Got it"
+    "page1": "Use keys A and D to move left and right, spacebar — to jump, and W and S — to move up and down.",
+    "page2": "Press E — to interact with objects, F — to interact with living beings.",
+    "page3": "Beware of water — it is deadly.",
+    "page4": "Your inventory is at the bottom of the screen — click on an item to use it or view its description.\n\nSome items contain crucial information!",
+    "understood": "Understood"
   },
-  "NovaDescription": "While trying to accelerate the chrono-engine, Nova accidentally tore the fabric of time, unleashing anomalies.",
-  "NeoDescription": "Neo misaligned his timepiece with the Chronosphere, causing a ripple that collapsed and unraveled Mirial’s space.",
-  "LokiDescription": "While studying paradoxical effects, Loki went too far with time loops and triggered chaos in the timeflow.",
+  "NovaDescription": "During an attempt to accelerate the Nova chrono-engine, the fabric of time was torn, releasing anomalies.",
+  "NeoDescription": "Neo improperly synchronized his watch with the Chronosphere, creating a ripple that compressed and expanded Mirial’s space.",
+  "LokiDescription": "While exploring paradoxical effects, Loki overdid the time loops and provoked chaos in the time stream.",
+  "memory": "All your items are stored on this flash drive!",
   "lose": {
-    "title": "You died!",
-    "page1": "You died!"
+    "title": "You Are Dead!",
+    "page1": "Your progress has been saved"
   },
   "portal": {
     "title": "Time Portal",
-    "page1": "The portal remains closed until fate allows. Complete the trial, and the path will open once more."
+    "page1": "The portal won’t open until fate allows it. Complete the trial — and the path will be free again."
   },
   "use": "[E]",
-  "interact": "[F]"
+  "interact": "[F]",
+  "skip": "Skip"
 }

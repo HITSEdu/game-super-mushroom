@@ -19,22 +19,6 @@
       "visible": true
     },
     {
-      "x": 144,
-      "y": 96,
-      "width": 24,
-      "height": 24,
-      "type": "water",
-      "visible": true
-    },
-    {
-      "x": 300,
-      "y": 90,
-      "width": 96,
-      "height": 96,
-      "type": "rock1",
-      "visible": true
-    },
-    {
       "x": 960,
       "y": 456,
       "width": 48,
@@ -47,7 +31,7 @@
     {
       "id": 10,
       "x": 600,
-      "y": 250,
+      "y": 312,
       "type": "item_autumn",
       "size": {
         "width": 24,

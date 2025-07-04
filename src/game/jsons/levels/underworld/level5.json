@@ -9,46 +9,7 @@
     "x": 936,
     "y": 300
   },
-  "obstacles": [
-    {
-      "x": 144,
-      "y": 144,
-      "width": 24,
-      "height": 24,
-      "type": "water_games"
-    },
-    {
-      "x": 856,
-      "y": 452,
-      "width": 48,
-      "height": 48,
-      "type": "bag"
-    }
-  ],
-  "enemies": [
-    {
-      "x": 300,
-      "y": 300,
-      "type": "trap2#chasing",
-      "speed": 66,
-      "range": 288,
-      "size": {
-        "width": 24,
-        "height": 24
-      }
-    }
-  ],
-  "items": [
-    {
-      "id": 4,
-      "x": 300,
-      "y": 250,
-      "type": "item_spring",
-      "size": {
-        "width": 24,
-        "height": 24
-      },
-      "visible": false
-    }
-  ]
+  "obstacles": [],
+  "enemies": [],
+  "items": []
 }

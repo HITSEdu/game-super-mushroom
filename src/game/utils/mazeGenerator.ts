@@ -115,7 +115,7 @@ export function generateSummerMaze(): void {
           y,
           width: TILE_SIZE,
           height: TILE_SIZE,
-          type: 'platform_summer',
+          type: 'box1',
           visible: true
         });
       } else {
@@ -126,15 +126,15 @@ export function generateSummerMaze(): void {
 
         const axis: 'x' | 'y' | null = (left && right && !(up && down)) ? "y" : (up && down && !(left && right)) ? "x" : null;
 
-        if (row < 19 && col > 3 && Math.random() < 0.09 && axis) {
+        if (row < 19 && col > 3 && Math.random() < 0.075 && axis) {
           useLevelStore.getState().spawnEnemies(
             [{
               x: x,
               y: y,
               axis,
-              speed: 66,
+              speed: 50,
               type: 'trap2',
-              size: DEFAULT_ENEMY_MINI_GAME_SIZE,
+              size: {width: 16, height: 16},
               isAngry: true
             }], {x: x, y: y}, 62)
         }
