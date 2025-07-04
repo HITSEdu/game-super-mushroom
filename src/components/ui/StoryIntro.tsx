@@ -11,6 +11,10 @@ const StoryIntro = ({onClose}: { onClose: () => void }) => {
   const [finished, setFinished] = useState(false);
   const [skip, setSkip] = useState(false);
 
+  const handleSkip = () => {
+    if (!finished) setSkip(true);
+  }
+
   useEffect(() => {
     let i = 0;
     let interval: number;
@@ -36,8 +40,8 @@ const StoryIntro = ({onClose}: { onClose: () => void }) => {
     typeText();
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter' && !finished) {
-        setSkip(true);
+      if (e.key === 'Enter') {
+        handleSkip();
       }
     };
 
@@ -57,19 +61,27 @@ const StoryIntro = ({onClose}: { onClose: () => void }) => {
         exit={{opacity: 0}}
       >
         <div
-          className="max-w-[60vw] text-lg sm:text-xl md:text-2xl font-light leading-relaxed text-left whitespace-pre-wrap"
+          className="max-w-[60vw] h-mobile:max-w-[70vw] h-desktop:text-2xl h-sm:text-lg h-xs:text-md font-light leading-relaxed text-left whitespace-pre-wrap"
         >
           {text}
         </div>
 
         {finished && (
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <div className="absolute h-mobile:bottom-4 bottom-8 left-1/2 -translate-x-1/2">
             <Button
               title={t('synopsis.understood')}
               onClick={onClose}
             />
           </div>
         )}
+        {!finished &&
+          <div className='absolute right-4 top-4 -translate-x-1/2'>
+            <Button
+              title={t('skip')}
+              onClick={handleSkip}
+            />
+          </div>
+        }
       </motion.div>
     </AnimatePresence>
   );

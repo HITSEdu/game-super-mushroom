@@ -10,11 +10,10 @@ interface MovingSkyElementProps {
   containerHeight: number;
 }
 
-const TOTAL_CYCLE_MS = 120_000 * 2;
+const TOTAL_CYCLE_MS = 240_000;
+const HALF_CYCLE = TOTAL_CYCLE_MS / 2;
 
 const SPRITE_WIDTH = 5 * TILE_SIZE;
-
-const PHASE_LENGTH = TOTAL_CYCLE_MS / 2;
 
 const MovingSkyElement = ({
                             sunTexture,
@@ -34,15 +33,13 @@ const MovingSkyElement = ({
     return {x, y};
   }
 
-  const sunProgress = cycleTime / TOTAL_CYCLE_MS;
-  const moonProgress = (cycleTime + PHASE_LENGTH) % TOTAL_CYCLE_MS / TOTAL_CYCLE_MS;
-
-  return (
-    <>
-      <SkyElement {...calcPosition(sunProgress)} texture={sunTexture} />
-      <SkyElement {...calcPosition(moonProgress)} texture={moonTexture} />
-    </>
-  );
+  if (cycleTime < HALF_CYCLE) {
+    const progress = cycleTime / HALF_CYCLE;
+    return <SkyElement {...calcPosition(progress)} texture={sunTexture} />;
+  } else {
+    const progress = (cycleTime - HALF_CYCLE) / HALF_CYCLE;
+    return <SkyElement {...calcPosition(progress)} texture={moonTexture} />;
+  }
 };
 
 export default MovingSkyElement;

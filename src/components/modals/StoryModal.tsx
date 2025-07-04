@@ -5,7 +5,6 @@ import {useModalStore} from "../../store/ModalStore";
 interface StoryPage {
   title?: string;
   content: string | ReactNode;
-  image?: string;
 }
 
 interface StoryModalProps {
@@ -67,14 +66,6 @@ const StoryModal = ({
     >
       {currentPage.title && (
         <h2 className="text-xl font-bold mb-4">{currentPage.title}</h2>
-      )}
-
-      {currentPage.image && (
-        <img
-          src={currentPage.image}
-          alt=""
-          className="mb-4 max-h-32 mx-auto object-contain"
-        />
       )}
 
       <div className="mb-6 text-base">

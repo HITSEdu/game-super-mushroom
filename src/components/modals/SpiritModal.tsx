@@ -36,22 +36,18 @@ const SpiritModal = ({spiritId}: SpiritModalProps) => {
       {
         title: t("spiritGreeting", {name: spirit.name}),
         content: t("alreadyHelped"),
-        image: background,
       }
     ]
     : [
       {
         title: t("spiritGreeting", {name: spirit.name}),
         content: t(`spiritDialogue.${spiritKey}.0`),
-        image: background,
       },
       {
         content: t(`spiritDialogue.${spiritKey}.1`),
-        image: background,
       },
       {
         content: t(`spiritDialogue.${spiritKey}.2`),
-        image: background,
       }
     ];
 
@@ -62,6 +58,7 @@ const SpiritModal = ({spiritId}: SpiritModalProps) => {
       onSecondary={!hasCompleted ? handleLeave : handleLeave}
       primaryLabel={!hasCompleted ? "help" : undefined}
       secondaryLabel="leave"
+      backgroundColor={background}
     />
   );
 };

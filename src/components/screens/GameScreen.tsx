@@ -20,7 +20,6 @@ import ItemModal from "../ui/ItemModal.tsx";
 const GameScreen = () => {
   const {
     status,
-    stars,
     currentAttempts,
     pause,
     curTime,
@@ -76,7 +75,6 @@ const GameScreen = () => {
         <div className="fixed left-2 top-2 z-1001 flex-center flex-row">
           <LevelInfo
             attempts={currentAttempts}
-            stars={stars}
             time={curTime}
           />
         </div>
