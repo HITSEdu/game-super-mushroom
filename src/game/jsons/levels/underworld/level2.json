@@ -2101,6 +2101,28 @@
         "width": 24,
         "height": 48
       }
+    },
+    {
+      "x": 456,
+      "y": 240,
+      "type": "underworld_spirit",
+      "speed": 62,
+      "range": 192,
+      "size": {
+        "width": 24,
+        "height": 48
+      }
+    },
+    {
+      "x": 576,
+      "y": 240,
+      "type": "underworld_spirit",
+      "speed": 58,
+      "range": 192,
+      "size": {
+        "width": 24,
+        "height": 48
+      }
     }
   ],
   "items": []

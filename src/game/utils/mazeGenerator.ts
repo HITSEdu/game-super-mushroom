@@ -1,7 +1,6 @@
 import {type PointData} from "pixi.js";
 import {
   COLS,
-  DEFAULT_ENEMY_MINI_GAME_SIZE,
   ROWS,
   TILE_SIZE
 } from "../../constants/values";

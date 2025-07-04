@@ -26,7 +26,6 @@ const FountainModal = () => {
     {content: t("fountain.final1")},
     {content: t("fountain.final2")},
     {content: t("fountain.final3")},
-    {content: t("fountain.final4")},
   ];
 
   const handleComplete = () => {

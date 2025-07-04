@@ -41,7 +41,7 @@ const WinterFog = () => {
 
     g.rect(0, 0, GAME_WIDTH, GAME_HEIGHT).fill(0xffffff);
 
-    g.circle(centerX, centerY, TILE_SIZE * 1.5);
+    g.circle(centerX, centerY, TILE_SIZE * 2);
     g.cut();
   };
 
