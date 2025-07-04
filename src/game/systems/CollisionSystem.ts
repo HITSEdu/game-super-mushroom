@@ -100,7 +100,7 @@ const hasntCollisions = (type: string) => {
 }
 
 const deathCollisions = (type: string) => {
-  const types = ['trap', 'water', 'fire'];
+  const types = ['trap', 'water', 'fire', 'rock1'];
   for (const it of types) {
     if (type.startsWith(it)) return true;
   }
