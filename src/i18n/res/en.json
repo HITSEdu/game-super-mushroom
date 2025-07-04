@@ -138,9 +138,9 @@
   "tutorial": {
     "title": "Tutorial",
     "page1": "Use keys A and D to move left and right, spacebar — to jump, and W and S — to move up and down.",
-    "page2": "Press E — to interact with objects, F — to interact with living beings.",
-    "page3": "Beware of water — it is deadly.",
-    "page4": "Your inventory is at the bottom of the screen — click on an item to use it or view its description.\n\nSome items contain crucial information!",
+    "page2": "Press E — to interact with objects, F — to interact with living beings. Beware of water — it is deadly!",
+    "page3": "Your inventory is at the bottom of the screen — click on an item to use it or view its description.\n\nSome items contain crucial information!",
+    "page4": "Now you need to find the Saint fountain. It take you a task",
     "understood": "Understood"
   },
   "NovaDescription": "During an attempt to accelerate the Nova chrono-engine, the fabric of time was torn, releasing anomalies.",

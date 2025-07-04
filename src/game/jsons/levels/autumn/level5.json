@@ -11,19 +11,88 @@
   },
   "obstacles": [
     {
-      "x": 144,
-      "y": 144,
-      "width": 24,
-      "height": 24,
-      "type": "water_games",
-      "visible": true
-    },
-    {
       "x": 960,
       "y": 456,
       "width": 48,
       "height": 48,
       "type": "shelf"
+    },
+        {
+      "x": 360,
+      "y": 456,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 96,
+      "y": 312,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 912,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 96,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 528,
+      "y": 456,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 312,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 528,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 456,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 192,
+      "y": 216,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 768,
+      "y": 384,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
+    },
+    {
+      "x": 624,
+      "y": 456,
+      "width": 24,
+      "height": 24,
+      "type": "trap1"
     }
   ],
   "enemies": [],

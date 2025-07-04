@@ -1593,6 +1593,29 @@
       "type": "platform"
     }
   ],
-  "enemies": [],
+  "enemies": [
+    {
+      "x": 360,
+      "y": 432,
+      "type": "underworld_spirit",
+      "speed": 52,
+      "range": 96,
+      "size": {
+        "width": 24,
+        "height": 48
+      }
+    },
+    {
+      "x": 672,
+      "y": 48,
+      "type": "bat",
+      "speed": 64,
+      "range": 192,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
+    }
+  ],
   "items": []
 }

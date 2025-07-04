@@ -11,6 +11,258 @@
   },
   "obstacles": [
     {
+      "x": 960,
+      "y": 456,
+      "width": 48,
+      "height": 48,
+      "type": "bag"
+    },
+    {
+      "x": 120,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 888,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 912,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 936,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 960,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 0,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 888,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 912,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 936,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 960,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 24,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 912,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 936,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 960,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 48,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 912,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 936,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 960,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 72,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 936,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 960,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 96,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 120,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 120,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 168,
+      "y": 120,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 984,
+      "y": 120,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
       "x": 144,
       "y": 144,
       "width": 24,
@@ -18,11 +270,326 @@
       "type": "water_games"
     },
     {
-      "x": 960,
+      "x": 168,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 192,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 792,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 816,
+      "y": 144,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 168,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 192,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 216,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 792,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 816,
+      "y": 168,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 192,
+      "y": 192,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 216,
+      "y": 192,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 192,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 264,
+      "y": 192,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 216,
+      "y": 216,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 216,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 264,
+      "y": 216,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 240,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 264,
+      "y": 240,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 264,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 264,
+      "y": 264,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 240,
+      "y": 288,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 264,
+      "y": 288,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 648,
+      "y": 288,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 672,
+      "y": 288,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 696,
+      "y": 288,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 648,
+      "y": 312,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 696,
+      "y": 312,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 96,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 120,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 168,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 648,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 672,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 696,
+      "y": 336,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 360,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 384,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 408,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 432,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
       "y": 456,
-      "width": 48,
-      "height": 48,
-      "type": "bag"
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 456,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 168,
+      "y": 456,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 72,
+      "y": 480,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 144,
+      "y": 480,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
+    },
+    {
+      "x": 168,
+      "y": 480,
+      "width": 24,
+      "height": 24,
+      "type": "water_games"
     }
   ],
   "enemies": [

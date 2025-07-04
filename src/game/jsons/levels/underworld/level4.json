@@ -2069,6 +2069,51 @@
       "type": "platform"
     }
   ],
-  "enemies": [],
+  "enemies": [
+    {
+      "x": 480,
+      "y": 48,
+      "type": "bat",
+      "speed": 60,
+      "range": 144,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
+    },
+    {
+      "x": 720,
+      "y": 48,
+      "type": "bat",
+      "speed": 70,
+      "range": 144,
+      "size": {
+        "width": 48,
+        "height": 24
+      }
+    },
+    {
+      "x": 480,
+      "y": 360,
+      "type": "slug",
+      "speed": 44,
+      "range": 240,
+      "size": {
+        "width": 48,
+        "height": 48
+      }
+    },
+    {
+      "x": 216,
+      "y": 240,
+      "type": "underworld_spirit",
+      "speed": 44,
+      "range": 96,
+      "size": {
+        "width": 24,
+        "height": 48
+      }
+    }
+  ],
   "items": []
 }
