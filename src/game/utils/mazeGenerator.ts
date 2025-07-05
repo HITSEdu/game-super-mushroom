@@ -125,13 +125,13 @@ export function generateSummerMaze(): void {
 
         const axis: 'x' | 'y' | null = (left && right && !(up && down)) ? "y" : (up && down && !(left && right)) ? "x" : null;
 
-        if (row < 19 && col > 3 && Math.random() < 0.075 && axis) {
+        if (row < 19 && col > 3 && Math.random() < 0.092 && axis) {
           useLevelStore.getState().spawnEnemies(
             [{
               x: x,
               y: y,
               axis,
-              speed: 50,
+              speed: 52,
               type: 'trap2',
               size: {width: 16, height: 16},
               isAngry: true

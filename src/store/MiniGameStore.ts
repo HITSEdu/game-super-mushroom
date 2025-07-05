@@ -122,10 +122,10 @@ export const useMiniGameStore = create<MiniGameState>()(
         if (!zone) return;
 
         useLevelStore.getState().spawnEnemies([
-          {x: zone.x - 12, y: zone.y, axis: 'y', type: 'trap2', speed: 180},
-          {x: zone.x + 12, y: zone.y, axis: 'y', type: 'trap2', speed: 180},
-          {x: zone.x, y: zone.y - 12, axis: 'x', type: 'trap2', speed: 180},
-          {x: zone.x, y: zone.y + 12, axis: 'x', type: 'trap2', speed: 180},
+          {x: zone.x - 12, y: zone.y, axis: 'y', type: 'trap2', speed: 150},
+          {x: zone.x + 12, y: zone.y, axis: 'y', type: 'trap2', speed: 150},
+          {x: zone.x, y: zone.y - 12, axis: 'x', type: 'trap2', speed: 150},
+          {x: zone.x, y: zone.y + 12, axis: 'x', type: 'trap2', speed: 150},
         ], zone);
       },
 

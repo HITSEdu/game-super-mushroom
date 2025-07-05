@@ -24,22 +24,7 @@ const MobileControls = () => {
 
   return (
     <div className="fixed bottom-4 left-2 right-2 flex justify-between items-end px-2 z-50 pointer-events-none">
-      <div className="flex flex-col items-start gap-6">
-        {interactionKey && (
-          <button
-            className={`${btnWrapper}`}
-            onTouchStart={() => press(interactionKey)}
-            onTouchEnd={() => release(interactionKey)}
-            onTouchCancel={() => release(interactionKey)}
-            type="button"
-          >
-            <span
-              className={` 
-                bg-sky-50 border border-[#666] text-sky-950
-                text-2xl h-18 w-18 rounded-xl flex-center`}
-            >{t(interactionKey)}</span>
-          </button>
-        )}
+      <div className="flex flex-col items-center mb-6">
         <div className="flex">
           <button
             className={btnWrapper}
@@ -63,6 +48,21 @@ const MobileControls = () => {
       </div>
 
       <div className="flex flex-col">
+        {interactionKey && (
+          <button
+            className={`${btnWrapper} mb-10`}
+            onTouchStart={() => press(interactionKey)}
+            onTouchEnd={() => release(interactionKey)}
+            onTouchCancel={() => release(interactionKey)}
+            type="button"
+          >
+            <span
+              className={` 
+                bg-sky-50 border border-[#666] text-sky-950
+                text-2xl h-18 w-18 rounded-xl flex-center`}
+            >{t(interactionKey)}</span>
+          </button>
+        )}
         <button
           className={btnWrapper}
           onTouchStart={() => {
