@@ -2,7 +2,6 @@ import {useTranslation} from "react-i18next";
 import {useModalStore} from "../../store/ModalStore.ts";
 import {useMiniGameStore} from "../../store/MiniGameStore.ts";
 import {spirits} from "../../constants/spirits.tsx";
-import {SEASONS} from "../../constants/values.ts";
 import StoryModal from "./StoryModal";
 
 interface SpiritModalProps {
@@ -19,8 +18,6 @@ const SpiritModal = ({spiritId}: SpiritModalProps) => {
 
   const spiritKey = spirit.name.toLowerCase();
   const hasCompleted = isCompleted(spirit.season);
-  const season = SEASONS.find(s => s.key === spirit.season);
-  const background = season?.background;
 
   const handleHelp = () => {
     startMiniGame(spirit.season);
